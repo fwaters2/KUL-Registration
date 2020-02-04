@@ -159,7 +159,7 @@ export default function FormContainer(props) {
             )}
           </Grid>
         </Grid>
-        <div>{children}</div>
+        {children}
       </Paper>
     </Container>
   );

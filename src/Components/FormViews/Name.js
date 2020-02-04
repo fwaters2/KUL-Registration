@@ -1,9 +1,9 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-import { Grid, Button } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 export default function Name(props) {
-  const { language, handleChange, values, stepChange, step, classes } = props;
+  const { language, handleChange, values } = props.state;
 
   return (
     <React.Fragment>
@@ -56,20 +56,6 @@ export default function Name(props) {
         value={values.nickName}
         onChange={handleChange("nickName")}
       />
-
-      <Grid container className={classes.footer} spacing={3}>
-          <Grid item xs={12}>
-            <Button
-              variant="outlined"
-              color="primary"
-              disabled={!values.firstName || !values.lastName }
-              fullWidth
-              onClick={() => stepChange(step + 1)}
-            >
-              {language.next}
-            </Button>
-          </Grid>
-      </Grid>
     </React.Fragment>
   );
 }

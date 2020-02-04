@@ -1,9 +1,8 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
-import { Grid, Button } from "@material-ui/core";
 
 export default function Birthday(props) {
-  const { language, handleChange, values, step, stepChange, classes } = props;
+  const { language, handleChange, values } = props.state;
   // const [month, changeMonth] = React.setState(06)
   // const [day, changeDay]=React.setState(17)
   // const [year, changeYear] = React.setState(1990)
@@ -28,29 +27,6 @@ export default function Birthday(props) {
         }}
         fullWidth
       />
-      <Grid container className={classes.footer} spacing={3}>
-        <Grid item xs={6}>
-          <Button
-            variant="contained"
-            color="secondary"
-            fullWidth
-            onClick={() => stepChange(step - 1)}
-          >
-            {language.back}
-          </Button>
-        </Grid>
-        <Grid item xs={6}>
-          <Button
-            variant="outlined"
-            color="primary"
-            disabled={!values.birthday}
-            fullWidth
-            onClick={() => stepChange(step + 1)}
-          >
-            {language.next}
-          </Button>
-        </Grid>
-      </Grid>
     </React.Fragment>
   );
 }

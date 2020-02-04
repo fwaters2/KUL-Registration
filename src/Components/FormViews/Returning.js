@@ -11,29 +11,7 @@ import {
 } from "@material-ui/core";
 
 export default function Returning(props) {
-  const {
-    language,
-    handleComplexChange,
-    handleChange,
-    values,
-    handleSliderChange,
-    classes,
-    step,
-    stepChange
-  } = props;
-
-  // const inputLabel = React.useRef(null);
-  // const [labelWidth, setLabelWidth] = React.useState(0);
-  // React.useEffect(() => {
-  //setLabelWidth(inputLabel.current.offsetWidth);
-  // }, []);
-
-  // function handleChange(event) {
-  //   setValues(oldValues => ({
-  //     ...oldValues,
-  //     [event.target.name]: event.target.value
-  //   }));
-  // }
+  const { language, setValues, handleChange, values } = props.state;
 
   return (
     <React.Fragment>
@@ -42,10 +20,10 @@ export default function Returning(props) {
           <Grid container spacing={1}>
             <Grid item xs={6}>
               <Button
-                className={classes.picButton}
+                //className={classes.picButton}
                 variant="contained"
                 fullWidth
-                onClick={handleComplexChange("seasons", 0)}
+                onClick={() => setValues({ ...values, seasons: 0 })}
                 color="primary"
               >
                 {language.yep}
@@ -53,10 +31,10 @@ export default function Returning(props) {
             </Grid>
             <Grid item xs={6}>
               <Button
-                className={classes.picButton}
+                //className={classes.picButton}
                 variant="contained"
                 fullWidth
-                onClick={handleComplexChange("seasons", 1)}
+                onClick={() => setValues({ ...values, seasons: 1 })}
                 color="primary"
               >
                 {language.nope}
@@ -100,7 +78,7 @@ export default function Returning(props) {
 
           <Button
             color="secondary"
-            onClick={handleComplexChange("seasons", "unknown")}
+            onClick={() => setValues({ ...values, seasons: "unknown" })}
           >
             {language.back}
           </Button>
@@ -109,43 +87,21 @@ export default function Returning(props) {
         <React.Fragment>
           <Slider
             value={values.seasons}
-            onChange={handleSliderChange("seasons")}
+            onChange={(e, value) => setValues({ ...values, seasons: value })}
             min={1}
-            max={7}
+            max={8}
             valueLabelDisplay="on"
           />
+
           <InputLabel>{language.seasonsPlayed}</InputLabel>
           <Button
             color="secondary"
-            onClick={handleComplexChange("seasons", "unknown")}
+            onClick={() => setValues({ ...values, seasons: "unknown" })}
           >
             {language.back}
           </Button>
         </React.Fragment>
       )}
-      <Grid container className={classes.footer} spacing={3}>
-        <Grid item xs={6}>
-          <Button
-            variant="contained"
-            color="secondary"
-            fullWidth
-            onClick={() => stepChange(step - 1)}
-          >
-            {language.back}
-          </Button>
-        </Grid>
-        <Grid item xs={6}>
-          <Button
-            variant="outlined"
-            color="primary"
-            fullWidth
-            disabled={!values.source && !values.seasons}
-            onClick={() => stepChange(step + 1)}
-          >
-            {language.next}
-          </Button>
-        </Grid>
-      </Grid>
     </React.Fragment>
   );
 }

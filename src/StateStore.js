@@ -6,11 +6,12 @@ import FormContainer from "./Components/FormContainer.js";
 import StepView from "./Components/StepView.js";
 import LoginContainer from "./Components/Login/LoginContainer.js";
 import handleLang from "./Assets/Lang/handleLang.js";
+import ButtonNavigation from "./Components/ButtonNavigation.js";
 
 const InitialState = require("./InitialState.json");
 
 export default function StateStore() {
-  const [step, stepChange] = React.useState(0);
+  const [step, stepChange] = React.useState(17);
   const [lang, toggleLang] = React.useState("en");
   const [values, setValues] = React.useState(InitialState);
   const [isSignedIn, updateUser] = React.useState(false);
@@ -70,12 +71,6 @@ export default function StateStore() {
   const handleComplexChange = (name, value) => () => {
     setValues({ ...values, [name]: value });
   };
-  const handleSliderChange = name => (e, value) => {
-    setValues({ ...values, [name]: value });
-  };
-  const changeStep = () => {
-    stepChange(step + 1);
-  };
 
   const containerState = {
     toggleLanguage,
@@ -86,15 +81,13 @@ export default function StateStore() {
   const otherState = {
     handleChange,
     handleButtonClick,
-    handleComplexChange,
-    handleSliderChange,
-    changeStep,
     values,
     lang,
     step,
     stepChange,
     isSignedIn,
-    setValues
+    setValues,
+    language
   };
   const currentView = () => {
     if (isLoading) {
@@ -104,12 +97,17 @@ export default function StateStore() {
       return <LoginContainer language={language} />;
     }
     if (!isRegistered) {
-      return <StepView />;
+      return <StepView state={otherState} />;
     }
     if (isRegistered) {
       return <div>We're finished Registering</div>;
     }
   };
   //What we are rendering
-  return <FormContainer state={containerState}>{currentView()}</FormContainer>;
+  return (
+    <FormContainer state={containerState}>
+      {currentView()}
+      <ButtonNavigation state={otherState} />
+    </FormContainer>
+  );
 }

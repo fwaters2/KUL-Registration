@@ -9,7 +9,7 @@
     "step": "nationality"
   },
   {
-    "step": "returning or no"
+    "step": "returning"
   },
   {
     "step": "gender"
@@ -27,13 +27,13 @@
     "step": "athletecism"
   },
   {
-    "step": "contact information"
+    "step": "contact"
   },
   {
     "step": "english"
   },
   {
-    "step": "Chinese"
+    "step": "chinese"
   },
   {
     "step": "party"
@@ -45,15 +45,15 @@
     "step": "commitments"
   },
   {
-    "step": "jersey information"
+    "step": "jersey"
   },
   {
-    "step": "extra swag"
+    "step": "swag"
   },
   {
     "step": "checkout"
   },
   {
-    "step": "result (success)"
+    "step": "result"
   }
 ]

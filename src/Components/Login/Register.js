@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  TextField,
-  Button,
-  FormControlLabel,
-  Checkbox
-} from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 import firebase from "../../Firebase";
 
 export default function Register(props) {
@@ -51,10 +46,6 @@ export default function Register(props) {
         onChange={e => setPassword(e.target.value)}
         autoComplete="current-password"
       />
-      {/* <FormControlLabel
-        control={<Checkbox value="remember" color="primary" />}
-        label={language.rememberMe}
-      /> */}
       <Button
         type="submit"
         fullWidth
