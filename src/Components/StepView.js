@@ -30,21 +30,21 @@ export default function StepView(props) {
     case "height":
       return <Height state={props.state} />;
     case "skills":
-      return <MultipleChoice category={"Skills"} state={props.state} />;
+      return <MultipleChoice category={"skills"} state={props.state} />;
     case "experience":
-      return <MultipleChoice category={"EXP"} state={props.state} />;
+      return <MultipleChoice category={"exp"} state={props.state} />;
     case "athletecism":
-      return <MultipleChoice category={"ATHL"} state={props.state} />;
+      return <MultipleChoice category={"athl"} state={props.state} />;
     case "contact":
       return <Contact state={props.state} />;
     case "english":
-      return <MultipleChoice category={"English"} state={props.state} />;
+      return <MultipleChoice category={"english"} state={props.state} />;
     case "chinese":
-      return <MultipleChoice category={"Chinese"} state={props.state} />;
+      return <MultipleChoice category={"chinese"} state={props.state} />;
     case "party":
-      return <MultipleChoice category={"Party"} state={props.state} />;
+      return <MultipleChoice category={"party"} state={props.state} />;
     case "improve":
-      return <MultipleChoice category={"Improve"} state={props.state} />;
+      return <MultipleChoice category={"improve"} state={props.state} />;
     case "commitments":
       return <Commitments state={props.state} />;
     case "jersey":

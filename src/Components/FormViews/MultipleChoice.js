@@ -1,11 +1,11 @@
 import React from "react";
-import { Button, Grid } from "@material-ui/core";
+import { Button, Grid, Typography } from "@material-ui/core";
 
 export default function MultipleChoice(props) {
   const { category } = props;
   const { language, values, handleButtonClick } = props.state;
   const choices = {
-    Skills: {
+    skills: {
       options: [
         {
           display: language.skillOptions[0],
@@ -25,7 +25,7 @@ export default function MultipleChoice(props) {
         }
       ]
     },
-    EXP: {
+    exp: {
       options: [
         { display: language.expOptions[0], value: "Newbie" },
         { display: language.expOptions[1], value: "Rookie" },
@@ -35,7 +35,7 @@ export default function MultipleChoice(props) {
         { display: language.expOptions[4], value: "Expert" }
       ]
     },
-    ATHL: {
+    athl: {
       options: [
         {
           display: language.athlOptions[0],
@@ -60,7 +60,7 @@ export default function MultipleChoice(props) {
       ]
     },
 
-    English: {
+    english: {
       options: [
         { display: language.native, value: "Native" },
         { display: language.fluent, value: "Fluent" },
@@ -69,7 +69,7 @@ export default function MultipleChoice(props) {
         { display: language.nonExistent, value: "Non-existent" }
       ]
     },
-    Chinese: {
+    chinese: {
       options: [
         { display: language.native, value: "Native" },
         { display: language.fluent, value: "Fluent" },
@@ -79,14 +79,14 @@ export default function MultipleChoice(props) {
       ]
     },
 
-    Party: {
+    party: {
       options: [
         { display: language.intOption1, value: "High" },
         { display: language.intOption2, value: "Middle" },
         { display: language.intOption3, value: "Low" }
       ]
     },
-    Improve: {
+    improve: {
       options: [
         { display: language.intOption1, value: "High" },
         { display: language.intOption2, value: "Middle" },
@@ -96,6 +96,7 @@ export default function MultipleChoice(props) {
   };
   return (
     <React.Fragment>
+      <Typography variant="h5">{language[category]}</Typography>
       <Grid container spacing={1}>
         {choices[category].options.map(option => (
           <Grid item xs={12} key={option.value}>

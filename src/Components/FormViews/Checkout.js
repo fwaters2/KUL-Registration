@@ -3,7 +3,7 @@ import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import { Button, Grid } from "@material-ui/core";
+import { Button, Grid, Divider } from "@material-ui/core";
 import "../../Assets/KUL.svg";
 
 import firebase from "../../Firebase";
@@ -37,7 +37,7 @@ export default function Checkout(props) {
 
   return (
     <React.Fragment>
-      <List disablePadding>
+      <List disablePadding style={{ flex: 1, width: "100%" }}>
         <ListItem
         //className={classes.listItem}
         >
@@ -60,7 +60,9 @@ export default function Checkout(props) {
             </ListItem>
           ) : null
         )}
+        <Divider variant="middle" />
         <ListItem
+        //style={{ borderTop: "1px solid black" }}
         //className={classes.listItem}
         >
           <ListItemText primary="Total" />

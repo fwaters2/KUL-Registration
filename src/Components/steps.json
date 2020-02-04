@@ -52,8 +52,5 @@
   },
   {
     "step": "checkout"
-  },
-  {
-    "step": "result"
   }
 ]

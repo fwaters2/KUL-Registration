@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import SwipeableViews from "react-swipeable-views";
 import { useTheme } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
@@ -54,18 +53,14 @@ export default function LoginContainer(props) {
           <Tab label={language.signIn} />
         </Tabs>
       </AppBar>
-      <SwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={value}
-        onChangeIndex={handleChangeIndex}
-      >
+      <div index={value} onChangeIndex={handleChangeIndex}>
         <TabPanel value={value} index={0} dir={theme.direction}>
           <Register language={language} />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <SignIn language={language} />
         </TabPanel>
-      </SwipeableViews>
+      </div>
     </div>
   );
 }

@@ -81,6 +81,11 @@ export default function FormContainer(props) {
     <Container component="main" maxWidth="xs">
       <Paper className={classes.paper}>
         <Grid
+          style={{
+            paddingBottom: "1em",
+            marginBottom: "2em",
+            borderBottom: "1px solid black"
+          }}
           container
           direction="row"
           alignItems="center"
@@ -109,12 +114,13 @@ export default function FormContainer(props) {
 
           <Grid item>
             {!isSignedIn ? (
-              <IconButton>
+              <IconButton style={{ marginRight: "-.5em" }}>
                 <AssignmentInd />
               </IconButton>
             ) : (
               <React.Fragment>
                 <IconButton
+                  style={{ marginRight: "-.5em" }}
                   color="primary"
                   ref={anchorRef}
                   aria-controls={open ? "menu-list-grow" : undefined}

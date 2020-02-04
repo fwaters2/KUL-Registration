@@ -11,15 +11,14 @@ import ButtonNavigation from "./Components/ButtonNavigation.js";
 const InitialState = require("./InitialState.json");
 
 export default function StateStore() {
-  const [step, stepChange] = React.useState(17);
+  const [step, stepChange] = React.useState(0);
   const [lang, toggleLang] = React.useState("en");
   const [values, setValues] = React.useState(InitialState);
   const [isSignedIn, updateUser] = React.useState(false);
   const [isRegistered, updateRegistration] = React.useState(false);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   let language = handleLang(lang);
-
   React.useEffect(() => {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -48,7 +47,7 @@ export default function StateStore() {
             }
           })
           .catch(error => {
-            console.log("Error getting document:", error);
+            alert("Error getting document:", error);
           });
       } else {
         updateUser(false);
@@ -66,9 +65,6 @@ export default function StateStore() {
     setValues({ ...values, [name]: event.target.value });
   };
   const handleButtonClick = (name, value) => {
-    setValues({ ...values, [name]: value });
-  };
-  const handleComplexChange = (name, value) => () => {
     setValues({ ...values, [name]: value });
   };
 
@@ -94,20 +90,43 @@ export default function StateStore() {
       return <Preloader />;
     }
     if (!isSignedIn) {
-      return <LoginContainer language={language} />;
+      return (
+        <FormContainer state={containerState}>
+          <LoginContainer language={language} />
+        </FormContainer>
+      );
     }
     if (!isRegistered) {
-      return <StepView state={otherState} />;
+      return (
+        <FormContainer state={containerState}>
+          <div
+            style={{
+              flex: 1,
+              width: "100%",
+              display: "flex",
+              flexDirection: "column"
+            }}
+          >
+            <div
+              style={{
+                flex: 1,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center",
+                minHeight: "300px"
+              }}
+            >
+              <StepView state={otherState} />
+            </div>
+            <ButtonNavigation state={otherState} />
+          </div>
+        </FormContainer>
+      );
     }
     if (isRegistered) {
       return <div>We're finished Registering</div>;
     }
   };
-  //What we are rendering
-  return (
-    <FormContainer state={containerState}>
-      {currentView()}
-      <ButtonNavigation state={otherState} />
-    </FormContainer>
-  );
+  return currentView();
 }
