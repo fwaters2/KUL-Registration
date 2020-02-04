@@ -1,0 +1,59 @@
+[
+  {
+    "step": "names"
+  },
+  {
+    "step": "birthday"
+  },
+  {
+    "step": "nationality"
+  },
+  {
+    "step": "returning or no"
+  },
+  {
+    "step": "gender"
+  },
+  {
+    "step": "height"
+  },
+  {
+    "step": "skills"
+  },
+  {
+    "step": "experience"
+  },
+  {
+    "step": "athletecism"
+  },
+  {
+    "step": "contact information"
+  },
+  {
+    "step": "english"
+  },
+  {
+    "step": "Chinese"
+  },
+  {
+    "step": "party"
+  },
+  {
+    "step": "improve"
+  },
+  {
+    "step": "commitments"
+  },
+  {
+    "step": "jersey information"
+  },
+  {
+    "step": "extra swag"
+  },
+  {
+    "step": "checkout"
+  },
+  {
+    "step": "result (success)"
+  }
+]

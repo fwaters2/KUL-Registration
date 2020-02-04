@@ -1,0 +1,119 @@
+{
+  "back": "BACK",
+  "next": "NEXT",
+
+  "signUp": "Sign Up",
+  "email": "Email Address",
+  "choosePassword": "Create Password",
+  "password": "Password",
+  "rememberMe": "Remember Me",
+  "signIn": "Sign In",
+  "register": "REGISTER",
+
+  "names": "Names",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "chName": "Chinese Name",
+  "enName": "English Nickname",
+
+  "birthday": "Birthday",
+
+  "nationality": "Nationality",
+  "otherCountry": "Country",
+  "firstSeason": "First Season?",
+  "yep": "Yep!",
+  "hearAbout": "How did you hear about us?",
+  "referredBy": "Referred By:",
+  "facebook": "Facebook",
+  "google": "Google",
+  "pickup": "Pickup at Aozhidi",
+  "KULplayer": "KUL player",
+  "friend": "Friend",
+  "credit": "Who should get credit?",
+  "nope": "Nope!",
+  "seasonsPlayed": "How many season's have you played?",
+
+  "gender": "Gender",
+
+  "height": "Height",
+  "tall": "How tall are you?",
+  "cm": "cm",
+  "ft": "ft",
+  "inches": "in",
+
+  "skills": "Skills",
+  "skillOptions": [
+    "Newbie. Less than 3 Ultimate games played",
+    "More than 3 games, but I still can't throw up field",
+    "I can throw up field, but I am a much better cutter",
+    "I can throw up field, down field, around the field, and through the field  (I handle)"
+  ],
+
+  "exp": "Experience",
+  "expOptions": [
+    "I said I'm a newbie! (0 experience)",
+    "A few months experience",
+    "less than 2 years experience",
+    "I'm addicted (2- 5 years)",
+    "More than 5 years"
+  ],
+
+  "athl": "Athleticism",
+  "athlOptions": [
+    "I always guard the slowest person on the other team. (Lowest)",
+    "I can guard the fastest guy on the other team...When he has cramps in both legs and a concussion (slow)",
+    "I've done sports and can hold my own but not known for my speed(average)",
+    "I'm as quick as I am modest so i'll put 4",
+    "What's modest? Another name for slow?? I'm a cheeeeeeetah!"
+  ],
+
+  "contactInfo": "Contact Information",
+  "bestWay": "Let your captain know the best way to reach you!",
+  "fbContact": "What's your name on Facebook?",
+  "lineID": "What's your Line ID?",
+
+  "languages": "Languages",
+  "english": "English",
+  "chinese": "Chinese",
+  "native": "Native",
+  "fluent": "Fluent",
+  "intermediate": "Intermediate",
+  "learning": "Learning!",
+  "nonExistent": "Non-existent",
+
+  "interests": "Interests",
+  "party": "Party",
+  "improve": "Improve",
+  "intOption1": "Very Important",
+  "intOption2": "Mediocre",
+  "intOption3": "Not Interested",
+
+  "commitments": "Commitments",
+  "day": "Day",
+  "finals": "Finals",
+  "going": "In",
+  "likely": "Likely",
+  "unlikely": "Unlikely",
+  "out": "Out",
+
+  "teamJersey": "Team Jersey",
+  "nameBack": "Name on back of Jersey",
+  "required": "Required*",
+  "jerseyNum": "Jersey #",
+  "backup": "Backup #",
+  "size": "Size",
+
+  "extraSwag": "Extra Swag",
+  "blackDisc": "Black Disc",
+  "whiteDisc": "White Disc",
+  "blackHat": "Black Hat",
+  "whiteHat": "White Hat",
+
+  "checkout": "Checkout",
+  "nt": "nt",
+  "total": "Total",
+  "transferInfo": "Transfer Information",
+  "bankCode": "Bank Code",
+  "acctNum": "Account Number",
+  "submitFinish": "Submit and Finish!"
+}

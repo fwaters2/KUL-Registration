@@ -1,0 +1,118 @@
+{
+  "back": "上一個",
+  "next": "下一個",
+
+  "signUp": "註冊",
+  "email": "電子郵件地址",
+  "choosePassword": "選一個密碼",
+  "password": "密碼",
+  "rememberMe": "記住賬號",
+  "signIn": "登入",
+  "register": "報名",
+
+  "names": "名稱",
+  "firstName": "名字",
+  "lastName": "姓",
+  "chName": "中文名",
+  "enName": "英文暱稱",
+
+  "birthday": "生日",
+
+  "nationality": "國籍",
+  "otherCountry": "其他國家",
+  "firstSeason": "第一季?",
+  "yep": "是!",
+  "hearAbout": "您是怎麼知道我們的？",
+  "referredBy": "由......推薦：",
+  "facebook": "臉書",
+  "google": "谷歌",
+  "pickup": "凹子底的比賽",
+  "KULplayer": "玩過KUL",
+  "friend": "朋友",
+  "credit": "誰邀請你來？",
+  "nope": "不是！",
+  "seasonsPlayed": "你玩過多少個賽季？",
+
+  "gender": "性別",
+
+  "height": "身高",
+  "tall": "你有多高？",
+  "cm": "公分",
+  "ft": "腳",
+  "inches": "英寸",
+
+  "skills": "技能",
+  "skillOptions": [
+    "菜鳥，比賽次數不到3次",
+    "玩過3次比賽以上，但還不是很厲害",
+    "我知道怎麼丟飛盤。但我接飛盤比較厲害",
+    "我上下左右都會丟，閉著眼睛也會丟，控盤對我而言是小事一樁"
+  ],
+
+  "exp": "經驗",
+  "expOptions": [
+    "人家是菜鳥，請不要欺負我",
+    "剛學會丟盤(有幾個月的經驗)",
+    "不到2年",
+    "2~5年, 上癮了沒有它不行",
+    "飛盤是我的生活的一大部分....(久到不記得了)"
+  ],
+
+  "athl": "運動能力",
+  "athlOptions": [
+    "人家就跑得很慢，所以只能防守最慢的那個人",
+    "我只能跑贏最慢的那一位",
+    "我很常運動，但不確定自己到底可跑多快",
+    "謙虛一點來說，要跑贏我真的有點困難",
+    "飛毛腿! 我無所不在!!!"
+  ],
+
+  "contactInfo": "聯絡方式",
+  "bestWay": "讓你的隊長知道聯繫你的最佳方式！",
+  "fbContact": "你在facebook上的名字是什麼？",
+  "lineID": "你的線路ID是多少？",
+
+  "languages": "語言",
+  "english": "英語",
+  "chinese": "中文",
+  "native": "本地人",
+  "fluent": "流利",
+  "intermediate": "還好",
+  "learning": " 學習中!",
+  "nonExistent": "完全不會",
+
+  "interests": "目標",
+  "party": "玩樂",
+  "improve": "進步",
+  "intOption1": "很重要",
+  "intOption2": "還好",
+  "intOption3": "沒興趣",
+
+  "commitments": "承諾",
+  "day": "天",
+  "finals": "決賽",
+  "going": "一定會到",
+  "likely": "應該會到",
+  "unlikely": "不會",
+  "out": "不能去",
+
+  "teamJersey": "球衣",
+  "nameBack": "背面的名字",
+  "required": "必需填寫*",
+  "jerseyNum": "衣服號碼",
+  "backup": "備用號碼",
+  "size": "尺寸",
+
+  "extraSwag": "額外的物品",
+  "blackDisc": "黑色飛盤",
+  "whiteDisc": "白色飛盤",
+  "blackHat": "黑帽",
+  "whiteHat": "白帽",
+
+  "checkout": "付款",
+  "total": "總",
+  "transferInfo": "轉帳資訊",
+  "bankCode": "銀行代碼",
+  "acctNum": "帳號",
+  "submitFinish": "提交並完成!"
+}
