@@ -5,7 +5,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Button, Grid, Divider } from "@material-ui/core";
 import "../../Assets/KUL.svg";
-
 import firebase from "../../Firebase";
 const logo = require("../../Assets/KUL.svg");
 const items = [
@@ -15,14 +14,7 @@ const items = [
   { item: "discWhite", itemName: "White Disc", cost: 400 }
 ];
 export default function Checkout(props) {
-  const {
-    language,
-    classes,
-    values,
-    setValues,
-    step,
-    stepChange
-  } = props.state;
+  const { language, values, setValues, step, stepChange } = props.state;
 
   const registerPlayer = () => {
     setValues({ ...values, isRegistered: true });
@@ -49,7 +41,10 @@ export default function Checkout(props) {
         </ListItem>
         {items.map(product =>
           values[product.item] ? (
-            <ListItem className={classes.listItem} key={product.item}>
+            <ListItem
+              //className={classes.listItem}
+              key={product.item}
+            >
               <ListItemText
                 primary={product.itemName + "(" + values[product.item] + ")"}
                 secondary={product.cost}

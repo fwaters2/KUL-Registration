@@ -9,17 +9,21 @@ import {
 import { RemoveCircleOutline, AddCircleOutline } from "@material-ui/icons";
 
 export default function SwagItem(props) {
-  const {
-    item,
-    itemName,
-    cost,
-    values,
-    handleButtonClick
-  } = props;
+  const { item, itemName, cost, values, setValues } = props;
+
+  const handleButtonClick = (name, value) => {
+    setValues({ ...values, [name]: value });
+  };
 
   return (
     <ListItem>
-      <IconButton onClick={values[item] === 0 ? null : () => handleButtonClick(item, values[item] - 1)}>
+      <IconButton
+        onClick={
+          values[item] === 0
+            ? null
+            : () => handleButtonClick(item, values[item] - 1)
+        }
+      >
         <RemoveCircleOutline />
       </IconButton>
       <Box width="25px">
@@ -34,7 +38,6 @@ export default function SwagItem(props) {
         <AddCircleOutline />
       </IconButton>
       <ListItemText primary={itemName} secondary={cost + "nt"} />
-
     </ListItem>
   );
 }

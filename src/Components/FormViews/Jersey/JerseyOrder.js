@@ -13,7 +13,7 @@ import "./Jersey only.PNG";
 const JerseyShirt = require("./Jersey only.PNG");
 const JerseySizes = require("./Sizes only.PNG");
 export default function JerseyOrder(props) {
-  const { language, values, handleChange } = props.state;
+  const { language, values, setValues } = props.state;
   const inputLabel = React.useRef(null);
   //const [labelWidth, setLabelWidth] = React.useState(0);
   // React.useEffect(() => {
@@ -33,7 +33,7 @@ export default function JerseyOrder(props) {
             autoFocus
             fullWidth
             value={values.jerseyBack}
-            onChange={handleChange("jerseyBack")}
+            onChange={e => setValues({ ...values, jerseyBack: e.target.value })}
           />
         </Grid>
         <Grid item xs={4}>
@@ -46,7 +46,7 @@ export default function JerseyOrder(props) {
             fullWidth
             type="number"
             value={values.jerseyNum1}
-            onChange={handleChange("jerseyNum1")}
+            onChange={e => setValues({ ...values, jerseyNum1: e.target.value })}
           />
         </Grid>
         <Grid item xs={4}>
@@ -59,7 +59,7 @@ export default function JerseyOrder(props) {
             fullWidth
             type="number"
             value={values.jerseyNum2}
-            onChange={handleChange("jerseyNum2")}
+            onChange={e => setValues({ ...values, jerseyNum2: e.target.value })}
           />
         </Grid>
         <Grid item xs={4}>
@@ -68,7 +68,7 @@ export default function JerseyOrder(props) {
             <Select
               fullWidth
               value={values.size}
-              onChange={handleChange("size")}
+              onChange={e => setValues({ ...values, size: e.target.value })}
               input={
                 <Input
                 //labelWidth={labelWidth}

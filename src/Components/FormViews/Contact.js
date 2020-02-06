@@ -9,7 +9,7 @@ import {
 } from "@material-ui/core";
 
 export default function Contact(props) {
-  const { language, values, setValues, handleChange } = props.state;
+  const { language, values, setValues } = props.state;
 
   return (
     <React.Fragment>
@@ -34,7 +34,9 @@ export default function Contact(props) {
             <TextField
               label={language.fbContact}
               value={values.facebookID}
-              onChange={handleChange("facebookID")}
+              onChange={e =>
+                setValues({ ...values, facebookID: e.target.value })
+              }
             />
           ) : null}
           <FormControlLabel
@@ -52,7 +54,7 @@ export default function Contact(props) {
             <TextField
               label={language.lineID}
               value={values.lineID}
-              onChange={handleChange("lineID")}
+              onChange={e => setValues({ ...values, lineID: e.target.value })}
             />
           ) : null}
         </FormGroup>

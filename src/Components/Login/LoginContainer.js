@@ -34,10 +34,6 @@ export default function LoginContainer(props) {
     setValue(newValue);
   }
 
-  function handleChangeIndex(index) {
-    setValue(index);
-  }
-
   return (
     <div className={theme.root}>
       <AppBar position="static" color="default">
@@ -53,7 +49,7 @@ export default function LoginContainer(props) {
           <Tab label={language.signIn} />
         </Tabs>
       </AppBar>
-      <div index={value} onChangeIndex={handleChangeIndex}>
+      <div index={value}>
         <TabPanel value={value} index={0} dir={theme.direction}>
           <Register language={language} />
         </TabPanel>

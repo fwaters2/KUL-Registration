@@ -3,7 +3,7 @@ import TextField from "@material-ui/core/TextField";
 import { Grid } from "@material-ui/core";
 
 export default function Name(props) {
-  const { language, handleChange, values } = props.state;
+  const { language, values, setValues } = props.state;
 
   return (
     <React.Fragment>
@@ -20,7 +20,7 @@ export default function Name(props) {
             value={values.firstName}
             autoFocus
             fullWidth
-            onChange={handleChange("firstName")}
+            onChange={e => setValues({ ...values, firstName: e.target.value })}
           />
         </Grid>
         <Grid item xs={6}>
@@ -34,7 +34,7 @@ export default function Name(props) {
             helperText={language.required}
             fullWidth
             value={values.lastName}
-            onChange={handleChange("lastName")}
+            onChange={e => setValues({ ...values, lastName: e.target.value })}
           />
         </Grid>
       </Grid>
@@ -45,7 +45,7 @@ export default function Name(props) {
         margin="normal"
         variant="outlined"
         value={values.chName}
-        onChange={handleChange("chName")}
+        onChange={e => setValues({ ...values, chName: e.target.value })}
       />
       <TextField
         id="standard-required"
@@ -54,7 +54,7 @@ export default function Name(props) {
         margin="normal"
         variant="outlined"
         value={values.nickName}
-        onChange={handleChange("nickName")}
+        onChange={e => setValues({ ...values, nickName: e.target.value })}
       />
     </React.Fragment>
   );

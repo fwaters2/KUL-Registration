@@ -1,0 +1,14 @@
+{
+  "firstName": "",
+  "lastName": "",
+  "chName": "",
+  "nickName": "",
+  "birthday": "",
+  "nationality": "",
+  "gender": "",
+  "isRegistered": false,
+  "isPaid": false,
+  "isVerified": false,
+  "wasReferred": false,
+  "referredBy": ""
+}

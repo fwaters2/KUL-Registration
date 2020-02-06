@@ -11,7 +11,7 @@ export default function Register(props) {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .catch(function(error) {
+      .catch(error => {
         let errorMessage = error.message;
         alert(errorMessage);
       });
@@ -25,7 +25,7 @@ export default function Register(props) {
         required
         fullWidth
         type="email"
-        id="email"
+        id="registerEmail"
         label={language.email}
         name="email"
         autoComplete="email"
@@ -41,7 +41,7 @@ export default function Register(props) {
         name="password"
         label={language.choosePassword}
         type="password"
-        id="password"
+        id="registerPassword"
         value={password}
         onChange={e => setPassword(e.target.value)}
         autoComplete="current-password"

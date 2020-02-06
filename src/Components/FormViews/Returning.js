@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 
 export default function Returning(props) {
-  const { language, setValues, handleChange, values } = props.state;
+  const { language, setValues, values } = props.state;
 
   return (
     <React.Fragment>
@@ -48,7 +48,7 @@ export default function Returning(props) {
           <Select
             fullWidth
             value={values.source}
-            onChange={handleChange("source")}
+            onChange={e => setValues({ ...values, source: e.target.value })}
             input={<Input />}
           >
             <MenuItem value={""}>
@@ -70,7 +70,9 @@ export default function Returning(props) {
                   : language.friend
               }
               value={values.referredBy}
-              onChange={handleChange("referredBy")}
+              onChange={e =>
+                setValues({ ...values, referredBy: e.target.value })
+              }
               helperText={language.credit}
               margin="normal"
             />

@@ -3,14 +3,10 @@ import MultipleChoice from "../MultipleChoice";
 import { Grid, Button } from "@material-ui/core";
 
 export default function Athletecism(props) {
-  const {
-    language,
-    classes,
-    values,
-    handleButtonClick,
-    step,
-    stepChange
-  } = props;
+  const { language, classes, values, step, stepChange } = props;
+  const handleButtonClick = (name, value) => {
+    setValues({ ...values, [name]: value });
+  };
   return (
     <React.Fragment>
       <MultipleChoice

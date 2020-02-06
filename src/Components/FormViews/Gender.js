@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
+import StepTitle from "../StepTitle";
 
 const useStyles = makeStyles(theme => ({
   female: {
@@ -18,11 +19,12 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Gender(props) {
-  const { language, values, setValues, step, stepChange } = props.state;
+  const { language, values, setValues } = props.state;
   const classes = useStyles();
 
   return (
     <React.Fragment>
+      <StepTitle>{language.gender}</StepTitle>
       <Grid container spacing={1}>
         <Grid item xs={6}>
           <Button

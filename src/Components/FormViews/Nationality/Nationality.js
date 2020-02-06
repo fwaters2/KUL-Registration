@@ -21,7 +21,7 @@ const flagSA = require("./Flags/Flag_of_South_Africa.svg");
 const flagPhil = require("./Flags/Flag_of_the_Philippines.svg");
 
 export default function Nationality(props) {
-  const { language, handleChange, values, setValues } = props.state;
+  const { language, values, setValues } = props.state;
   const rowOne = [{ country: "Taiwan", image: flagTaiwan }];
   const rowTwo = [
     { country: "United States", image: flagUSA },
@@ -94,7 +94,7 @@ export default function Nationality(props) {
         fullWidth
         value={values.nationality}
         select
-        onChange={handleChange("nationality")}
+        onChange={e => setValues({ ...values, nationality: e.taget.value })}
       >
         {country_list.map(option => (
           <MenuItem key={option} value={option}>

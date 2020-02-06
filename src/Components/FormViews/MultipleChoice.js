@@ -1,9 +1,13 @@
 import React from "react";
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
+import StepTitle from "../StepTitle";
 
 export default function MultipleChoice(props) {
   const { category } = props;
-  const { language, values, handleButtonClick } = props.state;
+  const { language, values, setValues } = props.state;
+  const handleButtonClick = (name, value) => {
+    setValues({ ...values, [name]: value });
+  };
   const choices = {
     skills: {
       options: [
@@ -96,7 +100,7 @@ export default function MultipleChoice(props) {
   };
   return (
     <React.Fragment>
-      <Typography variant="h5">{language[category]}</Typography>
+      <StepTitle>{language[category]}</StepTitle>
       <Grid container spacing={1}>
         {choices[category].options.map(option => (
           <Grid item xs={12} key={option.value}>

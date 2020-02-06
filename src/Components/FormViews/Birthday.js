@@ -2,7 +2,7 @@ import React from "react";
 import TextField from "@material-ui/core/TextField";
 
 export default function Birthday(props) {
-  const { language, handleChange, values } = props.state;
+  const { language, values, setValues } = props.state;
   // const [month, changeMonth] = React.setState(06)
   // const [day, changeDay]=React.setState(17)
   // const [year, changeYear] = React.setState(1990)
@@ -21,7 +21,7 @@ export default function Birthday(props) {
         type="date"
         value={values.birthday}
         //defaultValue="1990-01-01"
-        onChange={handleChange("birthday")}
+        onChange={e => setValues({ ...values, birthday: e.target.value })}
         InputLabelProps={{
           shrink: true
         }}

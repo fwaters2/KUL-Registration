@@ -71,7 +71,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function Carousel(props) {
-  const { values, handleButtonClick, language } = props.state;
+  const { values, setValues, language } = props.state;
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -88,6 +88,9 @@ export default function Carousel(props) {
   function handleStepChange(step) {
     setActiveStep(step);
   }
+  const handleButtonClick = (name, value) => {
+    setValues({ ...values, [name]: value });
+  };
   return (
     <div className={classes.root}>
       <AutoPlaySwipeableViews
@@ -119,7 +122,7 @@ export default function Carousel(props) {
             onClick={handleNext}
             disabled={activeStep === maxSteps - 1}
           >
-            Next
+            {language.next}
             {theme.direction === "rtl" ? (
               <KeyboardArrowLeft />
             ) : (
@@ -134,7 +137,7 @@ export default function Carousel(props) {
             ) : (
               <KeyboardArrowLeft />
             )}
-            Back
+            {language.back}
           </Button>
         }
       />

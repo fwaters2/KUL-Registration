@@ -1,5 +1,4 @@
 {
-  "userId": "",
   "firstName": "",
   "lastName": "",
   "chName": "",
@@ -44,6 +43,5 @@
   "discWhite": 0,
   "hatBlack": 0,
   "hatWhite": 0,
-  "subtotal": 1400,
-  "complete": false
+  "subtotal": 1400
 }

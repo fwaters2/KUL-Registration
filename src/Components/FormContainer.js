@@ -6,7 +6,6 @@ import {
   Typography,
   Paper,
   Switch,
-  Button,
   IconButton,
   Popper,
   Grow,
@@ -75,6 +74,7 @@ export default function FormContainer(props) {
   }, [open]);
   const handleSignOut = () => {
     firebase.auth().signOut();
+    window.location.reload();
   };
 
   return (
