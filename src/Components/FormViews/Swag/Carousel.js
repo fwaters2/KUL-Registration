@@ -72,6 +72,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Carousel(props) {
   const { values, setValues, language } = props.state;
+  const { discBlack, discWhite, hatBlack, hatWhite } = values.items;
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -150,6 +151,7 @@ export default function Carousel(props) {
             item={item.item}
             itemName={item.itemName}
             cost={item.cost}
+            setValues={setValues}
             values={values}
           />
         ))}
@@ -158,10 +160,10 @@ export default function Carousel(props) {
         <Typography>
           Subtotal:{" "}
           {1200 +
-            values.hatBlack * 200 +
-            values.hatWhite * 200 +
-            values.discBlack * 400 +
-            values.discWhite * 400 +
+            hatBlack * 200 +
+            hatWhite * 200 +
+            discBlack * 400 +
+            discWhite * 400 +
             "nt"}
         </Typography>
       </Box>

@@ -11,6 +11,7 @@ const useStyles = makeStyles({
 export default function Height(props) {
   const { language, values, setValues } = props.state;
   const classes = useStyles();
+  const height = values.value;
   function unitConverter(cm) {
     let alltheinches = Math.floor(cm / 2.54);
     let inches = alltheinches % 12;
@@ -22,11 +23,11 @@ export default function Height(props) {
     <React.Fragment>
       <Grid container alignItems="center">
         <Grid item xs={8} container justify="center">
-          {values.height === null ? (
+          {height === null ? (
             <Typography variant="h6">{language.tall}</Typography>
           ) : (
             <Typography variant="h3">
-              {values.height}
+              {height}
               {language.cm}
             </Typography>
           )}
@@ -34,8 +35,8 @@ export default function Height(props) {
         <Grid item xs={4} className={classes.vertSlider}>
           <Slider
             defaultValue={170}
-            value={values.height}
-            onChange={(e, value) => setValues({ ...values, height: value })}
+            value={height}
+            onChange={(e, value) => setValues("value", value)}
             aria-labelledby="input-slider"
             orientation="vertical"
             min={140}

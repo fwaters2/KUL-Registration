@@ -14,17 +14,81 @@ const items = [
   { item: "discWhite", itemName: "White Disc", cost: 400 }
 ];
 export default function Checkout(props) {
-  const { language, values, setValues, step, stepChange } = props.state;
+  const { language, values, step, stepChange, regDocId } = props.state;
 
-  const registerPlayer = () => {
-    setValues({ ...values, isRegistered: true });
+  const swagOrders = () => {
+    //Goal: An array of orders
+    const regOrder = {
+      userId: values.userId,
+      item: "Early Bird Registration",
+      cost: 1200,
+      dateOrdered: firebase.firestore.FieldValue.serverTimestamp()
+    };
+
+    let completeArray = [];
+    items.forEach(x => {
+      if (values.swag.items[x.item] !== 0) {
+        let itemNum = values.swag.items[x.item];
+        let itemArray = [];
+        while (itemNum > 0) {
+          console.log(itemNum);
+          itemNum--;
+          itemArray = [
+            ...itemArray,
+            {
+              userId: values.userId,
+              item: x.itemName,
+              cost: x.cost,
+              dateOrdered: firebase.firestore.FieldValue.serverTimestamp()
+            }
+          ];
+        }
+        completeArray = [...completeArray, ...itemArray];
+      } else return completeArray;
+    });
+
+    return [...completeArray, regOrder];
   };
+
+  const collectionsAttributes = {
+    isDelivered: false,
+    dateDelivered: null,
+    isPaid: false,
+    datePaid: null,
+    paidTo: null,
+    bankNumbers: null
+  };
+
   const handleSubmission = () => {
-    registerPlayer();
-    firebase
-      .firestore()
-      .collection("Registration")
-      .add({ ...values, isRegistered: true, timeStamp: new Date() });
+    const userId = values.userId;
+    const db = firebase.firestore();
+    console.log("userId", userId);
+    console.log("reDocId", regDocId);
+    Promise.all([
+      db
+        .collection("Users")
+        .doc(userId)
+        .update({ isRegistered: true }),
+      db
+        .collection("Registration")
+        .doc(regDocId)
+        .set({
+          ...values,
+          completed: true,
+          completedRegistration: firebase.firestore.FieldValue.serverTimestamp()
+        }),
+      ...swagOrders().map(order => db.collection("Orders").add(order)),
+      ...swagOrders().map(order =>
+        db.collection("Collections").add({ ...order, ...collectionsAttributes })
+      )
+    ])
+      .then(result => {
+        console.log("completed a bunch of promises:", result.length);
+        window.location.reload();
+      })
+      .catch(error =>
+        console.log("Error adding documents to collections/orders", error)
+      );
   };
 
   return (
@@ -37,20 +101,22 @@ export default function Checkout(props) {
             primary={<img src={logo} alt="logo" height="20px" />}
             secondary={"KUL Registration"}
           />
-          <Typography variant="body2">1400nt</Typography>
+          <Typography variant="body2">1200nt</Typography>
         </ListItem>
         {items.map(product =>
-          values[product.item] ? (
+          values.swag.items[product.item] !== 0 ? (
             <ListItem
               //className={classes.listItem}
               key={product.item}
             >
               <ListItemText
-                primary={product.itemName + "(" + values[product.item] + ")"}
+                primary={
+                  product.itemName + "(" + values.swag.items[product.item] + ")"
+                }
                 secondary={product.cost}
               />
               <Typography variant="body2">
-                {values[product.item] * product.cost + "nt"}
+                {values.swag.items[product.item] * product.cost + "nt"}
               </Typography>
             </ListItem>
           ) : null
@@ -65,12 +131,7 @@ export default function Checkout(props) {
             variant="subtitle1"
             //className={classes.total}
           >
-            {values.hatBlack * 200 +
-              values.hatWhite * 200 +
-              values.discBlack * 400 +
-              values.discWhite * 400 +
-              1400 +
-              "nt"}
+            {values.checkout.subtotal + "nt"}
           </Typography>
         </ListItem>
       </List>

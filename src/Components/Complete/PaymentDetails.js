@@ -8,12 +8,14 @@ import {
 } from "@material-ui/core";
 
 export default function PaymentDetails(props) {
-  const { language } = props.state;
+  const { language, values } = props.state;
+  const subtotal = values.checkout.subtotal;
   return (
     <div>
       <div>Unpaid</div>
       <div>
-        {language.total}: 1,200{language.nt}
+        {language.total}: {subtotal}
+        {language.nt}
       </div>
       <Card>
         <CardHeader title={language.transferInfo} />

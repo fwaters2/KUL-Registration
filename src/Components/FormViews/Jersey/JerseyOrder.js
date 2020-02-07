@@ -15,10 +15,7 @@ const JerseySizes = require("./Sizes only.PNG");
 export default function JerseyOrder(props) {
   const { language, values, setValues } = props.state;
   const inputLabel = React.useRef(null);
-  //const [labelWidth, setLabelWidth] = React.useState(0);
-  // React.useEffect(() => {
-  //   setLabelWidth(inputLabel.current.offsetWidth);
-  // }, []);
+  const { jerseyBack, size, jerseyNum1, jerseyNum2 } = values;
   return (
     <React.Fragment>
       <Grid container spacing={1} alignItems="center">
@@ -32,8 +29,8 @@ export default function JerseyOrder(props) {
             variant="outlined"
             autoFocus
             fullWidth
-            value={values.jerseyBack}
-            onChange={e => setValues({ ...values, jerseyBack: e.target.value })}
+            value={jerseyBack}
+            onChange={e => setValues("jerseyBack", e.target.value)}
           />
         </Grid>
         <Grid item xs={4}>
@@ -45,8 +42,8 @@ export default function JerseyOrder(props) {
             variant="outlined"
             fullWidth
             type="number"
-            value={values.jerseyNum1}
-            onChange={e => setValues({ ...values, jerseyNum1: e.target.value })}
+            value={jerseyNum1}
+            onChange={e => setValues("jerseyNum1", e.target.value)}
           />
         </Grid>
         <Grid item xs={4}>
@@ -58,8 +55,8 @@ export default function JerseyOrder(props) {
             helperText={language.required}
             fullWidth
             type="number"
-            value={values.jerseyNum2}
-            onChange={e => setValues({ ...values, jerseyNum2: e.target.value })}
+            value={jerseyNum2}
+            onChange={e => setValues("jerseyNum2", e.target.value)}
           />
         </Grid>
         <Grid item xs={4}>
@@ -67,8 +64,8 @@ export default function JerseyOrder(props) {
             <InputLabel ref={inputLabel}>{language.size}</InputLabel>
             <Select
               fullWidth
-              value={values.size}
-              onChange={e => setValues({ ...values, size: e.target.value })}
+              value={size}
+              onChange={e => setValues("size", e.target.value)}
               input={
                 <Input
                 //labelWidth={labelWidth}

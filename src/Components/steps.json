@@ -1,56 +1,20 @@
 [
-  {
-    "step": "names"
-  },
-  {
-    "step": "birthday"
-  },
-  {
-    "step": "nationality"
-  },
-  {
-    "step": "returning"
-  },
-  {
-    "step": "gender"
-  },
-  {
-    "step": "height"
-  },
-  {
-    "step": "skills"
-  },
-  {
-    "step": "experience"
-  },
-  {
-    "step": "athletecism"
-  },
-  {
-    "step": "contact"
-  },
-  {
-    "step": "english"
-  },
-  {
-    "step": "chinese"
-  },
-  {
-    "step": "party"
-  },
-  {
-    "step": "improve"
-  },
-  {
-    "step": "commitments"
-  },
-  {
-    "step": "jersey"
-  },
-  {
-    "step": "swag"
-  },
-  {
-    "step": "checkout"
-  }
+  "names",
+  "birthday",
+  "nationality",
+  "returning",
+  "gender",
+  "height",
+  "skills",
+  "experience",
+  "athletecism",
+  "contact",
+  "english",
+  "chinese",
+  "party",
+  "improve",
+  "commitments",
+  "jersey",
+  "swag",
+  "checkout"
 ]

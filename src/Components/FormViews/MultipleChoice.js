@@ -5,9 +5,7 @@ import StepTitle from "../StepTitle";
 export default function MultipleChoice(props) {
   const { category } = props;
   const { language, values, setValues } = props.state;
-  const handleButtonClick = (name, value) => {
-    setValues({ ...values, [name]: value });
-  };
+
   const choices = {
     skills: {
       options: [
@@ -107,11 +105,9 @@ export default function MultipleChoice(props) {
             <Button
               id={option.value}
               color={"primary"}
-              onClick={e => handleButtonClick(category, e.currentTarget.id)}
+              onClick={e => setValues("value", e.currentTarget.id)}
               fullWidth
-              variant={
-                option.value === values[category] ? "outlined" : "contained"
-              }
+              variant={option.value === values.value ? "outlined" : "contained"}
             >
               {option.display}
             </Button>

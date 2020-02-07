@@ -10,7 +10,7 @@ import {
 
 export default function Contact(props) {
   const { language, values, setValues } = props.state;
-
+  const { facebookContact, facebookId, lineContact, lineId } = values;
   return (
     <React.Fragment>
       <FormControl component="fieldset">
@@ -19,42 +19,33 @@ export default function Contact(props) {
           <FormControlLabel
             control={
               <Checkbox
-                checked={values.facebookContact}
-                onClick={() =>
-                  setValues({
-                    ...values,
-                    facebookContact: !values.facebookContact
-                  })
-                }
+                checked={facebookContact}
+                onClick={() => setValues("facebookContact", !facebookContact)}
               />
             }
             label="Facebook"
           />
-          {values.facebookContact ? (
+          {facebookContact ? (
             <TextField
               label={language.fbContact}
-              value={values.facebookID}
-              onChange={e =>
-                setValues({ ...values, facebookID: e.target.value })
-              }
+              value={facebookId}
+              onChange={e => setValues("facebookId", e.target.value)}
             />
           ) : null}
           <FormControlLabel
             control={
               <Checkbox
-                checked={values.lineContact}
-                onClick={() =>
-                  setValues({ ...values, lineContact: !values.lineContact })
-                }
+                checked={lineContact}
+                onClick={() => setValues("lineContact", !lineContact)}
               />
             }
             label="Line"
           />
-          {values.lineContact ? (
+          {lineContact ? (
             <TextField
               label={language.lineID}
-              value={values.lineID}
-              onChange={e => setValues({ ...values, lineID: e.target.value })}
+              value={lineId}
+              onChange={e => setValues("lineId", e.target.value)}
             />
           ) : null}
         </FormGroup>

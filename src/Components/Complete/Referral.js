@@ -26,7 +26,7 @@ export default function Referral(props) {
     let fbData = [];
     const myRef = firebase
       .firestore()
-      .collection("User")
+      .collection("Users")
       .where("referredBy", "==", values.userId);
 
     myRef.get().then(snapshot => {
@@ -47,7 +47,7 @@ export default function Referral(props) {
         <Typography>Your referral Link</Typography>
         <Grid container>
           <Grid item xs>
-            <input ref={linkRef} readonly value={url} />
+            <input ref={linkRef} readOnly value={url} />
           </Grid>
 
           <Grid item>

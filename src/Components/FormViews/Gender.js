@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function Gender(props) {
   const { language, values, setValues } = props.state;
+  const gender = values.value;
   const classes = useStyles();
 
   return (
@@ -28,20 +29,21 @@ export default function Gender(props) {
       <Grid container spacing={1}>
         <Grid item xs={6}>
           <Button
-            variant={values.gender === "Female" ? "outlined" : "contained"}
+            variant={gender === "Female" ? "outlined" : "contained"}
             className={classes.female}
             fullWidth
-            onClick={() => setValues({ ...values, gender: "Female" })}
+            onClick={() => setValues("value", "Female")}
           >
             <i className="fas fa-venus fa-5x" />
           </Button>
         </Grid>
         <Grid item xs={6}>
+          {console.log("genderTest", gender)}
           <Button
-            variant={values.gender === "Male" ? "outlined" : "contained"}
+            variant={gender === "Male" ? "outlined" : "contained"}
             className={classes.male}
             fullWidth
-            onClick={() => setValues({ ...values, gender: "Male" })}
+            onClick={() => setValues("value", "Male")}
           >
             <i className="fas fa-mars fa-5x" />
           </Button>

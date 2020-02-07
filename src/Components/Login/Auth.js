@@ -1,55 +1,52 @@
 import React from "react";
 import firebase from "../../Firebase";
 import StateStore from "../../StateStore";
-import initialUserData from "./initialUserData.json";
 
 export default function Auth({ match, isReferred }) {
   const [isSignedIn, updateUser] = React.useState(false);
   const [isRegistered, updateRegistration] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [regData, setRegData] = React.useState({});
+  const [regDocId, setRegDocId] = React.useState("");
   let { referralId } = match.params;
 
   React.useEffect(() => {
+    const db = firebase.firestore();
+    const usersColRef = db.collection("Users");
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (user) {
         updateUser(true);
+        const authId = user.uid;
 
-        var docRef = firebase
-          .firestore()
-          .collection("Users")
-          .doc(user.uid);
-        docRef
+        //First Get the User document for the signed in user
+        const userDocRef = usersColRef.doc(authId);
+        userDocRef
           .get()
           .then(doc => {
-            console.log("User is signed in:", doc);
-            if (doc.exists) {
-              console.log("A user profile exists", doc.data());
-              if (doc.data().isRegistered) {
-                console.log("User has completed Registration");
-                updateRegistration(true);
-              }
-              setIsLoading(false);
-            } else {
-              console.log(
-                "User is signed in but no user document yet (account just created)"
-              );
-              firebase
-                .firestore()
-                .collection("Users")
-                .doc(user.uid)
-                .set({
-                  initialUserData,
-                  wasReferred: isReferred,
-                  referredBy: isReferred ? referralId : null
-                })
-                .then(console.log("User Account Created"))
-                .catch(console.log("Error during User account Creation"));
-              setIsLoading(false);
-            }
+            console.log("User doc retrieved", doc.data());
+            //then check if they've completed registration
+
+            const registrationId = doc.data().registrationId;
+            console.log("setting regData with this Id: ", registrationId);
+            const regDocRef = db.collection("Registration").doc(registrationId);
+
+            regDocRef
+              .get()
+              .then(doc => {
+                console.log("Retrieved fbData: ", doc.data());
+                setRegDocId(doc.id);
+                setRegData(doc.data());
+              })
+              .then(() => {
+                console.log(
+                  "Retrieved the data and turning off the loading screen"
+                );
+                doc.data().isRegistered && updateRegistration(true);
+                setIsLoading(false);
+              });
           })
           .catch(error => {
             console.log("Error getting document:", error);
-            alert("Error getting document:", error);
           });
       } else {
         console.log("No user is currently logged in");
@@ -63,7 +60,11 @@ export default function Auth({ match, isReferred }) {
   const authState = {
     isLoading,
     isSignedIn,
-    isRegistered
+    isRegistered,
+    regData,
+    isReferred,
+    referralId,
+    regDocId
   };
 
   return <StateStore authState={authState} />;

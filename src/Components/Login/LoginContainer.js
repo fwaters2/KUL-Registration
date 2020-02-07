@@ -28,7 +28,7 @@ export default function LoginContainer(props) {
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
 
-  const { language } = props;
+  const { language, isReferred, referralId } = props;
 
   function handleTabChange(event, newValue) {
     setValue(newValue);
@@ -51,7 +51,11 @@ export default function LoginContainer(props) {
       </AppBar>
       <div index={value}>
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <Register language={language} />
+          <Register
+            language={language}
+            isReferred={isReferred}
+            referralId={referralId}
+          />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
           <SignIn language={language} />

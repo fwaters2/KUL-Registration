@@ -83,7 +83,7 @@ export default function FormContainer(props) {
         <Grid
           style={{
             paddingBottom: "1em",
-            marginBottom: "2em",
+            marginBottom: "1em",
             borderBottom: "1px solid black"
           }}
           container

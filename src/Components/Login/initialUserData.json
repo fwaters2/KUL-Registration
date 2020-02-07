@@ -10,5 +10,6 @@
   "isPaid": false,
   "isVerified": false,
   "wasReferred": false,
-  "referredBy": ""
+  "referredBy": "",
+  "registrationId": null
 }

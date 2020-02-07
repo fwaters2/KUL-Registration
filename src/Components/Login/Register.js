@@ -1,9 +1,10 @@
 import React from "react";
 import { TextField, Button } from "@material-ui/core";
 import firebase from "../../Firebase";
-
+import initialUserData from "./initialUserData.json";
+import initialRegistrationData from "./initialRegData.json";
 export default function Register(props) {
-  const { language } = props;
+  const { language, isReferred, referralId } = props;
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const handleRegistration = e => {
@@ -11,6 +12,39 @@ export default function Register(props) {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
+      .then(userRef => {
+        const userId = userRef.user.uid;
+        console.log("Creating Registration doc for user: ", userId);
+        const db = firebase.firestore();
+
+        const registrationColRef = db.collection("Registration");
+
+        registrationColRef
+          .add({
+            ...initialRegistrationData,
+            userId: userId,
+            created: firebase.firestore.FieldValue.serverTimestamp()
+          })
+          .then(regRef => {
+            console.log("Creating user document and adding registration id");
+            const regDocId = regRef.id;
+            const userDocRef = db.collection("Users").doc(userId);
+            userDocRef.set({
+              ...initialUserData,
+              email: email,
+              registrationId: regDocId,
+              wasReferred: isReferred,
+              referredBy: isReferred ? referralId : null,
+              created: firebase.firestore.FieldValue.serverTimestamp()
+            });
+          })
+          .catch(error =>
+            console.log(
+              "There was an error creating documents after creating new user",
+              error
+            )
+          );
+      })
       .catch(error => {
         let errorMessage = error.message;
         alert(errorMessage);

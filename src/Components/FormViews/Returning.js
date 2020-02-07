@@ -12,10 +12,10 @@ import {
 
 export default function Returning(props) {
   const { language, setValues, values } = props.state;
-
+  const { seasons, source, referredBy } = values;
   return (
     <React.Fragment>
-      {values.seasons === "unknown" ? (
+      {seasons === "unknown" ? (
         <React.Fragment>
           <Grid container spacing={1}>
             <Grid item xs={6}>
@@ -23,7 +23,7 @@ export default function Returning(props) {
                 //className={classes.picButton}
                 variant="contained"
                 fullWidth
-                onClick={() => setValues({ ...values, seasons: 0 })}
+                onClick={() => setValues("seasons", 0)}
                 color="primary"
               >
                 {language.yep}
@@ -34,7 +34,7 @@ export default function Returning(props) {
                 //className={classes.picButton}
                 variant="contained"
                 fullWidth
-                onClick={() => setValues({ ...values, seasons: 1 })}
+                onClick={() => setValues("seasons", 1)}
                 color="primary"
               >
                 {language.nope}
@@ -42,13 +42,13 @@ export default function Returning(props) {
             </Grid>
           </Grid>
         </React.Fragment>
-      ) : values.seasons === 0 ? (
+      ) : seasons === 0 ? (
         <React.Fragment>
           <InputLabel>{language.hearAbout}</InputLabel>
           <Select
             fullWidth
-            value={values.source}
-            onChange={e => setValues({ ...values, source: e.target.value })}
+            value={source}
+            onChange={e => setValues("source", e.target.value)}
             input={<Input />}
           >
             <MenuItem value={""}>
@@ -61,18 +61,12 @@ export default function Returning(props) {
             <MenuItem value="Friend">{language.friend}</MenuItem>
           </Select>
 
-          {values.source === "KUL Player" || values.source === "Friend" ? (
+          {source === "KUL Player" || source === "Friend" ? (
             <TextField
               id="standard-helperText"
-              label={
-                values.source === "Player"
-                  ? language.KULplayer
-                  : language.friend
-              }
-              value={values.referredBy}
-              onChange={e =>
-                setValues({ ...values, referredBy: e.target.value })
-              }
+              label={source === "Player" ? language.KULplayer : language.friend}
+              value={referredBy}
+              onChange={e => setValues("referredBy", e.target.value)}
               helperText={language.credit}
               margin="normal"
             />
@@ -80,7 +74,7 @@ export default function Returning(props) {
 
           <Button
             color="secondary"
-            onClick={() => setValues({ ...values, seasons: "unknown" })}
+            onClick={() => setValues("seasons", "unknown")}
           >
             {language.back}
           </Button>
@@ -88,8 +82,8 @@ export default function Returning(props) {
       ) : (
         <React.Fragment>
           <Slider
-            value={values.seasons}
-            onChange={(e, value) => setValues({ ...values, seasons: value })}
+            value={seasons}
+            onChange={(e, value) => setValues("seasons", value)}
             min={1}
             max={8}
             valueLabelDisplay="on"
@@ -98,7 +92,7 @@ export default function Returning(props) {
           <InputLabel>{language.seasonsPlayed}</InputLabel>
           <Button
             color="secondary"
-            onClick={() => setValues({ ...values, seasons: "unknown" })}
+            onClick={() => setValues("seasons", "unknown")}
           >
             {language.back}
           </Button>

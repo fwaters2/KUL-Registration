@@ -22,6 +22,7 @@ const flagPhil = require("./Flags/Flag_of_the_Philippines.svg");
 
 export default function Nationality(props) {
   const { language, values, setValues } = props.state;
+  const nationality = values.value;
   const rowOne = [{ country: "Taiwan", image: flagTaiwan }];
   const rowTwo = [
     { country: "United States", image: flagUSA },
@@ -38,15 +39,16 @@ export default function Nationality(props) {
 
   const svgButton = (country, image, size, height) => (
     <Grid
+      key={country}
       item
       xs={size}
-      onClick={() => setValues({ ...values, nationality: country })}
+      onClick={() => setValues("value", country)}
       container
       justify="center"
     >
       <Button
         style={{ height: height, padding: 0 }}
-        variant={values.nationality === country ? "outlined" : "contained"}
+        variant={nationality === country ? "outlined" : "contained"}
       >
         <svg>
           <filter id="greyscale">
@@ -62,7 +64,7 @@ export default function Nationality(props) {
             id={country}
             href={image}
             width="100%"
-            filter={values.nationality === country ? "url(#greyscale)" : null}
+            filter={nationality !== country ? "url(#greyscale)" : null}
           />
         </svg>
       </Button>
@@ -92,9 +94,9 @@ export default function Nationality(props) {
         id="country"
         label={language.otherCountry}
         fullWidth
-        value={values.nationality}
+        value={nationality}
         select
-        onChange={e => setValues({ ...values, nationality: e.taget.value })}
+        onChange={e => setValues("value", e.target.value)}
       >
         {country_list.map(option => (
           <MenuItem key={option} value={option}>

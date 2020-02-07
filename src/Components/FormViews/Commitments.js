@@ -8,8 +8,8 @@ import { Grid } from "@material-ui/core";
 
 export default function Commitments(props) {
   const { language, values, setValues } = props.state;
-
-  const dates = ["10/19", "10/26", "11/9", "11/16", "11/23", language.finals];
+  const dateObject = values.dates;
+  const dates = Object.keys(values.dates); //["day1", "day2", "day3",..."]
 
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
@@ -24,19 +24,19 @@ export default function Commitments(props) {
         </Grid>
         <Grid item xs={4}>
           {dates.map((date, index) => (
-            <FormControl fullWidth variant="outlined" key={"day1"}>
+            <FormControl fullWidth variant="outlined" key={date}>
               <InputLabel ref={inputLabel} htmlFor="outlined-date-simple">
-                {date}
+                {dateObject[date].date}
               </InputLabel>
               <Select
                 fullWidth
-                value={values.commitments["day" + (index + 1)]}
+                value={dateObject[date].response}
                 onChange={e =>
-                  setValues({
-                    ...values,
-                    commitments: {
-                      ...values.commitments,
-                      ["day" + (index + 1)]: e.target.value
+                  setValues("dates", {
+                    ...dateObject,
+                    [date]: {
+                      ...dateObject[date],
+                      response: e.target.value
                     }
                   })
                 }
