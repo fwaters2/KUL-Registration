@@ -30,6 +30,7 @@
   "chinese": { "completed": false, "value": "" },
   "party": { "completed": false, "value": "" },
   "improve": { "completed": false, "value": "" },
+  "selfie": { "completed": false, "abstain": false, "url": null },
   "commitments": {
     "completed": false,
     "dates": {

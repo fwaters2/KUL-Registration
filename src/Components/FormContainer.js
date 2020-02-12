@@ -15,7 +15,6 @@ import {
 } from "@material-ui/core";
 import { AssignmentInd } from "@material-ui/icons";
 import "./../Assets/KUL_final.svg";
-import "../InitialState.json";
 import firebase from "../Firebase";
 const logo = require("./../Assets/KUL_final.svg");
 const useStyles = makeStyles(theme => ({

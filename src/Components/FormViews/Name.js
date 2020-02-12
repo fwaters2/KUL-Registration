@@ -3,11 +3,15 @@ import TextField from "@material-ui/core/TextField";
 import { Grid } from "@material-ui/core";
 
 export default function Name(props) {
-  const { language, values, setValues } = props.state;
+  const { language, values, setValues, isStepCompleted } = props.state;
   const { firstName, lastName, chName, nickname } = values;
 
   return (
     <React.Fragment>
+      {console.log(
+        "resulr in name component",
+        isStepCompleted("names", ["firstName", "lastName"])
+      )}
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <TextField

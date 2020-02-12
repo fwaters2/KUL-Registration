@@ -22,7 +22,11 @@ export default function Gender(props) {
   const { language, values, setValues } = props.state;
   const gender = values.value;
   const classes = useStyles();
+  React.useEffect(() => setValues("completed", true), [values.value]);
 
+  function updateGender(newGender) {
+    setValues("value", newGender);
+  }
   return (
     <React.Fragment>
       <StepTitle>{language.gender}</StepTitle>
@@ -32,7 +36,7 @@ export default function Gender(props) {
             variant={gender === "Female" ? "outlined" : "contained"}
             className={classes.female}
             fullWidth
-            onClick={() => setValues("value", "Female")}
+            onClick={() => updateGender("Female")}
           >
             <i className="fas fa-venus fa-5x" />
           </Button>
@@ -43,7 +47,7 @@ export default function Gender(props) {
             variant={gender === "Male" ? "outlined" : "contained"}
             className={classes.male}
             fullWidth
-            onClick={() => setValues("value", "Male")}
+            onClick={() => updateGender("Male")}
           >
             <i className="fas fa-mars fa-5x" />
           </Button>

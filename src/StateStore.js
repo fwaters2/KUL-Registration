@@ -6,7 +6,6 @@ import LoginContainer from "./Components/Login/LoginContainer.js";
 import handleLang from "./Assets/Lang/handleLang.js";
 import ButtonNavigation from "./Components/ButtonNavigation.js";
 import CompleteContainer from "./Components/Complete/CompleteContainer.js";
-import "./InitialState.json";
 import MainStepper from "./Components/Steppers/MainStepper.js";
 import SecondaryStepper from "./Components/Steppers/SecondaryStepper.js";
 import mainStepperActiveStep from "./Components/Steppers/mainStepperActiveStep.js";
@@ -21,7 +20,7 @@ export default function StateStore(props) {
     referralId,
     regDocId
   } = props.authState;
-  const [step, stepChange] = React.useState(17);
+  const [step, stepChange] = React.useState(0);
   const [lang, toggleLang] = React.useState("en");
   const [values, setValues] = React.useState(initialRegData);
 
@@ -49,6 +48,20 @@ export default function StateStore(props) {
     lang === "en" ? toggleLang("ch") : toggleLang("en");
   };
 
+  function isStepCompleted(stepTitle, [...requiredKeys]) {
+    const initialData = initialRegData[stepTitle];
+    const currentData = values[stepTitle];
+
+    const isEqualToInitArray = requiredKeys.map(
+      data => initialData[data] === currentData[data]
+    );
+
+    let hasUnupdatedValue = isEqualToInitArray.includes(true);
+    console.log("isEqualToInitArray", isEqualToInitArray);
+    console.log("hasUnupdatedValue", hasUnupdatedValue);
+    return hasUnupdatedValue;
+  }
+
   const containerState = {
     toggleLanguage,
     lang,
@@ -63,7 +76,8 @@ export default function StateStore(props) {
     isSignedIn,
     setValues,
     language,
-    regDocId
+    regDocId,
+    isStepCompleted
   };
   const currentView = () => {
     if (isLoading) {

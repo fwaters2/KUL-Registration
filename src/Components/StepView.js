@@ -12,11 +12,13 @@ import Commitments from "./FormViews/Commitments";
 import JerseyOrder from "./FormViews/Jersey/JerseyOrder.js";
 import Carousel from "./FormViews/Swag/Carousel.js";
 import Checkout from "./FormViews/Checkout.js";
+import UploadImage from "./FormViews/UploadImage/UploadImage.js";
 
 export default function StepView(props) {
-  const { step, values, setValues, language } = props.state;
+  const { step, values, setValues, language, isStepCompleted } = props.state;
 
   let state = {
+    isStepCompleted,
     language,
     values: values[steps[step]],
     setValues: (attribute, value) =>
@@ -56,12 +58,14 @@ export default function StepView(props) {
     case 13:
       return <MultipleChoice category={"improve"} state={state} />;
     case 14:
-      return <Commitments state={state} />;
+      return <UploadImage state={state} />;
     case 15:
-      return <JerseyOrder state={state} />;
+      return <Commitments state={state} />;
     case 16:
-      return <Carousel state={state} />;
+      return <JerseyOrder state={state} />;
     case 17:
+      return <Carousel state={state} />;
+    case 18:
       return <Checkout state={props.state} />;
     default:
       return steps[step].step;
