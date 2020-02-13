@@ -6,6 +6,8 @@ import ListItemText from "@material-ui/core/ListItemText";
 import { Button, Grid, Divider } from "@material-ui/core";
 import "../../Assets/KUL.svg";
 import firebase from "../../Firebase";
+import FormContext from "../FormContext";
+import AuthContext from "../AuthContext";
 const logo = require("../../Assets/KUL.svg");
 const items = [
   { item: "hatBlack", itemName: "Black Hat", cost: 200 },
@@ -14,8 +16,10 @@ const items = [
   { item: "discWhite", itemName: "White Disc", cost: 400 }
 ];
 export default function Checkout(props) {
-  const { language, values, step, stepChange, regDocId } = props.state;
-
+  const formData = React.useContext(FormContext);
+  const authData = React.useContext(AuthContext);
+  const { language, values, step, stepChange } = formData;
+  const { regDocId } = authData;
   const swagOrders = () => {
     //Goal: An array of orders
     const regOrder = {

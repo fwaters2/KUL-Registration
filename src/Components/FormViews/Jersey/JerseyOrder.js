@@ -10,12 +10,21 @@ import {
 } from "@material-ui/core";
 import "./Sizes only.PNG";
 import "./Jersey only.PNG";
+import ButtonNavigation from "../../ButtonNavigation";
+import FormContext from "../../FormContext";
 const JerseyShirt = require("./Jersey only.PNG");
 const JerseySizes = require("./Sizes only.PNG");
-export default function JerseyOrder(props) {
-  const { language, values, setValues } = props.state;
+
+export default function JerseyOrder() {
+  const formData = React.useContext(FormContext);
+  const { language, values, setValues } = formData;
   const inputLabel = React.useRef(null);
-  const { jerseyBack, size, jerseyNum1, jerseyNum2 } = values;
+  const { jerseyBack, size, jerseyNum1, jerseyNum2 } = values.jersey;
+  const handleChange = (field, value) => {
+    setValues({ ...values, jersey: { ...values.jersey, [field]: value } });
+  };
+  const isComplete =
+    jerseyBack !== "" && size !== "" && jerseyNum1 !== "" && jerseyNum2 !== "";
   return (
     <React.Fragment>
       <Grid container spacing={1} alignItems="center">
@@ -30,7 +39,7 @@ export default function JerseyOrder(props) {
             autoFocus
             fullWidth
             value={jerseyBack}
-            onChange={e => setValues("jerseyBack", e.target.value)}
+            onChange={e => handleChange("jerseyBack", e.target.value)}
           />
         </Grid>
         <Grid item xs={4}>
@@ -43,7 +52,7 @@ export default function JerseyOrder(props) {
             fullWidth
             type="number"
             value={jerseyNum1}
-            onChange={e => setValues("jerseyNum1", e.target.value)}
+            onChange={e => handleChange("jerseyNum1", e.target.value)}
           />
         </Grid>
         <Grid item xs={4}>
@@ -56,7 +65,7 @@ export default function JerseyOrder(props) {
             fullWidth
             type="number"
             value={jerseyNum2}
-            onChange={e => setValues("jerseyNum2", e.target.value)}
+            onChange={e => handleChange("jerseyNum2", e.target.value)}
           />
         </Grid>
         <Grid item xs={4}>
@@ -65,7 +74,7 @@ export default function JerseyOrder(props) {
             <Select
               fullWidth
               value={size}
-              onChange={e => setValues("size", e.target.value)}
+              onChange={e => handleChange("size", e.target.value)}
               input={
                 <Input
                 //labelWidth={labelWidth}
@@ -90,6 +99,7 @@ export default function JerseyOrder(props) {
           <img src={JerseySizes} alt="Jersey Sizing" />
         </Grid>
       </Grid>
+      <ButtonNavigation isComplete={isComplete} />
     </React.Fragment>
   );
 }

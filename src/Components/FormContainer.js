@@ -16,6 +16,7 @@ import {
 import { AssignmentInd } from "@material-ui/icons";
 import "./../Assets/KUL_final.svg";
 import firebase from "../Firebase";
+import FormContext from "./FormContext";
 const logo = require("./../Assets/KUL_final.svg");
 const useStyles = makeStyles(theme => ({
   title: {
@@ -38,7 +39,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function FormContainer(props) {
-  const { toggleLanguage, lang, isSignedIn } = props.state;
+  const formData = React.useContext(FormContext);
+  const { toggleLanguage, lang, isSignedIn } = formData;
   const { children } = props;
   const classes = useStyles();
 

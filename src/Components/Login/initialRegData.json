@@ -27,7 +27,7 @@
   "chinese": { "value": "" },
   "party": { "value": "" },
   "improve": { "value": "" },
-  "selfie": { "abstain": false, "url": null },
+  "selfie": { "abstain": false, "photoUrl": null },
   "commitments": {
     "dates": {
       "day1": {

@@ -7,10 +7,17 @@ import {
   FormGroup,
   FormLabel
 } from "@material-ui/core";
+import ButtonNavigation from "../ButtonNavigation";
+import FormContext from "../FormContext";
 
-export default function Contact(props) {
-  const { language, values, setValues } = props.state;
-  const { facebookContact, facebookId, lineContact, lineId } = values;
+export default function Contact() {
+  const formData = React.useContext(FormContext);
+  const { language, values, setValues } = formData;
+  const { facebookContact, facebookId, lineContact, lineId } = values.contact;
+  const isComplete = true;
+  const handleChange = (field, value) => {
+    setValues({ ...values, contact: { [field]: value } });
+  };
   return (
     <React.Fragment>
       <FormControl component="fieldset">
@@ -20,7 +27,9 @@ export default function Contact(props) {
             control={
               <Checkbox
                 checked={facebookContact}
-                onClick={() => setValues("facebookContact", !facebookContact)}
+                onClick={() =>
+                  handleChange("facebookContact", !facebookContact)
+                }
               />
             }
             label="Facebook"
@@ -29,14 +38,14 @@ export default function Contact(props) {
             <TextField
               label={language.fbContact}
               value={facebookId}
-              onChange={e => setValues("facebookId", e.target.value)}
+              onChange={e => handleChange("facebookId", e.target.value)}
             />
           ) : null}
           <FormControlLabel
             control={
               <Checkbox
                 checked={lineContact}
-                onClick={() => setValues("lineContact", !lineContact)}
+                onClick={() => handleChange("lineContact", !lineContact)}
               />
             }
             label="Line"
@@ -45,11 +54,12 @@ export default function Contact(props) {
             <TextField
               label={language.lineID}
               value={lineId}
-              onChange={e => setValues("lineId", e.target.value)}
+              onChange={e => handleChange("lineId", e.target.value)}
             />
           ) : null}
         </FormGroup>
       </FormControl>
+      <ButtonNavigation isComplete={isComplete} />
     </React.Fragment>
   );
 }

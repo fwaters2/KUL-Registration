@@ -6,9 +6,11 @@ import {
   CardHeader,
   CardActions
 } from "@material-ui/core";
+import FormContext from "../FormContext";
 
-export default function PaymentDetails(props) {
-  const { language, values } = props.state;
+export default function PaymentDetails() {
+  const formData = React.useContext(FormContext);
+  const { language, values } = formData;
   const subtotal = values.checkout.subtotal;
   return (
     <div>

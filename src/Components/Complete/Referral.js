@@ -8,9 +8,11 @@ import {
 } from "@material-ui/core";
 import QrCode from "./QrCode";
 import firebase from "../../Firebase";
+import FormContext from "../FormContext";
 
-export default function Referral(props) {
-  const { values } = props.state;
+export default function Referral() {
+  const formData = React.useContext(FormContext);
+  const { values } = formData;
   const [copySuccess, setCopySuccess] = React.useState("Copy");
   const [myReferrals, setMyReferrals] = React.useState([]);
   const linkRef = React.useRef(null);

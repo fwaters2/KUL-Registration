@@ -7,12 +7,18 @@ import {
   ListItemText
 } from "@material-ui/core";
 import { RemoveCircleOutline, AddCircleOutline } from "@material-ui/icons";
+import FormContext from "../../FormContext";
 
 export default function SwagItem(props) {
-  const { item, itemName, cost, values, setValues } = props;
+  const { item, itemName, cost } = props;
+  const formData = React.useContext(FormContext);
+  const { values, setValues } = formData;
 
   const handleButtonClick = (name, value) => {
-    setValues("items", { ...values.items, [name]: value });
+    setValues({
+      ...values,
+      swag: { ...values.swag, items: { ...values.swag.items, [name]: value } }
+    });
     //setValues({ ...values, [name]: value });
   };
 
@@ -23,9 +29,9 @@ export default function SwagItem(props) {
       {console.log("itemName", itemName)}
       <IconButton
         onClick={
-          values.items[item] === 0
+          values.swag.items[item] === 0
             ? null
-            : () => handleButtonClick(item, values.items[item] - 1)
+            : () => handleButtonClick(item, values.swag.items[item] - 1)
         }
       >
         <RemoveCircleOutline />
@@ -35,11 +41,11 @@ export default function SwagItem(props) {
           inputProps={{
             style: { textAlign: "center" }
           }}
-          value={values.items[item]}
+          value={values.swag.items[item]}
         ></TextField>
       </Box>
       <IconButton
-        onClick={() => handleButtonClick(item, values.items[item] + 1)}
+        onClick={() => handleButtonClick(item, values.swag.items[item] + 1)}
       >
         <AddCircleOutline />
       </IconButton>

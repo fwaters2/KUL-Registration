@@ -5,17 +5,36 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Grid } from "@material-ui/core";
+import FormContext from "../FormContext";
+import ButtonNavigation from "../ButtonNavigation";
 
-export default function Commitments(props) {
-  const { language, values, setValues } = props.state;
-  const dateObject = values.dates;
-  const dates = Object.keys(values.dates); //["day1", "day2", "day3",..."]
+export default function Commitments() {
+  const formData = React.useContext(FormContext);
+  const { language, values, setValues } = formData;
+  const dateObject = values.commitments.dates;
+  const dates = Object.keys(dateObject); //["day1", "day2", "day3",..."]
+
+  const isComplete = !dates
+    .map(date => dateObject[date].response !== "")
+    .includes(false);
 
   const inputLabel = React.useRef(null);
   const [labelWidth, setLabelWidth] = React.useState(0);
   React.useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
   }, []);
+  const handleChange = (field, value) => {
+    setValues({
+      ...values,
+      commitments: {
+        ...values.commitments,
+        dates: {
+          ...values.commitments.dates,
+          [field]: { ...values.commitments.dates[field], response: value }
+        }
+      }
+    });
+  };
   return (
     <React.Fragment>
       <Grid container>
@@ -31,15 +50,7 @@ export default function Commitments(props) {
               <Select
                 fullWidth
                 value={dateObject[date].response}
-                onChange={e =>
-                  setValues("dates", {
-                    ...dateObject,
-                    [date]: {
-                      ...dateObject[date],
-                      response: e.target.value
-                    }
-                  })
-                }
+                onChange={e => handleChange(date, e.target.value)}
                 input={
                   <OutlinedInput
                     labelWidth={labelWidth}
@@ -57,6 +68,7 @@ export default function Commitments(props) {
           ))}
         </Grid>
       </Grid>
+      <ButtonNavigation isComplete={isComplete} />
     </React.Fragment>
   );
 }

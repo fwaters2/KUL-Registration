@@ -1,18 +1,23 @@
 import React from "react";
 import { DropzoneArea } from "material-ui-dropzone";
 import Firebase from "../../../Firebase";
+import FormContext from "../../FormContext";
+import ButtonNavigation from "../../ButtonNavigation";
+import { FormControlLabel, Checkbox } from "@material-ui/core";
 
-export default function UploadImage(props) {
-  const { language, values, setValues } = props.state;
-  const currentPic = values.photoUrl;
-  function setCurrentPic(url) {
-    setValues("photoUrl", url);
+export default function UploadImage() {
+  const formData = React.useContext(FormContext);
+  const { language, values, setValues } = formData;
+  const { abstain, photoUrl } = values.selfie;
+  function handleChange(field, value) {
+    setValues({ ...values, selfie: { ...values.selfie, [field]: value } });
   }
   const [file, setFile] = React.useState();
 
-  const handleChange = newFile => {
+  const handleFileChange = newFile => {
     setFile(newFile[newFile.length - 1]);
   };
+  const isComplete = photoUrl !== null || abstain;
 
   function uploadToStorage(newFile) {
     // Upload file and metadata to the object 'images/mountains.jpg'
@@ -63,7 +68,7 @@ export default function UploadImage(props) {
       () => {
         // Upload completed successfully, now we can get the download URL
         uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
-          setCurrentPic(downloadURL);
+          handleChange("photoUrl", downloadURL);
           console.log("File available at", downloadURL);
         });
       }
@@ -75,14 +80,28 @@ export default function UploadImage(props) {
   };
   return (
     <div>
+      {console.log("isComplete", isComplete)}
+      {console.log("photo equals null", photoUrl !== null, "abstain", abstain)}
       <DropzoneArea
         dropzoneText="Upload a selfie! #duckface"
-        onChange={handleChange}
+        onChange={handleFileChange}
       />
       <br />
       <br />
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={abstain}
+            onChange={() => handleChange("abstain", !abstain)}
+            value="abstain"
+            color="primary"
+          />
+        }
+        label="I would prefer not to"
+      />
       <button onClick={handleSubmit}>Submit</button>
-      <img height="200px" src={currentPic} alt="test" />;
+      <img height="200px" src={photoUrl} alt="test" />;
+      <ButtonNavigation isComplete={isComplete} />
     </div>
   );
 }

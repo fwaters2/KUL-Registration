@@ -63,13 +63,8 @@ export default function StateStore(props) {
     return hasUnupdatedValue;
   }
 
-  const containerState = {
-    toggleLanguage,
-    lang,
-    isSignedIn
-  };
-
   const otherState = {
+    toggleLanguage,
     values,
     lang,
     step,
@@ -86,7 +81,7 @@ export default function StateStore(props) {
     }
     if (!isSignedIn) {
       return (
-        <FormContainer state={containerState}>
+        <FormContainer state={otherState}>
           <LoginContainer
             language={language}
             referralId={referralId}
@@ -97,7 +92,7 @@ export default function StateStore(props) {
     }
     if (!isRegistered) {
       return (
-        <FormContainer state={containerState}>
+        <FormContainer state={otherState}>
           {console.log("current values", values)}
           <MainStepper activeStep={mainStepperActiveStep(step)} />
           {step < 3 ? null : step > 14 ? null : (
@@ -129,7 +124,7 @@ export default function StateStore(props) {
     }
     if (isRegistered) {
       return (
-        <FormContainer state={containerState}>
+        <FormContainer state={otherState}>
           <CompleteContainer state={otherState} />
         </FormContainer>
       );

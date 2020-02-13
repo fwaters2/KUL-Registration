@@ -13,6 +13,8 @@ import "./Pics/Disc_Black.jpg";
 import "./Pics/Disc_White.jpg";
 import { List, Box } from "@material-ui/core";
 import SwagItem from "./SwagItem";
+import FormContext from "../../FormContext";
+import ButtonNavigation from "../../ButtonNavigation";
 const blackHatPic = require("./Pics/hatBlack2.png");
 const whiteHatPic = require("./Pics/Hat_White.jpg");
 const blackDiscPic = require("./Pics/Disc_Black.jpg");
@@ -70,13 +72,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Carousel(props) {
-  const { values, setValues, language } = props.state;
-  const { discBlack, discWhite, hatBlack, hatWhite } = values.items;
+export default function Carousel() {
+  const formData = React.useContext(FormContext);
+  const { values, setValues, language } = formData;
+  const { discBlack, discWhite, hatBlack, hatWhite } = values.swag.items;
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
   const maxSteps = tutorialSteps.length;
+  const isComplete = true;
 
   function handleNext() {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -90,7 +94,7 @@ export default function Carousel(props) {
     setActiveStep(step);
   }
   const handleButtonClick = (name, value) => {
-    setValues({ ...values, [name]: value });
+    setValues({ ...values, items: { ...values.items, [name]: value } });
   };
   return (
     <div className={classes.root}>
@@ -167,6 +171,7 @@ export default function Carousel(props) {
             "nt"}
         </Typography>
       </Box>
+      <ButtonNavigation isComplete={isComplete} />
     </div>
   );
 }
