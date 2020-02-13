@@ -3,8 +3,14 @@ import { TextField, Button } from "@material-ui/core";
 import firebase from "../../Firebase";
 import initialUserData from "./initialUserData.json";
 import initialRegistrationData from "./initialRegData.json";
-export default function Register(props) {
-  const { language, isReferred, referralId } = props;
+import AuthContext from "../AuthContext";
+import FormContext from "../FormContext";
+
+export default function Register() {
+  const authInfo = React.useContext(AuthContext);
+  const formData = React.useContext(FormContext);
+  const { language } = formData;
+  const { isReferred, referralId } = authInfo;
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const handleRegistration = e => {

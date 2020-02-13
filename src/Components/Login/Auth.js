@@ -1,6 +1,7 @@
 import React from "react";
 import firebase from "../../Firebase";
 import StateStore from "../../StateStore";
+import AuthContext from "../AuthContext";
 
 export default function Auth({ match, isReferred }) {
   const [isSignedIn, updateUser] = React.useState(false);
@@ -17,7 +18,7 @@ export default function Auth({ match, isReferred }) {
       if (user) {
         updateUser(true);
         const authId = user.uid;
-
+        console.log("user detected with id: ", authId);
         //First Get the User document for the signed in user
         const userDocRef = usersColRef.doc(authId);
         userDocRef
@@ -61,11 +62,19 @@ export default function Auth({ match, isReferred }) {
     isLoading,
     isSignedIn,
     isRegistered,
-    regData,
+    regData
+  };
+  const authContext = {
+    isSignedIn,
+    isRegistered,
     isReferred,
     referralId,
     regDocId
   };
 
-  return <StateStore authState={authState} />;
+  return (
+    <AuthContext.Provider value={authContext}>
+      <StateStore authState={authState} />
+    </AuthContext.Provider>
+  );
 }

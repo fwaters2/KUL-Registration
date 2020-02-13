@@ -1,10 +1,12 @@
 import React from "react";
 import { Button, Grid } from "@material-ui/core";
 import StepTitle from "../StepTitle";
+import FormContext from "../FormContext";
 
-export default function MultipleChoice(props) {
-  const { category } = props;
-  const { language, values, setValues } = props.state;
+export default function MultipleChoice({ category }) {
+  const formData = React.useContext(FormContext);
+
+  const { language, values, setValues } = formData;
 
   const choices = {
     skills: {
@@ -105,9 +107,18 @@ export default function MultipleChoice(props) {
             <Button
               id={option.value}
               color={"primary"}
-              onClick={e => setValues("value", e.currentTarget.id)}
+              onClick={e =>
+                setValues({
+                  ...values,
+                  [category]: { value: e.currentTarget.id }
+                })
+              }
               fullWidth
-              variant={option.value === values.value ? "outlined" : "contained"}
+              variant={
+                option.value === values[category].value
+                  ? "outlined"
+                  : "contained"
+              }
             >
               {option.display}
             </Button>

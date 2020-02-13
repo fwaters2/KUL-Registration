@@ -9,21 +9,32 @@ import {
   TextField,
   Grid
 } from "@material-ui/core";
+import FormContext from "../FormContext";
+import ButtonNavigation from "../ButtonNavigation";
 
 export default function Returning(props) {
-  const { language, setValues, values } = props.state;
-  const { seasons, source, referredBy } = values;
+  const formData = React.useContext(FormContext);
+  const { language, setValues, values } = formData;
+  const { seasons, source, referredBy } = values.returning;
+  const handleChange = (field, value) => {
+    setValues({
+      ...values,
+      returning: { ...values.returning, [field]: value }
+    });
+  };
+
+  const isComplete = true;
   return (
-    <React.Fragment>
+    <>
       {seasons === "unknown" ? (
-        <React.Fragment>
+        <>
           <Grid container spacing={1}>
             <Grid item xs={6}>
               <Button
                 //className={classes.picButton}
                 variant="contained"
                 fullWidth
-                onClick={() => setValues("seasons", 0)}
+                onClick={() => handleChange("seasons", 0)}
                 color="primary"
               >
                 {language.yep}
@@ -34,21 +45,21 @@ export default function Returning(props) {
                 //className={classes.picButton}
                 variant="contained"
                 fullWidth
-                onClick={() => setValues("seasons", 1)}
+                onClick={() => handleChange("seasons", 1)}
                 color="primary"
               >
                 {language.nope}
               </Button>
             </Grid>
           </Grid>
-        </React.Fragment>
+        </>
       ) : seasons === 0 ? (
-        <React.Fragment>
+        <>
           <InputLabel>{language.hearAbout}</InputLabel>
           <Select
             fullWidth
             value={source}
-            onChange={e => setValues("source", e.target.value)}
+            onChange={e => handleChange("source", e.target.value)}
             input={<Input />}
           >
             <MenuItem value={""}>
@@ -66,7 +77,7 @@ export default function Returning(props) {
               id="standard-helperText"
               label={source === "Player" ? language.KULplayer : language.friend}
               value={referredBy}
-              onChange={e => setValues("referredBy", e.target.value)}
+              onChange={e => handleChange("referredBy", e.target.value)}
               helperText={language.credit}
               margin="normal"
             />
@@ -74,16 +85,16 @@ export default function Returning(props) {
 
           <Button
             color="secondary"
-            onClick={() => setValues("seasons", "unknown")}
+            onClick={() => handleChange("seasons", "unknown")}
           >
             {language.back}
           </Button>
-        </React.Fragment>
+        </>
       ) : (
-        <React.Fragment>
+        <>
           <Slider
             value={seasons}
-            onChange={(e, value) => setValues("seasons", value)}
+            onChange={(e, value) => handleChange("seasons", value)}
             min={1}
             max={8}
             valueLabelDisplay="on"
@@ -92,12 +103,14 @@ export default function Returning(props) {
           <InputLabel>{language.seasonsPlayed}</InputLabel>
           <Button
             color="secondary"
-            onClick={() => setValues("seasons", "unknown")}
+            onClick={() => handleChange("seasons", "unknown")}
           >
             {language.back}
           </Button>
-        </React.Fragment>
+        </>
       )}
-    </React.Fragment>
+
+      <ButtonNavigation isComplete={isComplete} />
+    </>
   );
 }

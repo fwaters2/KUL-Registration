@@ -3,13 +3,13 @@ import MultipleChoice from "./MultipleChoice";
 import ButtonNavigation from "../ButtonNavigation";
 import FormContext from "../FormContext";
 
-export default function Experience() {
+export default function Improve() {
   const formData = React.useContext(FormContext);
-  const exp = formData.values.exp.value;
-  const isComplete = exp !== "";
+  const improve = formData.values.improve.value;
+  const isComplete = improve !== "";
   return (
     <>
-      <MultipleChoice category="exp" />
+      <MultipleChoice category="improve" />
       <ButtonNavigation isComplete={isComplete} />
     </>
   );

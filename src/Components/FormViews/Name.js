@@ -1,19 +1,27 @@
 import React from "react";
 import TextField from "@material-ui/core/TextField";
 import { Grid } from "@material-ui/core";
+import FormContext from "../FormContext";
+import ButtonNavigation from "../ButtonNavigation";
 
-export default function Name(props) {
-  const { language, values, setValues, isStepCompleted } = props.state;
-  const { firstName, lastName, chName, nickname } = values;
+export default function Name() {
+  const contextData = React.useContext(FormContext);
+
+  const { language, values, setValues } = contextData;
+  const { firstName, lastName, chName, nickname } = values.names;
+
+  const isComplete = firstName !== "" && lastName !== "";
+  const handleChange = fieldName => e => {
+    setValues({
+      ...values,
+      names: { ...values.names, [fieldName]: e.target.value }
+    });
+  };
 
   return (
-    <React.Fragment>
-      {console.log(
-        "resulr in name component",
-        isStepCompleted("names", ["firstName", "lastName"])
-      )}
+    <>
       <Grid container spacing={2}>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <TextField
             required
             autoComplete="fname"
@@ -24,10 +32,10 @@ export default function Name(props) {
             value={firstName}
             autoFocus
             fullWidth
-            onChange={e => setValues("firstName", e.target.value)}
+            onChange={handleChange("firstName")}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={12} sm={6}>
           <TextField
             required
             autoComplete="lname"
@@ -37,7 +45,7 @@ export default function Name(props) {
             helperText={language.required}
             fullWidth
             value={lastName}
-            onChange={e => setValues("lastName", e.target.value)}
+            onChange={handleChange("lastName")}
           />
         </Grid>
       </Grid>
@@ -47,7 +55,7 @@ export default function Name(props) {
         margin="normal"
         variant="outlined"
         value={chName}
-        onChange={e => setValues("chName", e.target.value)}
+        onChange={handleChange("chName")}
       />
       <TextField
         label={language.enName}
@@ -55,8 +63,10 @@ export default function Name(props) {
         margin="normal"
         variant="outlined"
         value={nickname}
-        onChange={e => setValues("nickname", e.target.value)}
+        onChange={handleChange("enName")}
       />
-    </React.Fragment>
+
+      <ButtonNavigation isComplete={isComplete} />
+    </>
   );
 }

@@ -10,6 +10,8 @@ import "./Flags/Flag_of_Australia_(converted).svg";
 import "./Flags/Flag_of_Palau.svg";
 import "./Flags/Flag_of_South_Africa.svg";
 import "./Flags/Flag_of_the_Philippines.svg";
+import FormContext from "../../FormContext";
+import ButtonNavigation from "../../ButtonNavigation";
 const flagUSA = require("./Flags/Flag_of_the_United_States.svg");
 const flagCanada = require("./Flags/Flag_of_Canada_(Pantone).svg");
 const flagTaiwan = require("./Flags/Flag_of_the_Republic_of_China.svg");
@@ -20,9 +22,18 @@ const flagPalau = require("./Flags/Flag_of_Palau.svg");
 const flagSA = require("./Flags/Flag_of_South_Africa.svg");
 const flagPhil = require("./Flags/Flag_of_the_Philippines.svg");
 
-export default function Nationality(props) {
-  const { language, values, setValues } = props.state;
-  const nationality = values.value;
+export default function Nationality() {
+  const formData = React.useContext(FormContext);
+  const { language, values, setValues } = formData;
+  const nationality = values.nationality.value;
+  const isComplete = nationality !== "";
+  const handleChange = e => {
+    setValues({ ...values, nationality: { values: e.target.value } });
+  };
+  const handleClick = country => {
+    setValues({ ...values, nationality: { values: country } });
+  };
+
   const rowOne = [{ country: "Taiwan", image: flagTaiwan }];
   const rowTwo = [
     { country: "United States", image: flagUSA },
@@ -42,7 +53,7 @@ export default function Nationality(props) {
       key={country}
       item
       xs={size}
-      onClick={() => setValues("value", country)}
+      onClick={() => handleClick(country)}
       container
       justify="center"
     >
@@ -89,6 +100,7 @@ export default function Nationality(props) {
     <React.Fragment>
       {svgExperiment()}
       <br />
+      {console.log("nat", nationality)}
       <TextField
         autoFocus
         id="country"
@@ -96,7 +108,7 @@ export default function Nationality(props) {
         fullWidth
         value={nationality}
         select
-        onChange={e => setValues("value", e.target.value)}
+        onChange={handleChange}
       >
         {country_list.map(option => (
           <MenuItem key={option} value={option}>
@@ -104,6 +116,8 @@ export default function Nationality(props) {
           </MenuItem>
         ))}
       </TextField>
+
+      <ButtonNavigation isComplete={isComplete} />
     </React.Fragment>
   );
 }

@@ -10,6 +10,7 @@ import MainStepper from "./Components/Steppers/MainStepper.js";
 import SecondaryStepper from "./Components/Steppers/SecondaryStepper.js";
 import mainStepperActiveStep from "./Components/Steppers/mainStepperActiveStep.js";
 import initialRegData from "./Components/Login/initialRegData.json";
+import FormContext from "./Components/FormContext.js";
 export default function StateStore(props) {
   const {
     isLoading,
@@ -120,9 +121,8 @@ export default function StateStore(props) {
                 minHeight: "300px"
               }}
             >
-              <StepView state={otherState} />
+              <StepView step={step} />
             </div>
-            <ButtonNavigation state={otherState} />
           </div>
         </FormContainer>
       );
@@ -135,5 +135,9 @@ export default function StateStore(props) {
       );
     }
   };
-  return currentView();
+  return (
+    <FormContext.Provider value={otherState}>
+      {currentView()}
+    </FormContext.Provider>
+  );
 }

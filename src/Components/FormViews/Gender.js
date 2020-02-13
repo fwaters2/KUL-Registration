@@ -2,6 +2,8 @@ import React from "react";
 import { Button, Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
 import StepTitle from "../StepTitle";
+import FormContext from "../FormContext";
+import ButtonNavigation from "../ButtonNavigation";
 
 const useStyles = makeStyles(theme => ({
   female: {
@@ -18,14 +20,15 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Gender(props) {
-  const { language, values, setValues } = props.state;
-  const gender = values.value;
+export default function Gender() {
+  const formData = React.useContext(FormContext);
+  const { language, values, setValues } = formData;
+  const gender = values.gender.value;
+  const isComplete = gender !== "";
   const classes = useStyles();
-  React.useEffect(() => setValues("completed", true), [values.value]);
 
   function updateGender(newGender) {
-    setValues("value", newGender);
+    setValues({ ...values, gender: { value: newGender } });
   }
   return (
     <React.Fragment>
@@ -53,6 +56,7 @@ export default function Gender(props) {
           </Button>
         </Grid>
       </Grid>
+      <ButtonNavigation isComplete={isComplete} />
     </React.Fragment>
   );
 }

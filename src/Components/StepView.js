@@ -13,60 +13,54 @@ import JerseyOrder from "./FormViews/Jersey/JerseyOrder.js";
 import Carousel from "./FormViews/Swag/Carousel.js";
 import Checkout from "./FormViews/Checkout.js";
 import UploadImage from "./FormViews/UploadImage/UploadImage.js";
+import Skills from "./FormViews/Skills.js";
+import Experience from "./FormViews/Experience.js";
+import Athletecism from "./FormViews/Athletecism.js";
+import English from "./FormViews/English.js";
+import Chinese from "./FormViews/Chinese.js";
+import Party from "./FormViews/Party.js";
+import Improve from "./FormViews/Improve.js";
 
-export default function StepView(props) {
-  const { step, values, setValues, language, isStepCompleted } = props.state;
-
-  let state = {
-    isStepCompleted,
-    language,
-    values: values[steps[step]],
-    setValues: (attribute, value) =>
-      setValues({
-        ...values,
-        [steps[step]]: { ...values[steps[step]], [attribute]: value }
-      })
-  };
-
+export default function StepView({ step }) {
   switch (step) {
     case 0:
-      return <Name state={state} />;
+      return <Name />;
     case 1:
-      return <Birthday state={state} />;
+      return <Birthday />;
     case 2:
-      return <Nationality state={state} />;
+      return <Nationality />;
     case 3:
-      return <Returning state={state} />;
+      return <Returning />;
     case 4:
-      return <Gender state={state} />;
+      return <Gender />;
     case 5:
-      return <Height state={state} />;
+      return <Height />;
     case 6:
-      return <MultipleChoice category={"skills"} state={state} />;
+      return <Skills />;
     case 7:
-      return <MultipleChoice category={"exp"} state={state} />;
+      return <Experience />;
     case 8:
-      return <MultipleChoice category={"athl"} state={state} />;
+      return <Athletecism />;
     case 9:
-      return <Contact state={state} />;
+      return <Contact />;
     case 10:
-      return <MultipleChoice category={"english"} state={state} />;
+      return <English />;
     case 11:
-      return <MultipleChoice category={"chinese"} state={state} />;
+      return <Chinese />;
     case 12:
-      return <MultipleChoice category={"party"} state={state} />;
+      return <Party />;
     case 13:
-      return <MultipleChoice category={"improve"} state={state} />;
+      return <Improve />;
     case 14:
-      return <UploadImage state={state} />;
+      return <UploadImage />;
     case 15:
-      return <Commitments state={state} />;
+      return <Commitments />;
     case 16:
-      return <JerseyOrder state={state} />;
+      return <JerseyOrder />;
     case 17:
-      return <Carousel state={state} />;
+      return <Carousel />;
     case 18:
-      return <Checkout state={props.state} />;
+      return <Checkout />;
     default:
       return steps[step].step;
   }

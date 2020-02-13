@@ -3,13 +3,13 @@ import MultipleChoice from "./MultipleChoice";
 import ButtonNavigation from "../ButtonNavigation";
 import FormContext from "../FormContext";
 
-export default function Experience() {
+export default function Chinese() {
   const formData = React.useContext(FormContext);
-  const exp = formData.values.exp.value;
-  const isComplete = exp !== "";
+  const chinese = formData.values.chinese.value;
+  const isComplete = chinese !== "";
   return (
     <>
-      <MultipleChoice category="exp" />
+      <MultipleChoice category="chinese" />
       <ButtonNavigation isComplete={isComplete} />
     </>
   );

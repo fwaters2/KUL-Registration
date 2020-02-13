@@ -1,38 +1,34 @@
 {
   "names": {
-    "completed": false,
     "firstName": "",
     "lastName": "",
     "chName": "",
     "nickname": ""
   },
-  "birthday": { "completed": false, "value": "" },
-  "nationality": { "completed": false, "value": "" },
+  "birthday": { "value": null },
+  "nationality": { "value": "" },
   "returning": {
-    "completed": false,
     "seasons": "unknown",
     "source": "",
     "referredBy": ""
   },
-  "gender": { "completed": false, "value": "" },
-  "height": { "completed": false, "value": null },
-  "skills": { "completed": false, "value": "" },
-  "experience": { "completed": false, "value": "" },
-  "athletecism": { "completed": false, "value": "" },
+  "gender": { "value": "" },
+  "height": { "value": null },
+  "skills": { "value": "" },
+  "exp": { "value": "" },
+  "athl": { "value": "" },
   "contact": {
-    "completed": false,
     "facebookContact": false,
     "facebookId": "",
     "lineContact": false,
     "lineId": ""
   },
-  "english": { "completed": false, "value": "" },
-  "chinese": { "completed": false, "value": "" },
-  "party": { "completed": false, "value": "" },
-  "improve": { "completed": false, "value": "" },
-  "selfie": { "completed": false, "abstain": false, "url": null },
+  "english": { "value": "" },
+  "chinese": { "value": "" },
+  "party": { "value": "" },
+  "improve": { "value": "" },
+  "selfie": { "abstain": false, "url": null },
   "commitments": {
-    "completed": false,
     "dates": {
       "day1": {
         "date": "4/8",
@@ -57,14 +53,12 @@
     }
   },
   "jersey": {
-    "completed": false,
     "jerseyBack": "",
     "size": "",
     "jerseyNum1": "",
     "jerseyNum2": ""
   },
   "swag": {
-    "completed": false,
     "items": { "discBlack": 0, "discWhite": 0, "hatBlack": 0, "hatWhite": 0 }
   },
   "checkout": {

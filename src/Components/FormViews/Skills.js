@@ -3,13 +3,13 @@ import MultipleChoice from "./MultipleChoice";
 import ButtonNavigation from "../ButtonNavigation";
 import FormContext from "../FormContext";
 
-export default function Experience() {
+export default function Skills() {
   const formData = React.useContext(FormContext);
-  const exp = formData.values.exp.value;
-  const isComplete = exp !== "";
+  const skills = formData.values.skills.value;
+  const isComplete = skills !== "";
   return (
     <>
-      <MultipleChoice category="exp" />
+      <MultipleChoice category="skills" />
       <ButtonNavigation isComplete={isComplete} />
     </>
   );
