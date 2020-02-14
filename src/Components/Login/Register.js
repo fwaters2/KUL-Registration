@@ -50,6 +50,7 @@ export default function Register() {
           .then(data => {
             console.log("final step of registering completed, data:", data);
             setIsLoading(false);
+            window.location.reload();
           })
 
           .catch(error =>

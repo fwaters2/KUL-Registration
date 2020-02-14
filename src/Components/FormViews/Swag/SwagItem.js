@@ -13,10 +13,35 @@ export default function SwagItem(props) {
   const { item, itemName, cost } = props;
   const formData = React.useContext(FormContext);
   const { values, setValues } = formData;
+  const { hatBlack, hatWhite, discBlack, discWhite } = values.swag.items;
 
-  const handleButtonClick = (name, value) => {
+  const handleButtonClick = (name, value, type) => {
+    let newValue;
+    switch (name) {
+      case "hatBlack":
+      case "hatWhite":
+        newValue = 200;
+        break;
+      case "discBlack":
+      case "discWhite":
+        newValue = 400;
+        break;
+      default:
+        newValue = 0;
+    }
+    newValue = type === "subtract" ? newValue * -1 : newValue;
+
     setValues({
       ...values,
+      checkout: {
+        subtotal:
+          newValue +
+          1200 +
+          hatBlack * 200 +
+          hatWhite * 200 +
+          discBlack * 400 +
+          discWhite * 400
+      },
       swag: { ...values.swag, items: { ...values.swag.items, [name]: value } }
     });
     //setValues({ ...values, [name]: value });
@@ -31,7 +56,8 @@ export default function SwagItem(props) {
         onClick={
           values.swag.items[item] === 0
             ? null
-            : () => handleButtonClick(item, values.swag.items[item] - 1)
+            : () =>
+                handleButtonClick(item, values.swag.items[item] - 1, "subtract")
         }
       >
         <RemoveCircleOutline />
@@ -45,7 +71,9 @@ export default function SwagItem(props) {
         ></TextField>
       </Box>
       <IconButton
-        onClick={() => handleButtonClick(item, values.swag.items[item] + 1)}
+        onClick={() =>
+          handleButtonClick(item, values.swag.items[item] + 1, "add")
+        }
       >
         <AddCircleOutline />
       </IconButton>

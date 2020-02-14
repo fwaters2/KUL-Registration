@@ -18,33 +18,18 @@ export default function StateStore(props) {
     regData,
     isReferred,
     referralId,
-    regDocId
+    regDocId,
+    importedStep
   } = props.authState;
 
   const [lang, toggleLang] = React.useState("en");
   const [values, setValues] = React.useState(initialRegData);
-  const [step, stepChange] = React.useState(0);
+  const [step, stepChange] = React.useState(importedStep);
 
   let language = handleLang(lang);
 
   React.useEffect(() => setValues(regData), [regData]);
-
-  React.useEffect(
-    () =>
-      setValues({
-        ...values,
-        checkout: {
-          subtotal:
-            values.swag.items.discBlack * 400 +
-            values.swag.items.discWhite * 400 +
-            values.swag.items.hatBlack * 200 +
-            values.swag.items.hatWhite * 200 +
-            1200
-        }
-      }),
-    [values.swag.items]
-  );
-  React.useEffect(() => stepChange(values.lastCompletedStep + 1), [values]);
+  React.useEffect(() => stepChange(importedStep), [importedStep]);
 
   const toggleLanguage = () => {
     lang === "en" ? toggleLang("ch") : toggleLang("en");

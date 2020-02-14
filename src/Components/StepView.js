@@ -6,7 +6,6 @@ import Nationality from "./FormViews/Nationality/Nationality";
 import Returning from "./FormViews/Returning";
 import Gender from "./FormViews/Gender";
 import Height from "./FormViews/Height";
-import MultipleChoice from "./FormViews/MultipleChoice";
 import Contact from "./FormViews/Contact";
 import Commitments from "./FormViews/Commitments";
 import JerseyOrder from "./FormViews/Jersey/JerseyOrder.js";

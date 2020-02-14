@@ -2,14 +2,16 @@ import React from "react";
 import firebase from "../../Firebase";
 import StateStore from "../../StateStore";
 import AuthContext from "../AuthContext";
+import initialRegData from "./initialRegData.json";
 
 export default function Auth({ match, isReferred }) {
   const [isSignedIn, updateUser] = React.useState(false);
   const [isRegistered, updateRegistration] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [regData, setRegData] = React.useState({});
+  const [regData, setRegData] = React.useState(initialRegData);
   const [regDocId, setRegDocId] = React.useState("");
   const [userEmail, setuserEmail] = React.useState("");
+  const [importedStep, setCurrentStep] = React.useState(0);
   let { referralId } = match.params;
 
   React.useEffect(() => {
@@ -23,11 +25,10 @@ export default function Auth({ match, isReferred }) {
         console.log("user detected with id: ", authId);
         //First Get the User document for the signed in user
         const userDocRef = usersColRef.doc(authId);
-        console.log("userDocRef", userDocRef);
+
         userDocRef
           .get()
           .then(doc => {
-            console.log("doc only", doc);
             console.log("User doc retrieved", doc.data());
             //then check if they've completed registration
 
@@ -42,12 +43,15 @@ export default function Auth({ match, isReferred }) {
                 setRegDocId(doc.id);
 
                 setRegData(doc.data());
+
+                setCurrentStep(doc.data().lastCompletedStep + 1);
               })
               .then(() => {
                 console.log(
                   "Retrieved the data and turning off the loading screen"
                 );
                 doc.data().isRegistered && updateRegistration(true);
+
                 setIsLoading(false);
               });
           })
@@ -67,7 +71,8 @@ export default function Auth({ match, isReferred }) {
     isLoading,
     isSignedIn,
     isRegistered,
-    regData
+    regData,
+    importedStep: importedStep || 0
   };
   const authContext = {
     setIsLoading,
@@ -81,7 +86,6 @@ export default function Auth({ match, isReferred }) {
 
   return (
     <AuthContext.Provider value={authContext}>
-      {console.log("isLoading", isLoading)}
       <StateStore authState={authState} />
     </AuthContext.Provider>
   );

@@ -76,7 +76,6 @@ const useStyles = makeStyles(theme => ({
 export default function Carousel() {
   const formData = React.useContext(FormContext);
   const { values, setValues, language } = formData;
-  const { discBlack, discWhite, hatBlack, hatWhite } = values.swag.items;
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
@@ -168,15 +167,7 @@ export default function Carousel() {
           ))}
         </List>
         <Box textAlign="center">
-          <Typography>
-            Subtotal:{" "}
-            {1200 +
-              hatBlack * 200 +
-              hatWhite * 200 +
-              discBlack * 400 +
-              discWhite * 400 +
-              "nt"}
-          </Typography>
+          <Typography>Subtotal: {values.checkout.subtotal + "nt"}</Typography>
         </Box>
         <ButtonNavigation isComplete={isComplete} />
       </div>
