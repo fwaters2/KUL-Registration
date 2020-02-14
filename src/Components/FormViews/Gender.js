@@ -1,31 +1,14 @@
 import React from "react";
 import { Button, Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/styles";
 import StepTitle from "../StepTitle";
 import FormContext from "../FormContext";
 import ButtonNavigation from "../ButtonNavigation";
-
-const useStyles = makeStyles(theme => ({
-  female: {
-    height: 150,
-    color: "deepPink"
-  },
-  male: {
-    height: 150,
-    color: "blue"
-  },
-  footer: {
-    marginTop: theme.spacing(1),
-    flexGrow: 1
-  }
-}));
 
 export default function Gender() {
   const formData = React.useContext(FormContext);
   const { language, values, setValues } = formData;
   const gender = values.gender.value;
   const isComplete = gender !== "";
-  const classes = useStyles();
 
   function updateGender(newGender) {
     setValues({ ...values, gender: { value: newGender } });
@@ -37,7 +20,18 @@ export default function Gender() {
         <Grid item xs={6}>
           <Button
             variant={gender === "Female" ? "outlined" : "contained"}
-            className={classes.female}
+            style={
+              gender === "Female"
+                ? {
+                    height: 150,
+                    color: "deepPink"
+                  }
+                : {
+                    height: 150,
+                    color: "white",
+                    backgroundColor: "deepPink"
+                  }
+            }
             fullWidth
             onClick={() => updateGender("Female")}
           >
@@ -48,7 +42,18 @@ export default function Gender() {
           {console.log("genderTest", gender)}
           <Button
             variant={gender === "Male" ? "outlined" : "contained"}
-            className={classes.male}
+            style={
+              gender === "Male"
+                ? {
+                    height: 150,
+                    color: "blue"
+                  }
+                : {
+                    height: 150,
+                    color: "white",
+                    backgroundColor: "blue"
+                  }
+            }
             fullWidth
             onClick={() => updateGender("Male")}
           >
