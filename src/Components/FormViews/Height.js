@@ -2,6 +2,7 @@ import React from "react";
 import { Slider, Grid, Typography, makeStyles } from "@material-ui/core";
 import FormContext from "../FormContext";
 import ButtonNavigation from "../ButtonNavigation";
+import StepTitle from "../StepTitle";
 
 const useStyles = makeStyles({
   vertSlider: {
@@ -23,7 +24,8 @@ export default function Height() {
   }
   const isComplete = height !== null;
   return (
-    <React.Fragment>
+    <>
+      <StepTitle>{language.height}</StepTitle>
       <Grid container alignItems="center">
         <Grid item xs={8} container justify="center">
           {height === null ? (
@@ -52,6 +54,6 @@ export default function Height() {
         </Grid>
       </Grid>
       <ButtonNavigation isComplete={isComplete} />
-    </React.Fragment>
+    </>
   );
 }

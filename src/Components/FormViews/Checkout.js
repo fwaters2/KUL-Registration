@@ -8,6 +8,7 @@ import "../../Assets/KUL.svg";
 import firebase from "../../Firebase";
 import FormContext from "../FormContext";
 import AuthContext from "../AuthContext";
+import StepTitle from "../StepTitle";
 const logo = require("../../Assets/KUL.svg");
 const items = [
   { item: "hatBlack", itemName: "Black Hat", cost: 200 },
@@ -96,7 +97,8 @@ export default function Checkout(props) {
   };
 
   return (
-    <React.Fragment>
+    <>
+      <StepTitle>{language.checkout}</StepTitle>
       <List disablePadding style={{ flex: 1, width: "100%" }}>
         <ListItem
         //className={classes.listItem}
@@ -159,6 +161,6 @@ export default function Checkout(props) {
           </Button>
         </Grid>
       </Grid>
-    </React.Fragment>
+    </>
   );
 }

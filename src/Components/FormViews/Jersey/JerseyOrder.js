@@ -12,6 +12,7 @@ import "./Sizes only.PNG";
 import "./Jersey only.PNG";
 import ButtonNavigation from "../../ButtonNavigation";
 import FormContext from "../../FormContext";
+import StepTitle from "../../StepTitle";
 const JerseyShirt = require("./Jersey only.PNG");
 const JerseySizes = require("./Sizes only.PNG");
 
@@ -26,7 +27,8 @@ export default function JerseyOrder() {
   const isComplete =
     jerseyBack !== "" && size !== "" && jerseyNum1 !== "" && jerseyNum2 !== "";
   return (
-    <React.Fragment>
+    <>
+      <StepTitle>{language.teamJersey}</StepTitle>
       <Grid container spacing={1} alignItems="center">
         {" "}
         <Grid item xs={12}>
@@ -69,7 +71,19 @@ export default function JerseyOrder() {
           />
         </Grid>
         <Grid item xs={4}>
-          <FormControl fullWidth variant="outlined">
+          <TextField
+            select
+            id="standard-required"
+            label={language.size}
+            margin="normal"
+            variant="outlined"
+            helperText={language.required}
+            fullWidth
+            type="number"
+            value={size}
+            onChange={e => handleChange("size", e.target.value)}
+          >
+            {/* <FormControl fullWidth variant="outlined">
             <InputLabel ref={inputLabel}>{language.size}</InputLabel>
             <Select
               fullWidth
@@ -80,15 +94,16 @@ export default function JerseyOrder() {
                 //labelWidth={labelWidth}
                 />
               }
-            >
-              <MenuItem value={"XS"}>XS</MenuItem>
-              <MenuItem value={"S"}>S</MenuItem>
-              <MenuItem value={"M"}>M</MenuItem>
-              <MenuItem value={"L"}>L</MenuItem>
-              <MenuItem value={"XL"}>XL</MenuItem>
-              <MenuItem value={"2XL"}>2XL</MenuItem>
-            </Select>
-          </FormControl>
+            > */}
+            <MenuItem value={"XS"}>XS</MenuItem>
+            <MenuItem value={"S"}>S</MenuItem>
+            <MenuItem value={"M"}>M</MenuItem>
+            <MenuItem value={"L"}>L</MenuItem>
+            <MenuItem value={"XL"}>XL</MenuItem>
+            <MenuItem value={"2XL"}>2XL</MenuItem>
+          </TextField>
+          {/* </Select>
+          </FormControl> */}
         </Grid>
       </Grid>
       <Grid container>
@@ -100,6 +115,6 @@ export default function JerseyOrder() {
         </Grid>
       </Grid>
       <ButtonNavigation isComplete={isComplete} />
-    </React.Fragment>
+    </>
   );
 }

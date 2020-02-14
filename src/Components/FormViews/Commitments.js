@@ -7,6 +7,7 @@ import Select from "@material-ui/core/Select";
 import { Grid } from "@material-ui/core";
 import FormContext from "../FormContext";
 import ButtonNavigation from "../ButtonNavigation";
+import StepTitle from "../StepTitle";
 
 export default function Commitments() {
   const formData = React.useContext(FormContext);
@@ -36,7 +37,8 @@ export default function Commitments() {
     });
   };
   return (
-    <React.Fragment>
+    <>
+      <StepTitle>{language.commitments}</StepTitle>
       <Grid container>
         <Grid item container justify="center" alignItems="center" xs={8}>
           <i className="fas fa-calendar-alt fa-10x" />
@@ -69,6 +71,6 @@ export default function Commitments() {
         </Grid>
       </Grid>
       <ButtonNavigation isComplete={isComplete} />
-    </React.Fragment>
+    </>
   );
 }

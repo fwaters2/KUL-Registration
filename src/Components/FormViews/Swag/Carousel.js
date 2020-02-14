@@ -15,6 +15,7 @@ import { List, Box } from "@material-ui/core";
 import SwagItem from "./SwagItem";
 import FormContext from "../../FormContext";
 import ButtonNavigation from "../../ButtonNavigation";
+import StepTitle from "../../StepTitle";
 const blackHatPic = require("./Pics/hatBlack2.png");
 const whiteHatPic = require("./Pics/Hat_White.jpg");
 const blackDiscPic = require("./Pics/Disc_Black.jpg");
@@ -97,81 +98,88 @@ export default function Carousel() {
     setValues({ ...values, items: { ...values.items, [name]: value } });
   };
   return (
-    <div className={classes.root}>
-      <AutoPlaySwipeableViews
-        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
-        index={activeStep}
-        onChangeIndex={handleStepChange}
-        enableMouseEvents
-      >
-        {tutorialSteps.map((step, index) => (
-          <div key={step.label}>
-            {Math.abs(activeStep - index) <= 2 ? (
-              <img
-                className={classes.img}
-                src={step.imgPath}
-                alt={step.label}
-              />
-            ) : null}
-          </div>
-        ))}
-      </AutoPlaySwipeableViews>
-      <MobileStepper
-        steps={maxSteps}
-        position="static"
-        variant="text"
-        activeStep={activeStep}
-        nextButton={
-          <Button
-            size="small"
-            onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
-          >
-            {language.next}
-            {theme.direction === "rtl" ? (
-              <KeyboardArrowLeft />
-            ) : (
-              <KeyboardArrowRight />
-            )}
-          </Button>
-        }
-        backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-            {theme.direction === "rtl" ? (
-              <KeyboardArrowRight />
-            ) : (
-              <KeyboardArrowLeft />
-            )}
-            {language.back}
-          </Button>
-        }
-      />
+    <>
+      <StepTitle>{language.extraSwag}</StepTitle>
+      <div className={classes.root}>
+        <AutoPlaySwipeableViews
+          axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+          index={activeStep}
+          onChangeIndex={handleStepChange}
+          enableMouseEvents
+        >
+          {tutorialSteps.map((step, index) => (
+            <div key={step.label}>
+              {Math.abs(activeStep - index) <= 2 ? (
+                <img
+                  className={classes.img}
+                  src={step.imgPath}
+                  alt={step.label}
+                />
+              ) : null}
+            </div>
+          ))}
+        </AutoPlaySwipeableViews>
+        <MobileStepper
+          steps={maxSteps}
+          position="static"
+          variant="text"
+          activeStep={activeStep}
+          nextButton={
+            <Button
+              size="small"
+              onClick={handleNext}
+              disabled={activeStep === maxSteps - 1}
+            >
+              {language.next}
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowLeft />
+              ) : (
+                <KeyboardArrowRight />
+              )}
+            </Button>
+          }
+          backButton={
+            <Button
+              size="small"
+              onClick={handleBack}
+              disabled={activeStep === 0}
+            >
+              {theme.direction === "rtl" ? (
+                <KeyboardArrowRight />
+              ) : (
+                <KeyboardArrowLeft />
+              )}
+              {language.back}
+            </Button>
+          }
+        />
 
-      <List dense>
-        {items.map(item => (
-          <SwagItem
-            key={item.item}
-            handleButtonClick={handleButtonClick}
-            item={item.item}
-            itemName={item.itemName}
-            cost={item.cost}
-            setValues={setValues}
-            values={values}
-          />
-        ))}
-      </List>
-      <Box textAlign="center">
-        <Typography>
-          Subtotal:{" "}
-          {1200 +
-            hatBlack * 200 +
-            hatWhite * 200 +
-            discBlack * 400 +
-            discWhite * 400 +
-            "nt"}
-        </Typography>
-      </Box>
-      <ButtonNavigation isComplete={isComplete} />
-    </div>
+        <List dense>
+          {items.map(item => (
+            <SwagItem
+              key={item.item}
+              handleButtonClick={handleButtonClick}
+              item={item.item}
+              itemName={item.itemName}
+              cost={item.cost}
+              setValues={setValues}
+              values={values}
+            />
+          ))}
+        </List>
+        <Box textAlign="center">
+          <Typography>
+            Subtotal:{" "}
+            {1200 +
+              hatBlack * 200 +
+              hatWhite * 200 +
+              discBlack * 400 +
+              discWhite * 400 +
+              "nt"}
+          </Typography>
+        </Box>
+        <ButtonNavigation isComplete={isComplete} />
+      </div>
+    </>
   );
 }

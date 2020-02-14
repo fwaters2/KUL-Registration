@@ -11,8 +11,9 @@ import {
 } from "@material-ui/core";
 import FormContext from "../FormContext";
 import ButtonNavigation from "../ButtonNavigation";
+import StepTitle from "../StepTitle";
 
-export default function Returning(props) {
+export default function Returning() {
   const formData = React.useContext(FormContext);
   const { language, setValues, values } = formData;
   const { seasons, source, referredBy } = values.returning;
@@ -26,6 +27,7 @@ export default function Returning(props) {
   const isComplete = true;
   return (
     <>
+      <StepTitle>{language.firstSeason}</StepTitle>
       {seasons === "unknown" ? (
         <>
           <Grid container spacing={1}>
