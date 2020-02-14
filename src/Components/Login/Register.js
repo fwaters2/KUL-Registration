@@ -28,6 +28,8 @@ export default function Register() {
         registrationColRef
           .add({
             ...initialRegistrationData,
+            email,
+            contact: { ...initialRegistrationData.contact, email },
             userId: userId,
             created: firebase.firestore.FieldValue.serverTimestamp()
           })

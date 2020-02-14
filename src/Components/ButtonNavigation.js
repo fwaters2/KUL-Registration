@@ -8,18 +8,23 @@ import FormContext from "./FormContext";
 export default function ButtonNavigation({ isComplete }) {
   const AuthState = React.useContext(AuthContext);
   const FormData = React.useContext(FormContext);
-  const { step, stepChange } = FormData;
+  const { step, stepChange, values } = FormData;
   const regDocId = AuthState.regDocId;
   const totalSteps = steps.length;
   const firstStep = 0;
 
   const currentValues = FormData.values[steps[step]];
   const handleDbUpdate = () => {
+    const newLastCompletedStep =
+      values.lastCompletedStep > step ? values.lastCompletedStep : step;
     const docRef = firebase
       .firestore()
       .collection("Registration")
       .doc(regDocId);
-    docRef.update({ [steps[step]]: currentValues });
+    docRef.update({
+      [steps[step]]: currentValues,
+      lastCompletedStep: newLastCompletedStep
+    });
   };
   const handleBack = () => {
     handleDbUpdate();

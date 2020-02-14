@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import { Assignment, ShoppingCart, DoneAll, Face } from "@material-ui/icons";
 import clsx from "clsx";
+import mainStepperActiveStep from "./mainStepperActiveStep";
 
 const mainSteps = [0, 1, 2, 3];
 const useColorlibStepIconStyles = makeStyles({
@@ -33,7 +34,27 @@ const useColorlibStepIconStyles = makeStyles({
   }
 });
 
-export default function MainStepper({ activeStep }) {
+export default function MainStepper({
+  activeStep,
+  lastCompletedStep,
+  setActiveStep
+}) {
+  const handleClick = newStep => () => {
+    const stepperCompleted = mainStepperActiveStep(lastCompletedStep);
+    console.log("lastCompletedStep", lastCompletedStep);
+    console.log("stepperCompleted", stepperCompleted, "newStep", newStep);
+    const stepToReturn =
+      newStep === 0
+        ? 0
+        : newStep === 1
+        ? 3
+        : newStep === 2
+        ? 16
+        : newStep === 3
+        ? 18
+        : null;
+    return stepperCompleted >= newStep ? setActiveStep(stepToReturn) : null;
+  };
   function ColorlibStepIcon(props) {
     const classes = useColorlibStepIconStyles();
     const { active, completed } = props;
@@ -63,8 +84,8 @@ export default function MainStepper({ activeStep }) {
       activeStep={activeStep}
       connector={<StepConnector />}
     >
-      {mainSteps.map(x => (
-        <Step key={x}>
+      {mainSteps.map((x, index) => (
+        <Step key={x} onClick={handleClick(index)}>
           <StepLabel StepIconComponent={ColorlibStepIcon} />
         </Step>
       ))}

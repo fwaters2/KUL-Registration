@@ -9,6 +9,7 @@ export default function Auth({ match, isReferred }) {
   const [isLoading, setIsLoading] = React.useState(true);
   const [regData, setRegData] = React.useState({});
   const [regDocId, setRegDocId] = React.useState("");
+  const [userEmail, setuserEmail] = React.useState("");
   let { referralId } = match.params;
 
   React.useEffect(() => {
@@ -17,6 +18,7 @@ export default function Auth({ match, isReferred }) {
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (user) {
         updateUser(true);
+        setuserEmail(user.email);
         const authId = user.uid;
         console.log("user detected with id: ", authId);
         //First Get the User document for the signed in user
@@ -36,6 +38,7 @@ export default function Auth({ match, isReferred }) {
               .then(doc => {
                 console.log("Retrieved fbData: ", doc.data());
                 setRegDocId(doc.id);
+
                 setRegData(doc.data());
               })
               .then(() => {
@@ -69,7 +72,8 @@ export default function Auth({ match, isReferred }) {
     isRegistered,
     isReferred,
     referralId,
-    regDocId
+    regDocId,
+    userEmail
   };
 
   return (

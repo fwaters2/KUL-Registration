@@ -16,10 +16,10 @@ export default function Contact() {
   const { facebookContact, facebookId, lineContact, lineId } = values.contact;
   const isComplete = true;
   const handleChange = (field, value) => {
-    setValues({ ...values, contact: { [field]: value } });
+    setValues({ ...values, contact: { ...values.contact, [field]: value } });
   };
   return (
-    <React.Fragment>
+    <>
       <FormControl component="fieldset">
         <FormLabel component="legend">{language.bestWay}</FormLabel>
         <FormGroup>
@@ -60,6 +60,6 @@ export default function Contact() {
         </FormGroup>
       </FormControl>
       <ButtonNavigation isComplete={isComplete} />
-    </React.Fragment>
+    </>
   );
 }

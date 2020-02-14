@@ -4,7 +4,6 @@ import FormContainer from "./Components/FormContainer.js";
 import StepView from "./Components/StepView.js";
 import LoginContainer from "./Components/Login/LoginContainer.js";
 import handleLang from "./Assets/Lang/handleLang.js";
-import ButtonNavigation from "./Components/ButtonNavigation.js";
 import CompleteContainer from "./Components/Complete/CompleteContainer.js";
 import MainStepper from "./Components/Steppers/MainStepper.js";
 import SecondaryStepper from "./Components/Steppers/SecondaryStepper.js";
@@ -21,9 +20,10 @@ export default function StateStore(props) {
     referralId,
     regDocId
   } = props.authState;
-  const [step, stepChange] = React.useState(0);
+
   const [lang, toggleLang] = React.useState("en");
   const [values, setValues] = React.useState(initialRegData);
+  const [step, stepChange] = React.useState(0);
 
   let language = handleLang(lang);
 
@@ -44,6 +44,7 @@ export default function StateStore(props) {
       }),
     [values.swag.items]
   );
+  React.useEffect(() => stepChange(regData.lastCompletedStep + 1), [regData]);
 
   const toggleLanguage = () => {
     lang === "en" ? toggleLang("ch") : toggleLang("en");
@@ -93,8 +94,13 @@ export default function StateStore(props) {
     if (!isRegistered) {
       return (
         <FormContainer state={otherState}>
+          {console.log(regData.lastCompletedStep + 1)}
           {console.log("current values", values)}
-          <MainStepper activeStep={mainStepperActiveStep(step)} />
+          <MainStepper
+            activeStep={mainStepperActiveStep(step)}
+            lastCompletedStep={values.lastCompletedStep}
+            setActiveStep={stepChange}
+          />
           {step < 3 ? null : step > 14 ? null : (
             <SecondaryStepper step={step} />
           )}
