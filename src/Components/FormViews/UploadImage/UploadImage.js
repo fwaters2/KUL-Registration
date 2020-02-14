@@ -9,14 +9,11 @@ export default function UploadImage() {
   const formData = React.useContext(FormContext);
   const { language, values, setValues } = formData;
   const { abstain, photoUrl } = values.selfie;
+
   function handleChange(field, value) {
     setValues({ ...values, selfie: { ...values.selfie, [field]: value } });
   }
-  const [file, setFile] = React.useState();
 
-  const handleFileChange = newFile => {
-    setFile(newFile[newFile.length - 1]);
-  };
   const isComplete = photoUrl !== null || abstain;
 
   function uploadToStorage(newFile) {
@@ -74,20 +71,19 @@ export default function UploadImage() {
       }
     );
   }
-
-  const handleSubmit = () => {
-    uploadToStorage(file);
+  const handleFileChange = newFile => {
+    uploadToStorage(newFile[newFile.length - 1]);
   };
+
   return (
     <div>
-      {console.log("isComplete", isComplete)}
-      {console.log("photo equals null", photoUrl !== null, "abstain", abstain)}
       <DropzoneArea
         dropzoneText="Upload a selfie! #duckface"
         onChange={handleFileChange}
+        filesLimit={1}
+        acceptedFiles={["image/*"]}
+        showPreviewsInDropzone={false}
       />
-      <br />
-      <br />
       <FormControlLabel
         control={
           <Checkbox
@@ -99,8 +95,7 @@ export default function UploadImage() {
         }
         label="I would prefer not to"
       />
-      <button onClick={handleSubmit}>Submit</button>
-      <img height="200px" src={photoUrl} alt="test" />;
+      <img height="200px" src={photoUrl} alt="Me" />;
       <ButtonNavigation isComplete={isComplete} />
     </div>
   );

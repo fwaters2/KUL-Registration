@@ -44,25 +44,11 @@ export default function StateStore(props) {
       }),
     [values.swag.items]
   );
-  React.useEffect(() => stepChange(regData.lastCompletedStep + 1), [regData]);
+  React.useEffect(() => stepChange(values.lastCompletedStep + 1), [values]);
 
   const toggleLanguage = () => {
     lang === "en" ? toggleLang("ch") : toggleLang("en");
   };
-
-  function isStepCompleted(stepTitle, [...requiredKeys]) {
-    const initialData = initialRegData[stepTitle];
-    const currentData = values[stepTitle];
-
-    const isEqualToInitArray = requiredKeys.map(
-      data => initialData[data] === currentData[data]
-    );
-
-    let hasUnupdatedValue = isEqualToInitArray.includes(true);
-    console.log("isEqualToInitArray", isEqualToInitArray);
-    console.log("hasUnupdatedValue", hasUnupdatedValue);
-    return hasUnupdatedValue;
-  }
 
   const otherState = {
     toggleLanguage,
@@ -73,8 +59,7 @@ export default function StateStore(props) {
     isSignedIn,
     setValues,
     language,
-    regDocId,
-    isStepCompleted
+    regDocId
   };
   const currentView = () => {
     if (isLoading) {
@@ -94,8 +79,6 @@ export default function StateStore(props) {
     if (!isRegistered) {
       return (
         <FormContainer state={otherState}>
-          {console.log(regData.lastCompletedStep + 1)}
-          {console.log("current values", values)}
           <MainStepper
             activeStep={mainStepperActiveStep(step)}
             lastCompletedStep={values.lastCompletedStep}

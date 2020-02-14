@@ -10,7 +10,7 @@ export default function Register() {
   const authInfo = React.useContext(AuthContext);
   const formData = React.useContext(FormContext);
   const { language } = formData;
-  const { isReferred, referralId } = authInfo;
+  const { isReferred, referralId, setIsLoading } = authInfo;
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const handleRegistration = e => {
@@ -19,6 +19,7 @@ export default function Register() {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(userRef => {
+        setIsLoading(true);
         const userId = userRef.user.uid;
         console.log("Creating Registration doc for user: ", userId);
         const db = firebase.firestore();
@@ -46,6 +47,11 @@ export default function Register() {
               created: firebase.firestore.FieldValue.serverTimestamp()
             });
           })
+          .then(data => {
+            console.log("final step of registering completed, data:", data);
+            setIsLoading(false);
+          })
+
           .catch(error =>
             console.log(
               "There was an error creating documents after creating new user",

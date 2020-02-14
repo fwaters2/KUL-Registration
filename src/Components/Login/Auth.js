@@ -23,9 +23,11 @@ export default function Auth({ match, isReferred }) {
         console.log("user detected with id: ", authId);
         //First Get the User document for the signed in user
         const userDocRef = usersColRef.doc(authId);
+        console.log("userDocRef", userDocRef);
         userDocRef
           .get()
           .then(doc => {
+            console.log("doc only", doc);
             console.log("User doc retrieved", doc.data());
             //then check if they've completed registration
 
@@ -68,6 +70,7 @@ export default function Auth({ match, isReferred }) {
     regData
   };
   const authContext = {
+    setIsLoading,
     isSignedIn,
     isRegistered,
     isReferred,
@@ -78,6 +81,7 @@ export default function Auth({ match, isReferred }) {
 
   return (
     <AuthContext.Provider value={authContext}>
+      {console.log("isLoading", isLoading)}
       <StateStore authState={authState} />
     </AuthContext.Provider>
   );
