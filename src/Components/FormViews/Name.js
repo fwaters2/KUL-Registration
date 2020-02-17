@@ -63,7 +63,7 @@ export default function Name() {
         margin="normal"
         variant="outlined"
         value={nickname}
-        onChange={handleChange("enName")}
+        onChange={handleChange("nickname")}
       />
 
       <ButtonNavigation isComplete={isComplete} />
