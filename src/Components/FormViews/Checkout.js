@@ -14,15 +14,12 @@ const logo = require("../../Assets/KUL.svg");
 export default function Checkout(props) {
   const formData = React.useContext(FormContext);
   const {
-    firstName,
-    lastName,
-    chName,
-    nickname,
-    nationality,
-    birthday,
-    gender,
+    names: { firstName, lastName, chName, nickname },
     selfie: photoUrl
-  } = formData;
+  } = formData.values;
+  const nationality = formData.values.nationality;
+  const gender = formData.values.gender;
+  const birthday = formData.values.birthday;
   const authData = React.useContext(AuthContext);
   const { language, values, step, stepChange } = formData;
   const { regDocId } = authData;
@@ -121,6 +118,7 @@ export default function Checkout(props) {
 
   return (
     <>
+      {console.log("regData", formData)}
       <StepTitle>{language.checkout}</StepTitle>
       <List disablePadding style={{ flex: 1, width: "100%" }}>
         <ListItem
