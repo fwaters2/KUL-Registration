@@ -78,10 +78,10 @@ export default function UploadImage() {
   return (
     <div>
       <DropzoneArea
-        dropzoneText="Upload a selfie! #duckface"
+        dropzoneText={language.uploadSelfie}
         onChange={handleFileChange}
         filesLimit={1}
-        acceptedFiles={["image/*"]}
+        acceptedFiles={["image/*", "application/*"]}
         showPreviewsInDropzone={false}
       />
       <FormControlLabel
@@ -93,9 +93,9 @@ export default function UploadImage() {
             color="primary"
           />
         }
-        label="I would prefer not to"
+        label={language.preferNotTo}
       />
-      <img height="200px" src={photoUrl} alt="Me" />;
+      {photoUrl ? <img height="200px" src={photoUrl} alt="Me" /> : null}
       <ButtonNavigation isComplete={isComplete} />
     </div>
   );

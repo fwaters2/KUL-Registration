@@ -20,33 +20,7 @@ const blackHatPic = require("./Pics/hatBlack2.png");
 const whiteHatPic = require("./Pics/Hat_White.jpg");
 const blackDiscPic = require("./Pics/Disc_Black.jpg");
 const whiteDiscPic = require("./Pics/Disc_White.jpg");
-const items = [
-  { item: "hatBlack", itemName: "Black Hat", cost: 200 },
-  { item: "hatWhite", itemName: "White Hat", cost: 200 },
-  { item: "discBlack", itemName: "Black Disc", cost: 400 },
-  { item: "discWhite", itemName: "White Disc", cost: 400 }
-];
-
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
-
-const tutorialSteps = [
-  {
-    label: "Black Hat",
-    imgPath: blackHatPic
-  },
-  {
-    label: "Red/White/Blue Hat",
-    imgPath: whiteHatPic
-  },
-  {
-    label: "Black Disc",
-    imgPath: blackDiscPic
-  },
-  {
-    label: "White Disc",
-    imgPath: whiteDiscPic
-  }
-];
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -75,12 +49,39 @@ const useStyles = makeStyles(theme => ({
 
 export default function Carousel() {
   const formData = React.useContext(FormContext);
-  const { values, setValues, language } = formData;
+  const { language, values, setValues } = formData;
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = tutorialSteps.length;
+
   const isComplete = true;
+
+  const items = [
+    { item: "hatBlack", itemName: language.blackHat, cost: 200 },
+    { item: "hatWhite", itemName: language.whiteHat, cost: 200 },
+    // { item: "discBlack", itemName: "Black Disc", cost: 400 },
+    { item: "discWhite", itemName: language.whiteDisc, cost: 400 }
+  ];
+
+  const tutorialSteps = [
+    {
+      label: language.blackHat,
+      imgPath: blackHatPic
+    },
+    {
+      label: language.whiteHat,
+      imgPath: whiteHatPic
+    },
+    // {
+    //   label: "Black Disc",
+    //   imgPath: blackDiscPic
+    // },
+    {
+      label: language.whiteDisc,
+      imgPath: whiteDiscPic
+    }
+  ];
+  const maxSteps = tutorialSteps.length;
 
   function handleNext() {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -167,7 +168,9 @@ export default function Carousel() {
           ))}
         </List>
         <Box textAlign="center">
-          <Typography>Subtotal: {values.checkout.subtotal + "nt"}</Typography>
+          <Typography>
+            {language.subtotal}: {values.checkout.subtotal + language.nt}
+          </Typography>
         </Box>
         <ButtonNavigation isComplete={isComplete} />
       </div>

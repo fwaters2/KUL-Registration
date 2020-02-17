@@ -120,9 +120,6 @@ export default function Nationality() {
   return (
     <>
       <StepTitle>{language.nationality}</StepTitle>
-      <Box marginY="1em">
-        <WorldMap />
-      </Box>
 
       <TextField
         autoFocus
@@ -145,6 +142,9 @@ export default function Nationality() {
           </MenuItem>
         ))}
       </TextField>
+      <Box marginY="1em">
+        <WorldMap />
+      </Box>
 
       <ButtonNavigation isComplete={isComplete} />
     </>

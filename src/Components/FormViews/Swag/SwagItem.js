@@ -12,7 +12,7 @@ import FormContext from "../../FormContext";
 export default function SwagItem(props) {
   const { item, itemName, cost } = props;
   const formData = React.useContext(FormContext);
-  const { values, setValues } = formData;
+  const { values, setValues, language } = formData;
   const { hatBlack, hatWhite, discBlack, discWhite } = values.swag.items;
 
   const handleButtonClick = (name, value, type) => {
@@ -49,9 +49,6 @@ export default function SwagItem(props) {
 
   return (
     <ListItem>
-      {console.log("values", values)}
-      {console.log("item", item)}
-      {console.log("itemName", itemName)}
       <IconButton
         onClick={
           values.swag.items[item] === 0
@@ -77,7 +74,7 @@ export default function SwagItem(props) {
       >
         <AddCircleOutline />
       </IconButton>
-      <ListItemText primary={itemName} secondary={cost + "nt"} />
+      <ListItemText primary={itemName} secondary={cost + language.nt} />
     </ListItem>
   );
 }

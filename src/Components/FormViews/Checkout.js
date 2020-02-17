@@ -10,17 +10,18 @@ import FormContext from "../FormContext";
 import AuthContext from "../AuthContext";
 import StepTitle from "../StepTitle";
 const logo = require("../../Assets/KUL.svg");
-const items = [
-  { item: "hatBlack", itemName: "Black Hat", cost: 200 },
-  { item: "hatWhite", itemName: "White Hat", cost: 200 },
-  { item: "discBlack", itemName: "Black Disc", cost: 400 },
-  { item: "discWhite", itemName: "White Disc", cost: 400 }
-];
+
 export default function Checkout(props) {
   const formData = React.useContext(FormContext);
   const authData = React.useContext(AuthContext);
   const { language, values, step, stepChange } = formData;
   const { regDocId } = authData;
+  const items = [
+    { item: "hatBlack", itemName: language.blackHat, cost: 200 },
+    { item: "hatWhite", itemName: language.whiteHat, cost: 200 },
+    { item: "discBlack", itemName: language.blackDisc, cost: 400 },
+    { item: "discWhite", itemName: language.whiteDisc, cost: 400 }
+  ];
   const swagOrders = () => {
     //Goal: An array of orders
     const regOrder = {
@@ -105,7 +106,7 @@ export default function Checkout(props) {
         >
           <ListItemText
             primary={<img src={logo} alt="logo" height="20px" />}
-            secondary={"KUL Registration"}
+            secondary={language.earlyBird}
           />
           <Typography variant="body2">1200nt</Typography>
         </ListItem>
@@ -122,7 +123,7 @@ export default function Checkout(props) {
                 secondary={product.cost}
               />
               <Typography variant="body2">
-                {values.swag.items[product.item] * product.cost + "nt"}
+                {values.swag.items[product.item] * product.cost + language.nt}
               </Typography>
             </ListItem>
           ) : null
@@ -132,12 +133,12 @@ export default function Checkout(props) {
         //style={{ borderTop: "1px solid black" }}
         //className={classes.listItem}
         >
-          <ListItemText primary="Total" />
+          <ListItemText primary={language.total} />
           <Typography
             variant="subtitle1"
             //className={classes.total}
           >
-            {values.checkout.subtotal + "nt"}
+            {values.checkout.subtotal + language.nt}
           </Typography>
         </ListItem>
       </List>
@@ -149,18 +150,10 @@ export default function Checkout(props) {
       >
         {language.submitFinish}
       </Button>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <Button
-            variant="contained"
-            color="secondary"
-            fullWidth
-            onClick={() => stepChange(step - 1)}
-          >
-            {language.back}
-          </Button>
-        </Grid>
-      </Grid>
+      <br />
+      <Button color="primary" fullWidth onClick={() => stepChange(step - 1)}>
+        {language.back}
+      </Button>
     </>
   );
 }

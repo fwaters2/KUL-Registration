@@ -4,6 +4,7 @@ import steps from "./steps.json";
 import firebase from "../Firebase";
 import AuthContext from "./AuthContext";
 import FormContext from "./FormContext";
+import { ArrowForward, ArrowBack } from "@material-ui/icons";
 
 export default function ButtonNavigation({ isComplete }) {
   const AuthState = React.useContext(AuthContext);
@@ -38,14 +39,18 @@ export default function ButtonNavigation({ isComplete }) {
   return (
     step + 1 < totalSteps && (
       <ButtonGroup fullWidth style={{ marginTop: "2em" }} color="primary">
-        {step > firstStep && <Button onClick={handleBack}>Back</Button>}
+        {step > firstStep && (
+          <Button onClick={handleBack}>
+            <ArrowBack />
+          </Button>
+        )}
         <Button
           color="secondary"
           variant="contained"
           onClick={handleNext}
           disabled={!isComplete}
         >
-          Next
+          <ArrowForward />
         </Button>
       </ButtonGroup>
     )

@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function FormContainer(props) {
   const formData = React.useContext(FormContext);
-  const { toggleLanguage, lang, isSignedIn } = formData;
+  const { toggleLanguage, lang, isSignedIn, language } = formData;
   const { children } = props;
   const classes = useStyles();
 
@@ -155,7 +155,9 @@ export default function FormContainer(props) {
                             id="menu-list-grow"
                             onKeyDown={handleListKeyDown}
                           >
-                            <MenuItem onClick={handleSignOut}>Logout</MenuItem>
+                            <MenuItem onClick={handleSignOut}>
+                              {language.logout}
+                            </MenuItem>
                           </MenuList>
                         </ClickAwayListener>
                       </Paper>

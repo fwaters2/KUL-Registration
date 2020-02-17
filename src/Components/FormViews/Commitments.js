@@ -4,7 +4,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
-import { Grid } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import FormContext from "../FormContext";
 import ButtonNavigation from "../ButtonNavigation";
 import StepTitle from "../StepTitle";
@@ -42,6 +42,7 @@ export default function Commitments() {
       <Grid container>
         <Grid item container justify="center" alignItems="center" xs={8}>
           <i className="fas fa-calendar-alt fa-10x" />
+          <Typography variant="caption">{language.banquet}</Typography>
         </Grid>
         <Grid item xs={4}>
           {dates.map((date, index) => (

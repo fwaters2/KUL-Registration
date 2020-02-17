@@ -1,6 +1,7 @@
 {
   "back": "BACK",
   "next": "NEXT",
+  "logout": "Logout",
 
   "signUp": "Sign Up",
   "email": "Email Address",
@@ -88,6 +89,9 @@
   "intOption2": "Mediocre",
   "intOption3": "Not Interested",
 
+  "uploadSelfie": "Upload a selfie to help the captains with the draft! #duckface",
+  "preferNotTo": "I would prefer not to",
+
   "commitments": "Commitments",
   "day": "Day",
   "finals": "Finals",
@@ -95,6 +99,7 @@
   "likely": "Likely",
   "unlikely": "Unlikely",
   "out": "Out",
+  "banquet": "All-you-can-eat/drink banquet after finals (5/16)!",
 
   "teamJersey": "Team Jersey",
   "nameBack": "Name on back of Jersey",
@@ -109,8 +114,10 @@
   "blackHat": "Black Hat",
   "whiteHat": "White Hat",
 
+  "earlyBird": "Early Bird Sign Up",
   "checkout": "Checkout",
   "nt": "nt",
+  "subtotal": "Subtotal",
   "total": "Total",
   "transferInfo": "Transfer Information",
   "bankCode": "Bank Code",

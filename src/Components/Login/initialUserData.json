@@ -11,5 +11,6 @@
   "isVerified": false,
   "wasReferred": false,
   "referredBy": "",
-  "registrationId": null
+  "registrationId": null,
+  "status": "Unpaid"
 }

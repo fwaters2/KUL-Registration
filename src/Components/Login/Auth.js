@@ -3,6 +3,7 @@ import firebase from "../../Firebase";
 import StateStore from "../../StateStore";
 import AuthContext from "../AuthContext";
 import initialRegData from "./initialRegData.json";
+import { Hidden } from "@material-ui/core";
 
 export default function Auth({ match, isReferred }) {
   const [isSignedIn, updateUser] = React.useState(false);
@@ -86,7 +87,21 @@ export default function Auth({ match, isReferred }) {
 
   return (
     <AuthContext.Provider value={authContext}>
-      <StateStore authState={authState} />
+      <Hidden xsDown>
+        <div
+          style={{
+            minHeight: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center"
+          }}
+        >
+          <StateStore authState={authState} />
+        </div>
+      </Hidden>
+      <Hidden smUp>
+        <StateStore authState={authState} />
+      </Hidden>
     </AuthContext.Provider>
   );
 }
