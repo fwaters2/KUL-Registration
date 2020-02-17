@@ -13,6 +13,16 @@ const logo = require("../../Assets/KUL.svg");
 
 export default function Checkout(props) {
   const formData = React.useContext(FormContext);
+  const {
+    firstName,
+    lastName,
+    chName,
+    nickname,
+    nationality,
+    birthday,
+    gender,
+    selfie: photoUrl
+  } = formData;
   const authData = React.useContext(AuthContext);
   const { language, values, step, stepChange } = formData;
   const { regDocId } = authData;
@@ -43,7 +53,7 @@ export default function Checkout(props) {
             ...itemArray,
             {
               userId: values.userId,
-              item: x.itemName,
+              item: x.item,
               cost: x.cost,
               dateOrdered: firebase.firestore.FieldValue.serverTimestamp()
             }
@@ -64,6 +74,18 @@ export default function Checkout(props) {
     paidTo: null,
     bankNumbers: null
   };
+  const usersAttributes = {
+    firstName,
+    lastName,
+    chName,
+    nickname,
+    gender,
+    nationality,
+    birthday,
+    photoUrl,
+    status: "Unpaid",
+    isRegistered: true
+  };
 
   const handleSubmission = () => {
     const userId = values.userId;
@@ -74,7 +96,7 @@ export default function Checkout(props) {
       db
         .collection("Users")
         .doc(userId)
-        .update({ isRegistered: true }),
+        .update(usersAttributes),
       db
         .collection("Registration")
         .doc(regDocId)

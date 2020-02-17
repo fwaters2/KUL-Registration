@@ -29,13 +29,14 @@ export default function Referral(props) {
   const linkRef = React.useRef(null);
 
   React.useEffect(() => {
-    let fbData = [];
     const myRef = firebase
       .firestore()
       .collection("Users")
       .where("referredBy", "==", values.userId);
 
-    myRef.get().then(snapshot => {
+    myRef.onSnapshot(snapshot => {
+      let fbData = [];
+      console.log("fbData", fbData);
       console.log("snapshot", snapshot);
       snapshot.docs.forEach(doc => {
         fbData = [...fbData, doc.data()];
@@ -100,16 +101,33 @@ export default function Referral(props) {
         </ExpansionPanelDetails>
       </ExpansionPanel>
       <List>
-        <Typography variant="h5">My Referrals:</Typography>
+        <Typography variant="h5">{`My Referrals (${myReferrals.length}):`}</Typography>
         {myReferrals.length === 0 ? (
           <Typography>Sorry no referrals yet</Typography>
         ) : (
           myReferrals.map(referral => (
             <ListItem>
               <ListItemIcon>
-                <Person />
+                {referral.photoUrl ? (
+                  <div>
+                    <img
+                      style={{
+                        height: "35px",
+                        width: "35px",
+                        objectFit: "cover"
+                      }}
+                      src={referral.photoUrl}
+                      alt={referral.firstName}
+                    />
+                  </div>
+                ) : (
+                  <Person />
+                )}
               </ListItemIcon>
-              <ListItemText secondary={referral.registrationId} />
+              <ListItemText
+                primary={`${referral.firstName} ${referral.lastName}`}
+                secondary={referral.email}
+              />
             </ListItem>
           ))
         )}
