@@ -2,3 +2,5 @@ frontpage
 standings for top 5
 fix refresh after registering
 translate post-register page
+
+upload to subdomain
