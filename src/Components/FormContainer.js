@@ -102,13 +102,16 @@ export default function FormContainer(props) {
               //justify="flex-end"
               alignItems="center"
             >
-              <Grid item xs>
-                <Typography align="right" variant="body2">
-                  中文
-                </Typography>
-              </Grid>
+              <Typography align="right" variant="body2">
+                En
+              </Typography>
               <Grid item>
                 <Switch checked={lang === "ch"} onChange={toggleLanguage} />
+              </Grid>
+              <Grid item xs>
+                <Typography align="left" variant="body2">
+                  中文
+                </Typography>
               </Grid>
             </Grid>
           </Grid>

@@ -15,11 +15,11 @@ export default function Checkout(props) {
   const formData = React.useContext(FormContext);
   const {
     names: { firstName, lastName, chName, nickname },
-    selfie: photoUrl
+    selfie: { photoUrl }
   } = formData.values;
-  const nationality = formData.values.nationality;
-  const gender = formData.values.gender;
-  const birthday = formData.values.birthday;
+  const nationality = formData.values.nationality.value;
+  const gender = formData.values.gender.value;
+  const birthday = formData.values.birthday.value;
   const authData = React.useContext(AuthContext);
   const { language, values, step, stepChange } = formData;
   const { regDocId } = authData;
