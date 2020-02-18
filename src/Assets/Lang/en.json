@@ -1,4 +1,35 @@
 {
+  "greetingTitle": "KUL Registration Spring 2020",
+  "greetingBody": [
+    "Welcome to the 9th Season of KUL! We should have some idea what we're doing this time around!",
+    "First things first:  Early Bird Registration Fee $1,200 (until 2/26, after $1,400)",
+    "Age Requirement: 18+"
+  ],
+  "whatGet": "What you get",
+  "getList": [
+    "Your own customized fully sublimated jersey from UltiRotate (sublimated means awesome)",
+
+    "Personalized membership card with exclusive deals around Kaohsiung",
+
+    "Finals/Awards ceremony + Prizes for outstanding players",
+
+    "Drafted to a team of new friends with a captain to help you out",
+
+    "4 Rounds of scheduled regular season games +plus championship weekend!(Dates below)",
+
+    "High-quality fields near Nanzi",
+
+    "Your Individual and team stats recorded each game and displayed on our league website",
+
+    "Your Facebook wall filled with Ultimate Frisbee photos and videos",
+
+    "A chance to win season ending prizes for MVPs, Rookies, Most Improved, Most  Spirited, etc",
+
+    "Season ending tournament where each team will be playing for the chance to hoist Mama Piggy (Currently held by the Spirit Animals)"
+  ],
+
+  "close": "Close",
+
   "back": "BACK",
   "next": "NEXT",
   "logout": "Logout",

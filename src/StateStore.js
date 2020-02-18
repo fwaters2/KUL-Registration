@@ -10,6 +10,7 @@ import SecondaryStepper from "./Components/Steppers/SecondaryStepper.js";
 import mainStepperActiveStep from "./Components/Steppers/mainStepperActiveStep.js";
 import initialRegData from "./Components/Login/initialRegData.json";
 import FormContext from "./Components/FormContext.js";
+import CoverDialog from "./Components/CoverDialog.js";
 export default function StateStore(props) {
   const {
     isLoading,
@@ -106,6 +107,7 @@ export default function StateStore(props) {
   };
   return (
     <FormContext.Provider value={otherState}>
+      {/* <CoverDialog /> */}
       {currentView()}
     </FormContext.Provider>
   );

@@ -1,4 +1,11 @@
 {
+  "greetingTitle": "2020 高雄春天飛盤聯賽",
+  "greetingBody": [
+    "歡迎大家參加第九季KUL聯盟賽，這次我們有更多新的點子。",
+    "First things first:  Early Bird Registration Fee $1,200 (until 2/26, after $1,400)"
+  ],
+  "close": "關閉",
+
   "back": "上一個",
   "next": "下一個",
   "logout": "登出",

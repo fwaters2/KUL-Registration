@@ -20,6 +20,7 @@ export default function Auth({ match, isReferred }) {
     const usersColRef = db.collection("Users");
     const unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if (user) {
+        console.log("Firing inside of if statement (user signed in?)");
         updateUser(true);
         setuserEmail(user.email);
         const authId = user.uid;
