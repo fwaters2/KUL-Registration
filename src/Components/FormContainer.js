@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function FormContainer(props) {
   const formData = React.useContext(FormContext);
-  const { toggleLanguage, lang, isSignedIn, language } = formData;
+  const { toggleLanguage, lang, isSignedIn, language, openGreeting } = formData;
   const { children } = props;
   const classes = useStyles();
 
@@ -92,7 +92,7 @@ export default function FormContainer(props) {
           alignItems="center"
           justify="space-between"
         >
-          <Grid item>
+          <Grid item onClick={() => openGreeting()}>
             <img src={logo} alt="logo" height="40px" />
           </Grid>
           <Grid item>

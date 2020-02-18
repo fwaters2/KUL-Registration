@@ -1,6 +1,33 @@
 frontpage
 standings for top 5
-fix refresh after registering
+
 translate post-register page
 
 upload to subdomain
+
+fix info not loading after registering
+
+add "status" to referrals
+primary changed to "status"
+secondary changed to email/name
+
+Better description for Improve/Party
+
+Better transfer info (take from taiwana?)
+
+preferred language added to userprofile
+
+fix so it doesn't give greeting on form completion
+
+will need to create a userContext for "status"
+fix 4 digit button submission to reflect it's submitted
+
+upon using referral link the form breaks after registration
+
+swirling loading thing during pic upload
+
+ "TransferPlease":"To guarantee your spot, please transfer the amount ($1,200) as soon as possible",
+    "HowToTransfer":"How to Transfer",
+
+    "TransferPlease":"請儘快繳交台幣1200元以確保參加資格",
+"HowToTransfer":"如何轉帳",

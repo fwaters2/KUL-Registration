@@ -1,48 +1,77 @@
 import React from "react";
 import {
   Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
   Button,
   Typography,
-  Box
+  Box,
+  ListItem,
+  ListItemText
 } from "@material-ui/core";
 import FormContext from "./FormContext";
 import FormContainer from "./FormContainer";
 
-export default function CoverDialog(props) {
+export default function CoverDialog({ open, onClose }) {
   const formData = React.useContext(FormContext);
+
   const { language } = formData;
-  let open = true;
-  const handleClose = () => {
-    open = false;
-  };
+
+  const handleClose = () => onClose();
+
+  function Subtitle(props) {
+    return <Typography variant="h6">{props.children}</Typography>;
+  }
+  function BodyText(props) {
+    return <Typography variant="body1">{props.children}</Typography>;
+  }
+  function BulletPoints(props) {
+    return (
+      <ListItem>
+        <ListItemText primary={props.children}></ListItemText>
+      </ListItem>
+    );
+  }
+
   return (
-    <Dialog open={open} onClose={handleClose}>
+    <Dialog open={open} onClose={handleClose} fullScreen>
       <FormContainer>
-        <DialogTitle>{language.greetingTitle}</DialogTitle>
-        <DialogContent>
-          {language.greetingBody.map(x => (
-            <Typography variang="body2">{x}</Typography>
-          ))}
-          <Box p="1em 0">
-            <Typography variant="h5">{language.whatGet}</Typography>
-            {language.getList.map(y => (
-              <Typography variant="body" style={{ margin: ".4em 0" }}>
-                - {y}
-                <br />
-              </Typography>
-            ))}
-          </Box>
-        </DialogContent>
-      </FormContainer>
-      <DialogActions>
-        <Button fullWidth variant="contained" color="secondary">
-          {language.close}
+        <Box m=".5em">
+          <Typography variant="h5" align="center">
+            {language.greetingTitle}
+          </Typography>
+        </Box>
+        <Button
+          fullWidth
+          variant="contained"
+          color="secondary"
+          onClick={handleClose}
+        >
+          {language.ready}
         </Button>
-      </DialogActions>
+
+        {language.greetingBody.map(x => (
+          <BodyText>{x}</BodyText>
+        ))}
+
+        <Subtitle variant="h6">{language.whatGet}</Subtitle>
+        {language.getList.map(y => (
+          <BulletPoints>{y}</BulletPoints>
+        ))}
+
+        <Subtitle>{language.schedule}</Subtitle>
+        <BodyText>{language.schedBasics}</BodyText>
+        {language.schedDates.map(x => (
+          <BulletPoints>{x}</BulletPoints>
+        ))}
+
+        <Button
+          fullWidth
+          variant="contained"
+          color="secondary"
+          onClick={handleClose}
+        >
+          {language.ready}
+        </Button>
+      </FormContainer>
     </Dialog>
   );
 }

@@ -1,20 +1,16 @@
 import React from "react";
 import {
   Button,
-  Card,
-  CardContent,
-  CardHeader,
-  CardActions,
   ExpansionPanel,
   ExpansionPanelSummary,
   Typography,
   ExpansionPanelDetails,
-  Box,
-  Divider
+  Box
 } from "@material-ui/core";
 import FormContext from "../FormContext";
 import { ExpandMore } from "@material-ui/icons";
 import FourDigits from "./FourDigits";
+import HowToTransfer from "./HowToTransfer";
 
 export default function PaymentDetails(props) {
   const { expanded, handleChange } = props;
@@ -44,13 +40,14 @@ export default function PaymentDetails(props) {
           <Box>
             <Typography>{language.bankCode}: 005</Typography>
             <Typography>{language.acctNum}: 094005419233</Typography> <br />
+            <HowToTransfer />
             <Button
               fullWidth
               color="primary"
               variant="contained"
               onClick={() => toggleDialog(true)}
             >
-              Submit Last 4 Digits
+              {language.submitLastFour}
             </Button>
           </Box>
         </ExpansionPanelDetails>

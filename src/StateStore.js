@@ -26,6 +26,7 @@ export default function StateStore(props) {
   const [lang, toggleLang] = React.useState("en");
   const [values, setValues] = React.useState(initialRegData);
   const [step, stepChange] = React.useState(importedStep);
+  const [greetingOpen, toggleGreeting] = React.useState(true);
 
   let language = handleLang(lang);
 
@@ -35,8 +36,12 @@ export default function StateStore(props) {
   const toggleLanguage = () => {
     lang === "en" ? toggleLang("ch") : toggleLang("en");
   };
+  const openGreeting = () => {
+    toggleGreeting(true);
+  };
 
   const otherState = {
+    openGreeting,
     toggleLanguage,
     values,
     lang,
@@ -107,7 +112,7 @@ export default function StateStore(props) {
   };
   return (
     <FormContext.Provider value={otherState}>
-      {/* <CoverDialog /> */}
+      <CoverDialog open={greetingOpen} onClose={toggleGreeting} />
       {currentView()}
     </FormContext.Provider>
   );

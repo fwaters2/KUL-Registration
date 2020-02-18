@@ -27,8 +27,16 @@
 
     "Season ending tournament where each team will be playing for the chance to hoist Mama Piggy (Currently held by the Spirit Animals)"
   ],
-
-  "close": "Close",
+  "schedule": "Schedule",
+  "schedBasics": "The league will run a total of 5 weekends over approximately 2 months from 1:00pm to 6:00pm. Two to Three, ~forty minute games each day",
+  "schedDates": [
+    "Saturday March 28th: Round 1 (Color day!)",
+    "Saturday April 11th: Round 2",
+    "Saturday April 18th: Round 3",
+    "Saturday May 2nd: Round 4",
+    "Saturday May 16th: Championship"
+  ],
+  "ready": "Ready",
 
   "back": "BACK",
   "next": "NEXT",
@@ -153,5 +161,6 @@
   "transferInfo": "Transfer Information",
   "bankCode": "Bank Code",
   "acctNum": "Account Number",
+  "submitLastFour": "Submit Last 4 Digits",
   "submitFinish": "Submit and Finish!"
 }
