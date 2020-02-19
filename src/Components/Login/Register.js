@@ -9,8 +9,8 @@ import FormContext from "../FormContext";
 export default function Register() {
   const authInfo = React.useContext(AuthContext);
   const formData = React.useContext(FormContext);
-  const { language } = formData;
-  const { isReferred, referralId, setIsLoading } = authInfo;
+  const { language, setValues, values } = formData;
+  const { isReferred, referralId, setIsLoading, setRegDocId } = authInfo;
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const handleRegistration = e => {
@@ -36,16 +36,28 @@ export default function Register() {
           })
           .then(regRef => {
             console.log("Creating user document and adding registration id");
-            const regDocId = regRef.id;
+            const newRegDocId = regRef.id;
+            setRegDocId(newRegDocId);
+            setValues({ ...values, userId });
             const userDocRef = db.collection("Users").doc(userId);
             userDocRef.set({
               ...initialUserData,
               email: email,
-              registrationId: regDocId,
+              registrationId: newRegDocId,
               wasReferred: isReferred,
               referredBy: isReferred ? referralId : null,
               created: firebase.firestore.FieldValue.serverTimestamp()
             });
+            // formValues.setValues({
+            //   {
+            //     ...initialUserData,
+            //     email: email,
+            //     registrationId: regDocId,
+            //     wasReferred: isReferred,
+            //     referredBy: isReferred ? referralId : null,
+            //     created: firebase.firestore.FieldValue.serverTimestamp()
+            //   }
+            // })
           })
           .then(data => {
             console.log("final step of registering completed, data:", data);

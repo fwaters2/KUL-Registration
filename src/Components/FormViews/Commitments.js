@@ -46,7 +46,7 @@ export default function Commitments() {
         </Grid>
         <Grid item xs={4}>
           {dates.map((date, index) => (
-            <FormControl fullWidth variant="outlined" key={date}>
+            <FormControl fullWidth variant="outlined" key={index}>
               <InputLabel ref={inputLabel} htmlFor="outlined-date-simple">
                 {dateObject[date].date}
               </InputLabel>

@@ -16,14 +16,15 @@ import QrCode from "./QrCode";
 import firebase from "../../Firebase";
 import FormContext from "../FormContext";
 import { ExpandMore, Person } from "@material-ui/icons";
+import CopyLink from "./CopyLink";
 
 export default function Referral(props) {
   const { handleChange, expanded } = props;
   const formData = React.useContext(FormContext);
   const { values } = formData;
-  const [copySuccess, setCopySuccess] = React.useState("Copy");
+
   const [myReferrals, setMyReferrals] = React.useState([]);
-  const linkRef = React.useRef(null);
+  const [registered, setRegistered] = React.useState([]);
 
   React.useEffect(() => {
     const myRef = firebase
@@ -43,18 +44,30 @@ export default function Referral(props) {
     });
     console.log("userId", values.userId);
   }, [values.userId]);
+  React.useEffect(() => {
+    const myRef = firebase
+      .firestore()
+      .collection("Users")
+      .where("status", "==", "Unpaid")
+      .orderBy("created");
 
+    myRef.onSnapshot(snapshot => {
+      let allPlayers = [];
+
+      console.log("playersSnapshot", snapshot);
+      snapshot.docs.forEach(doc => {
+        allPlayers = [...allPlayers, doc.data()];
+        console.log("allplayer data", doc.data());
+      });
+      setRegistered(allPlayers);
+    });
+  }, []);
   const userId = values.userId;
   const urlPrefix =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
       : "https://kul-spring-20.firebaseapp.com";
   const url = `${urlPrefix}/${userId}`;
-  function copyToClipboard(e) {
-    linkRef.current.select();
-    document.execCommand("copy");
-    setCopySuccess("Copied!");
-  }
 
   return (
     <>
@@ -68,71 +81,105 @@ export default function Referral(props) {
 
         <ExpansionPanelDetails>
           <Box>
-            <Typography>Your QR code!</Typography>
+            <Typography align="center">Your QR code!</Typography>
             <Box p="1em" style={{ display: "flex", justifyContent: "center" }}>
               <QrCode url={url} />
             </Box>
-            <Typography>Or copy your referral link:</Typography>
-            <Grid container>
-              <Grid item xs={12}>
-                <input
-                  ref={linkRef}
-                  readOnly
-                  value={url}
-                  style={{ width: "100%" }}
-                />
-              </Grid>
-
-              <Grid item xs={12}>
-                <Button
-                  fullWidth
-                  variant={copySuccess === "Copied!" ? "text" : "contained"}
-                  color={copySuccess === "Copied" ? "inherit" : "primary"}
-                  onClick={copyToClipboard}
-                >
-                  {copySuccess}
-                </Button>
-              </Grid>
-            </Grid>
+            <Typography align="center">Or copy your referral link:</Typography>
+            <CopyLink />
           </Box>
         </ExpansionPanelDetails>
       </ExpansionPanel>
-      <List>
-        <Typography variant="h5">{`My Referrals (${myReferrals.length}):`}</Typography>
-        {myReferrals.length === 0 ? (
-          <Typography>Sorry no referrals yet</Typography>
-        ) : (
-          myReferrals.map((referral, index) => (
-            <ListItem key={index}>
-              <ListItemIcon>
-                {referral.photoUrl ? (
-                  <div>
-                    <img
-                      style={{
-                        height: "35px",
-                        width: "35px",
-                        objectFit: "cover"
-                      }}
-                      src={referral.photoUrl}
-                      alt={referral.firstName}
-                    />
-                  </div>
-                ) : (
-                  <Person />
-                )}
-              </ListItemIcon>
-              <ListItemText
-                primary={
-                  referral.firstName
-                    ? `${referral.firstName} ${referral.lastName}`
-                    : referral.email
-                }
-                secondary={referral.status}
-              />
-            </ListItem>
-          ))
-        )}
-      </List>
+      <ExpansionPanel
+        expanded={expanded === "myReferrals"}
+        onChange={handleChange("myReferrals")}
+      >
+        <ExpansionPanelSummary expandIcon={<ExpandMore />}>
+          {`My Referrals (${myReferrals.length})`}
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <List dense>
+            {myReferrals.length === 0 ? (
+              <Typography>Sorry no referrals yet</Typography>
+            ) : (
+              myReferrals.map((referral, index) => (
+                <ListItem key={index}>
+                  <ListItemIcon>
+                    {referral.photoUrl ? (
+                      <div>
+                        <img
+                          style={{
+                            height: "35px",
+                            width: "35px",
+                            objectFit: "cover"
+                          }}
+                          src={referral.photoUrl}
+                          alt={referral.firstName}
+                        />
+                      </div>
+                    ) : (
+                      <Person />
+                    )}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={
+                      referral.firstName
+                        ? `${referral.firstName} ${referral.lastName}`
+                        : referral.email
+                    }
+                    secondary={referral.status}
+                  />
+                </ListItem>
+              ))
+            )}
+          </List>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+      <ExpansionPanel
+        expanded={expanded === "allRegistered"}
+        onChange={handleChange("allRegistered")}
+      >
+        <ExpansionPanelSummary expandIcon={<ExpandMore />}>
+          {`Currently Registered (${registered.length})`}
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <List dense>
+            {registered.length === 0 ? (
+              <Typography>None Yet!</Typography>
+            ) : (
+              registered.map((player, index) => (
+                <ListItem key={index}>
+                  <ListItemIcon>
+                    {player.photoUrl ? (
+                      <div>
+                        <img
+                          style={{
+                            height: "35px",
+                            width: "35px",
+                            objectFit: "cover"
+                          }}
+                          src={player.photoUrl}
+                          alt={player.firstName}
+                        />
+                      </div>
+                    ) : (
+                      <Person />
+                    )}
+                  </ListItemIcon>
+                  <ListItemText
+                    primary={
+                      player.firstName
+                        ? `${player.firstName} ${player.lastName}`
+                        : player.email
+                    }
+                    secondary={player.status}
+                  />
+                </ListItem>
+              ))
+            )}
+          </List>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
     </>
   );
 }

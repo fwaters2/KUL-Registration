@@ -84,6 +84,8 @@ export default function Auth({ match, isReferred }) {
     importedStep: importedStep || 0
   };
   const authContext = {
+    setRegDocId,
+
     setIsLoading,
     isSignedIn,
     isRegistered,

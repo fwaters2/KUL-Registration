@@ -4,6 +4,8 @@ import StepTitle from "../StepTitle";
 import Referral from "./Referral";
 import Firebase from "../../Firebase";
 import FormContext from "../FormContext";
+import CopyLink from "./CopyLink";
+import { Typography, Box } from "@material-ui/core";
 
 export default function RegistrationComplete(props) {
   const { state } = props;
@@ -35,6 +37,10 @@ export default function RegistrationComplete(props) {
         handleChange={handleChange}
       />
       <Referral state={state} expanded={expanded} handleChange={handleChange} />
+      <Box marginY="1em">
+        <Typography align="center">Anyone Missing?</Typography>
+      </Box>
+      <CopyLink />
     </div>
   );
 }
