@@ -2,10 +2,10 @@
   "greetingTitle": "KUL Registration Spring 2020",
   "greetingBody": [
     "Welcome to the 9th Season of KUL! We should have some idea what we're doing this time around!",
-    "First things first:  Early Bird Registration Fee $1,200 (until 2/26, after $1,400)",
+    "Fee: Early Bird $1,200 ($1,400 after 2/26)",
     "Age Requirement: 18+"
   ],
-  "whatGet": "What you get",
+  "whatGet": "What's included",
   "getList": [
     "Your own customized fully sublimated jersey from UltiRotate (sublimated means awesome)",
 
@@ -15,9 +15,9 @@
 
     "Drafted to a team of new friends with a captain to help you out",
 
-    "4 Rounds of scheduled regular season games +plus championship weekend!(Dates below)",
+    "4 Rounds of scheduled regular season games + finals weekend!(Dates below)",
 
-    "High-quality fields near Nanzi",
+    "High-quality fields near Nanzi (Oil Refinery MRT stop)",
 
     "Your Individual and team stats recorded each game and displayed on our league website",
 
@@ -28,7 +28,7 @@
     "Season ending tournament where each team will be playing for the chance to hoist Mama Piggy (Currently held by the Spirit Animals)"
   ],
   "schedule": "Schedule",
-  "schedBasics": "The league will run a total of 5 weekends over approximately 2 months from 1:00pm to 6:00pm. Two to Three, ~forty minute games each day",
+  "schedBasics": "The league runs a total of 5 Saturdays over approximately 2 months from 12-6:00pm. 2 or 3 ~forty minute games a day",
   "schedDates": [
     "Saturday March 28th: Round 1 (Color day!)",
     "Saturday April 11th: Round 2",
@@ -123,7 +123,7 @@
 
   "interests": "Interests",
   "party": "Party",
-  "improve": "Improve",
+  "improve": "Improve at Ultimate",
   "intOption1": "Very Important",
   "intOption2": "Mediocre",
   "intOption3": "Not Interested",

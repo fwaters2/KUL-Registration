@@ -24,10 +24,7 @@ export default function PaymentDetails(props) {
     const docRef = Firebase.firestore()
       .collection("Users")
       .doc(formData.values.userId);
-    const unregister = docRef
-      .get()
-      .then(doc => setDigits(doc.data().fourDigits));
-    return unregister;
+    docRef.get().then(doc => setDigits(doc.data().fourDigits));
   }, [formData.values.userId]);
 
   const subtotal = values.checkout.subtotal;
