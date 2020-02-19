@@ -156,6 +156,7 @@
   "total": "總",
   "subtotal": "小計",
   "transferInfo": "轉帳資訊",
+  "howToTransfer": "如何轉帳",
   "bankCode": "銀行代碼",
   "acctNum": "帳號",
   "submitLastFour": "提交最後四個數字",

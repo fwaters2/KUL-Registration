@@ -1,14 +1,14 @@
 import React from "react";
 import { List, ListItem, ListItemText, Link } from "@material-ui/core";
+import FormContext from "../FormContext";
 
 export default function HowToTransfer() {
+  const formData = React.useContext(FormContext);
+  const { language } = formData;
   return (
     <List>
       <ListItem>
-        <ListItemText
-          primary="How To Transfer"
-          secondary="Bank Code: 808  Account #: 0727-968-026168"
-        />
+        <ListItemText primary={language.howToTransfer} />
       </ListItem>
       <ListItem>
         <ListItemText
@@ -25,22 +25,25 @@ export default function HowToTransfer() {
       <ListItem>
         <ListItemText
           primary="Step 3"
-          secondary="'Fund Transfer' to the account above and grab a reciept"
+          secondary="Fund Transfer' to the account above and grab a reciept"
         />
       </ListItem>
       <ListItem divider>
         <ListItemText
           primary="Step 4"
-          secondary="Message the last 4 digits of your account to Donna"
+          secondary="Submit (below) last 4 Digits of YOUR account and wait at least 24 hours for confirmation"
         />
       </ListItem>
       <ListItem>
         <ListItemText
           primary="Facebook"
           secondary={
-            <Link href="https://www.facebook.com/Gringo17">
-              Message Forrest
-            </Link>
+            <>
+              {"Your payment status not updated? "}
+              <Link color="secondary" href="https://www.facebook.com/Gringo17">
+                Message Forrest
+              </Link>
+            </>
           }
         />
       </ListItem>

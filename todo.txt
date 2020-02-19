@@ -1,27 +1,20 @@
+upon using referral link the form breaks after registration
+fix info not loading after registering
+
+fix 4 digit button submission to reflect it's submitted
+
+fix so it doesn't give greeting on form completion
+
 frontpage
-standings for top 5
 
 translate post-register page
-
-upload to subdomain
-
-fix info not loading after registering
 
 Better description for Improve/Party
 
 preferred language added to userprofile
 
-fix so it doesn't give greeting on form completion
-
-will need to create a userContext for "status"
-fix 4 digit button submission to reflect it's submitted
-
-upon using referral link the form breaks after registration
-
 swirling loading thing during pic upload
 
- "TransferPlease":"To guarantee your spot, please transfer the amount ($1,200) as soon as possible",
-    "HowToTransfer":"How to Transfer",
+standings for top 5
 
-    "TransferPlease":"請儘快繳交台幣1200元以確保參加資格",
-"HowToTransfer":"如何轉帳",
+upload to subdomain
