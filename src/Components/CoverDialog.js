@@ -43,15 +43,14 @@ export default function CoverDialog({ open, onClose }) {
         </Box>
         <Box
           style={{
-            marginBottom: "1em",
-            borderRadius: "16px",
+            margin: "0 -2em 1em",
+
             backgroundImage: `url(${LeaguePhoto})`,
             backgroundSize: "cover"
           }}
         >
           <div
             style={{
-              borderRadius: "16px",
               padding: "2em 1em",
               backgroundColor: `rgba(80,20,20,.6)`
             }}
