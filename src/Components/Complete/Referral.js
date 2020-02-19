@@ -1,8 +1,5 @@
 import React from "react";
 import {
-  Card,
-  CardHeader,
-  CardContent,
   Typography,
   Grid,
   ExpansionPanelSummary,
@@ -36,16 +33,16 @@ export default function Referral(props) {
 
     myRef.onSnapshot(snapshot => {
       let fbData = [];
-      console.log("fbData", fbData);
+
       console.log("snapshot", snapshot);
       snapshot.docs.forEach(doc => {
         fbData = [...fbData, doc.data()];
-        console.log(doc.data());
+        console.log("referral data", doc.data());
       });
       setMyReferrals(fbData);
     });
     console.log("userId", values.userId);
-  }, []);
+  }, [values.userId]);
 
   const userId = values.userId;
   const urlPrefix =
@@ -77,7 +74,7 @@ export default function Referral(props) {
             </Box>
             <Typography>Or copy your referral link:</Typography>
             <Grid container>
-              <Grid item xs="12">
+              <Grid item xs={12}>
                 <input
                   ref={linkRef}
                   readOnly
@@ -86,7 +83,7 @@ export default function Referral(props) {
                 />
               </Grid>
 
-              <Grid item xs="12">
+              <Grid item xs={12}>
                 <Button
                   fullWidth
                   variant={copySuccess === "Copied!" ? "inherit" : "contained"}
@@ -106,7 +103,7 @@ export default function Referral(props) {
           <Typography>Sorry no referrals yet</Typography>
         ) : (
           myReferrals.map(referral => (
-            <ListItem>
+            <ListItem key={referral.photoUrl}>
               <ListItemIcon>
                 {referral.photoUrl ? (
                   <div>
@@ -125,8 +122,12 @@ export default function Referral(props) {
                 )}
               </ListItemIcon>
               <ListItemText
-                primary={`${referral.firstName} ${referral.lastName}`}
-                secondary={referral.email}
+                primary={
+                  referral.firstName
+                    ? `${referral.firstName} ${referral.lastName}`
+                    : referral.email
+                }
+                secondary={referral.status}
               />
             </ListItem>
           ))

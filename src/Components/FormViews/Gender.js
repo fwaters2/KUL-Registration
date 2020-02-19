@@ -39,7 +39,6 @@ export default function Gender() {
           </Button>
         </Grid>
         <Grid item xs={6}>
-          {console.log("genderTest", gender)}
           <Button
             variant={gender === "Male" ? "outlined" : "contained"}
             style={

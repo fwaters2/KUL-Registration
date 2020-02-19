@@ -112,7 +112,7 @@ export default function StateStore(props) {
   };
   return (
     <FormContext.Provider value={otherState}>
-      <CoverDialog open={greetingOpen} onClose={toggleGreeting} />
+      <CoverDialog open={greetingOpen} onClose={() => toggleGreeting(false)} />
       {currentView()}
     </FormContext.Provider>
   );

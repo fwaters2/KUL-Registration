@@ -18,7 +18,7 @@ import ButtonNavigation from "../../ButtonNavigation";
 import StepTitle from "../../StepTitle";
 const blackHatPic = require("./Pics/hatBlack2.png");
 const whiteHatPic = require("./Pics/Hat_White.jpg");
-const blackDiscPic = require("./Pics/Disc_Black.jpg");
+//const blackDiscPic = require("./Pics/Disc_Black.jpg");
 const whiteDiscPic = require("./Pics/Disc_White.jpg");
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 

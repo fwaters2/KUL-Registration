@@ -86,7 +86,8 @@ export default function Returning() {
           ) : null}
 
           <Button
-            color="secondary"
+            color="primary"
+            variant="contained"
             onClick={() => handleChange("seasons", "unknown")}
           >
             {language.back}
@@ -103,8 +104,10 @@ export default function Returning() {
           />
 
           <InputLabel>{language.seasonsPlayed}</InputLabel>
+
           <Button
-            color="secondary"
+            color="primary"
+            variant="contained"
             onClick={() => handleChange("seasons", "unknown")}
           >
             {language.back}

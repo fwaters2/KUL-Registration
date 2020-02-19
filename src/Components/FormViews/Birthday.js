@@ -7,10 +7,11 @@ export default function Birthday() {
   const formData = React.useContext(FormContext);
   const { language, values, setValues } = formData;
   const birthday = values.birthday.value;
-  const isComplete = birthday !== null;
+  const isComplete = birthday !== "1990-01-01";
   const handleChange = e => {
     setValues({ ...values, birthday: { value: e.target.value } });
   };
+
   return (
     <>
       <i className="fas fa-birthday-cake fa-5x" />
@@ -19,7 +20,6 @@ export default function Birthday() {
         id="date"
         label={language.birthday}
         type="date"
-        defaultValue="1990-01-01"
         value={birthday}
         onChange={handleChange}
         InputLabelProps={{
@@ -27,7 +27,7 @@ export default function Birthday() {
         }}
         fullWidth
       />
-      {console.log("bday", birthday)}
+
       <ButtonNavigation isComplete={isComplete} />
     </>
   );

@@ -15,8 +15,6 @@ export default function CoverDialog({ open, onClose }) {
 
   const { language } = formData;
 
-  const handleClose = () => onClose();
-
   function Subtitle(props) {
     return <Typography variant="h6">{props.children}</Typography>;
   }
@@ -32,7 +30,7 @@ export default function CoverDialog({ open, onClose }) {
   }
 
   return (
-    <Dialog open={open} onClose={handleClose} fullScreen>
+    <Dialog open={open} onClose={onClose} fullScreen>
       <FormContainer>
         <Box m=".5em">
           <Typography variant="h5" align="center">
@@ -43,31 +41,31 @@ export default function CoverDialog({ open, onClose }) {
           fullWidth
           variant="contained"
           color="secondary"
-          onClick={handleClose}
+          onClick={onClose}
         >
           {language.ready}
         </Button>
 
         {language.greetingBody.map(x => (
-          <BodyText>{x}</BodyText>
+          <BodyText key={x}>{x}</BodyText>
         ))}
 
         <Subtitle variant="h6">{language.whatGet}</Subtitle>
         {language.getList.map(y => (
-          <BulletPoints>{y}</BulletPoints>
+          <BulletPoints key={y}>{y}</BulletPoints>
         ))}
 
         <Subtitle>{language.schedule}</Subtitle>
         <BodyText>{language.schedBasics}</BodyText>
         {language.schedDates.map(x => (
-          <BulletPoints>{x}</BulletPoints>
+          <BulletPoints key={x}>{x}</BulletPoints>
         ))}
 
         <Button
           fullWidth
           variant="contained"
           color="secondary"
-          onClick={handleClose}
+          onClick={onClose}
         >
           {language.ready}
         </Button>

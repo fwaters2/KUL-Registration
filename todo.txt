@@ -7,13 +7,7 @@ upload to subdomain
 
 fix info not loading after registering
 
-add "status" to referrals
-primary changed to "status"
-secondary changed to email/name
-
 Better description for Improve/Party
-
-Better transfer info (take from taiwana?)
 
 preferred language added to userprofile
 
