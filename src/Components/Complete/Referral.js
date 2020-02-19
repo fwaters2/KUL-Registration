@@ -86,7 +86,7 @@ export default function Referral(props) {
               <Grid item xs={12}>
                 <Button
                   fullWidth
-                  variant={copySuccess === "Copied!" ? "inherit" : "contained"}
+                  variant={copySuccess === "Copied!" ? "text" : "contained"}
                   color={copySuccess === "Copied" ? "inherit" : "primary"}
                   onClick={copyToClipboard}
                 >
@@ -102,8 +102,8 @@ export default function Referral(props) {
         {myReferrals.length === 0 ? (
           <Typography>Sorry no referrals yet</Typography>
         ) : (
-          myReferrals.map(referral => (
-            <ListItem key={referral.photoUrl}>
+          myReferrals.map((referral, index) => (
+            <ListItem key={index}>
               <ListItemIcon>
                 {referral.photoUrl ? (
                   <div>

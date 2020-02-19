@@ -23,6 +23,7 @@ export default function ButtonNavigation({ isComplete }) {
       .collection("Registration")
       .doc(regDocId);
     docRef.update({
+      langPreference: FormData.lang,
       [steps[step]]: currentValues,
       lastCompletedStep: newLastCompletedStep
     });

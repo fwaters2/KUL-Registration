@@ -14,6 +14,7 @@ export default function Auth({ match, isReferred }) {
   const [userEmail, setuserEmail] = React.useState("");
   const [importedStep, setCurrentStep] = React.useState(0);
   const [greetingOpen, toggleGreeting] = React.useState(false);
+  const [lang, toggleLang] = React.useState("en");
   let { referralId } = match.params;
 
   React.useEffect(() => {
@@ -44,7 +45,7 @@ export default function Auth({ match, isReferred }) {
               .then(doc => {
                 console.log("Retrieved fbData: ", doc.data());
                 setRegDocId(doc.id);
-
+                toggleLang(doc.data().langPreference);
                 setRegData(doc.data());
 
                 setCurrentStep(doc.data().lastCompletedStep + 1);
@@ -78,6 +79,8 @@ export default function Auth({ match, isReferred }) {
     regData,
     greetingOpen,
     toggleGreeting,
+    lang,
+    toggleLang,
     importedStep: importedStep || 0
   };
   const authContext = {
