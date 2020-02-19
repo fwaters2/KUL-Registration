@@ -11,12 +11,24 @@ import FormContext from "../FormContext";
 import { ExpandMore } from "@material-ui/icons";
 import FourDigits from "./FourDigits";
 import HowToTransfer from "./HowToTransfer";
+import Firebase from "../../Firebase";
 
 export default function PaymentDetails(props) {
   const { expanded, handleChange } = props;
   const formData = React.useContext(FormContext);
   const { language, values } = formData;
   const [dialogOpen, toggleDialog] = React.useState(false);
+  const [digits, setDigits] = React.useState("");
+
+  React.useEffect(() => {
+    const docRef = Firebase.firestore()
+      .collection("Users")
+      .doc(formData.values.userId);
+    const unregister = docRef
+      .get()
+      .then(doc => setDigits(doc.data().fourDigits));
+    return unregister;
+  }, [formData.values.userId]);
 
   const subtotal = values.checkout.subtotal;
   return (
@@ -43,17 +55,19 @@ export default function PaymentDetails(props) {
             <HowToTransfer />
             <Button
               fullWidth
-              color="primary"
+              color={digits === "" ? "primary" : "secondary"}
               variant="contained"
               onClick={() => toggleDialog(true)}
             >
-              {language.submitLastFour}
+              {digits === "" ? language.submitLastFour : "Change Digits"}
             </Button>
           </Box>
         </ExpansionPanelDetails>
         <FourDigits
           toggleDialog={toggleDialog}
           open={dialogOpen}
+          digits={digits}
+          setDigits={setDigits}
           handleClose={() => toggleDialog(false)}
         />
       </ExpansionPanel>

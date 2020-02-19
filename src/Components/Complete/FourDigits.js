@@ -9,8 +9,13 @@ import {
 } from "@material-ui/core";
 import Firebase from "../../Firebase";
 import FormContext from "../FormContext";
-export default function FourDigits({ open, handleClose, toggleDialog }) {
-  const [digits, setDigits] = React.useState(null);
+export default function FourDigits({
+  open,
+  handleClose,
+  toggleDialog,
+  digits,
+  setDigits
+}) {
   const regInfo = React.useContext(FormContext);
   const { userId } = regInfo.values;
 
