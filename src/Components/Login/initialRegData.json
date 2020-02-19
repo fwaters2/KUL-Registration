@@ -64,5 +64,6 @@
   "checkout": {
     "subtotal": 1200
   },
-  "lastCompletedStep": -1
+  "lastCompletedStep": -1,
+  "userId": ""
 }

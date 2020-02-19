@@ -13,6 +13,7 @@ export default function Auth({ match, isReferred }) {
   const [regDocId, setRegDocId] = React.useState("");
   const [userEmail, setuserEmail] = React.useState("");
   const [importedStep, setCurrentStep] = React.useState(0);
+  const [greetingOpen, toggleGreeting] = React.useState(false);
   let { referralId } = match.params;
 
   React.useEffect(() => {
@@ -61,6 +62,7 @@ export default function Auth({ match, isReferred }) {
             console.log("Error getting document:", error);
           });
       } else {
+        toggleGreeting(true);
         console.log("No user is currently logged in");
         setIsLoading(false);
       }
@@ -74,6 +76,8 @@ export default function Auth({ match, isReferred }) {
     isSignedIn,
     isRegistered,
     regData,
+    greetingOpen,
+    toggleGreeting,
     importedStep: importedStep || 0
   };
   const authContext = {

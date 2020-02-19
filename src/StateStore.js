@@ -20,13 +20,14 @@ export default function StateStore(props) {
     isReferred,
     referralId,
     regDocId,
-    importedStep
+    importedStep,
+    greetingOpen,
+    toggleGreeting
   } = props.authState;
 
   const [lang, toggleLang] = React.useState("en");
   const [values, setValues] = React.useState(initialRegData);
   const [step, stepChange] = React.useState(importedStep);
-  const [greetingOpen, toggleGreeting] = React.useState(true);
 
   let language = handleLang(lang);
 
@@ -112,6 +113,8 @@ export default function StateStore(props) {
   };
   return (
     <FormContext.Provider value={otherState}>
+      {console.log("regdata in state store", regData)}
+      {console.log("is signed in", regData.isSignedIn)}
       <CoverDialog open={greetingOpen} onClose={() => toggleGreeting(false)} />
       {currentView()}
     </FormContext.Provider>
