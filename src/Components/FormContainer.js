@@ -11,31 +11,32 @@ import {
   Grow,
   ClickAwayListener,
   MenuList,
-  MenuItem
+  MenuItem,
 } from "@material-ui/core";
 import { AssignmentInd } from "@material-ui/icons";
 import "./../Assets/KUL_final.svg";
 import firebase from "../Firebase";
 import FormContext from "./FormContext";
-const logo = require("./../Assets/KUL_final.svg");
-const useStyles = makeStyles(theme => ({
+import { ReactComponent as Logo } from "./../Assets/taiwanalogo_white.svg";
+//const logo = require("./../Assets/taiwanalogo_white.svg");
+const useStyles = makeStyles((theme) => ({
   title: {
-    margin: theme.spacing(3)
+    margin: theme.spacing(3),
   },
   paper: {
     marginTop: theme.spacing(2),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "2em"
+    padding: "2em",
   },
   footer: {
     marginTop: theme.spacing(1),
-    flexGrow: 1
+    flexGrow: 1,
   },
   picButton: {
-    height: 150
-  }
+    height: 150,
+  },
 }));
 
 export default function FormContainer(props) {
@@ -48,10 +49,10 @@ export default function FormContainer(props) {
   const anchorRef = React.useRef(null);
 
   const handleToggle = () => {
-    setOpen(prevOpen => !prevOpen);
+    setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = event => {
+  const handleClose = (event) => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
@@ -85,7 +86,7 @@ export default function FormContainer(props) {
           style={{
             paddingBottom: "1em",
             marginBottom: "1em",
-            borderBottom: "1px solid black"
+            borderBottom: "1px solid black",
           }}
           container
           direction="row"
@@ -93,7 +94,12 @@ export default function FormContainer(props) {
           justify="space-between"
         >
           <Grid item onClick={() => openGreeting()}>
-            <img src={logo} alt="logo" height="40px" />
+            <Logo
+              style={{
+                height: "80px",
+                margin: "-20px -15px",
+              }}
+            />
           </Grid>
           <Grid item>
             <Grid
@@ -148,7 +154,7 @@ export default function FormContainer(props) {
                         transformOrigin:
                           placement === "bottom"
                             ? "center top"
-                            : "center bottom"
+                            : "center bottom",
                       }}
                     >
                       <Paper>

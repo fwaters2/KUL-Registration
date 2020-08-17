@@ -9,7 +9,7 @@ import {
   ExpansionPanel,
   ExpansionPanelSummary,
   ExpansionPanelDetails,
-  List
+  List,
 } from "@material-ui/core";
 import FormContext from "./FormContext";
 import FormContainer from "./FormContainer";
@@ -46,36 +46,36 @@ export default function CoverDialog({ open, onClose }) {
             margin: "0 -2em 1em",
 
             backgroundImage: `url(${LeaguePhoto})`,
-            backgroundSize: "cover"
+            backgroundSize: "cover",
           }}
         >
           <div
             style={{
               padding: "2em 1em",
-              backgroundColor: `rgba(80,20,20,.6)`
+              backgroundColor: `rgba(80,20,20,.6)`,
             }}
           >
-            {language.greetingBody.map(x => (
+            {language.greetingBody.map((x) => (
               <BodyText key={x}>{x}</BodyText>
             ))}
           </div>
         </Box>
-        <ExpansionPanel>
+        {/* <ExpansionPanel>
           <ExpansionPanelSummary expandIcon={<ExpandMore />}>
             {language.whatGet}
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
             <List>
-              {language.getList.map(y => (
+              {language.getList.map((y) => (
                 <ListItem key={y}>
                   <ListItemText primary={y} />
                 </ListItem>
               ))}
             </List>
           </ExpansionPanelDetails>
-        </ExpansionPanel>
+        </ExpansionPanel> */}
 
-        <ExpansionPanel>
+        {/* <ExpansionPanel>
           <ExpansionPanelSummary expandIcon={<ExpandMore />}>
             {language.schedule}
           </ExpansionPanelSummary>
@@ -91,7 +91,7 @@ export default function CoverDialog({ open, onClose }) {
               ))}
             </List>
           </ExpansionPanelDetails>
-        </ExpansionPanel>
+        </ExpansionPanel> */}
         <Button
           style={{ margin: "1em 0" }}
           fullWidth

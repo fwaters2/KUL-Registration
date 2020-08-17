@@ -1,17 +1,17 @@
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
-import "firebase/storage";
+import firebase from "firebase";
+// import "firebase/firestore";
+// import "firebase/auth";
+// import "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAWA7UriVOazG0iHdcsTg5GsJDlNmQQ5pY",
-  authDomain: "kul-spring-20.firebaseapp.com",
-  databaseURL: "https://kul-spring-20.firebaseio.com",
-  projectId: "kul-spring-20",
-  storageBucket: "kul-spring-20.appspot.com",
-  messagingSenderId: "952478816686",
-  appId: "1:952478816686:web:28b2e46c7ad8002608503f",
-  measurementId: "G-48TRKQHBFP"
+  apiKey: "AIzaSyAihRxiubQJmG6lGkpeo7gzZ4W2TFXnwKk",
+  authDomain: "taiwana-beach-hat.firebaseapp.com",
+  databaseURL: "https://taiwana-beach-hat.firebaseio.com",
+  projectId: "taiwana-beach-hat",
+  storageBucket: "taiwana-beach-hat.appspot.com",
+  messagingSenderId: "163669249374",
+  appId: "1:163669249374:web:5e5db3bd97dcd30db893cf",
+  measurementId: "G-H5PWFVTYFC",
 };
 firebase.initializeApp(firebaseConfig);
 
