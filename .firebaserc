@@ -1,5 +1,14 @@
 {
   "projects": {
-    "default": "kul-spring-20"
+    "default": "taiwana-beach-hat"
+  },
+  "targets": {
+    "taiwana-beach-hat": {
+      "hosting": {
+        "registration": [
+          "taiwana-register"
+        ]
+      }
+    }
   }
 }
