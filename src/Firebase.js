@@ -11,7 +11,7 @@ const firebaseConfig = {
   storageBucket: "taiwana-beach-hat.appspot.com",
   messagingSenderId: "163669249374",
   appId: "1:163669249374:web:5e5db3bd97dcd30db893cf",
-  measurementId: "G-H5PWFVTYFC",
+  measurementId: "G-H5PWFVTYFC"
 };
 firebase.initializeApp(firebaseConfig);
 
