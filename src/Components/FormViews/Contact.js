@@ -5,10 +5,11 @@ import {
   TextField,
   Checkbox,
   FormGroup,
-  FormLabel
+  FormLabel,
 } from "@material-ui/core";
 import ButtonNavigation from "../ButtonNavigation";
 import FormContext from "../FormContext";
+import FormStep from "../../Templates/FormStep";
 
 export default function Contact() {
   const formData = React.useContext(FormContext);
@@ -19,47 +20,48 @@ export default function Contact() {
     setValues({ ...values, contact: { ...values.contact, [field]: value } });
   };
   return (
-    <>
-      <FormControl component="fieldset">
-        <FormLabel component="legend">{language.bestWay}</FormLabel>
-        <FormGroup>
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={facebookContact}
-                onClick={() =>
-                  handleChange("facebookContact", !facebookContact)
-                }
-              />
-            }
-            label="Facebook"
-          />
-          {facebookContact ? (
-            <TextField
-              label={language.fbContact}
-              value={facebookId}
-              onChange={e => handleChange("facebookId", e.target.value)}
+    <FormStep stepTitleString={"Contact Info"} isComplete={isComplete}>
+      <div style={{ flex: 1, marginTop: "2em" }}>
+        <FormControl component="fieldset">
+          <FormLabel component="legend">{language.bestWay}</FormLabel>
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={facebookContact}
+                  onClick={() =>
+                    handleChange("facebookContact", !facebookContact)
+                  }
+                />
+              }
+              label="Facebook"
             />
-          ) : null}
-          <FormControlLabel
-            control={
-              <Checkbox
-                checked={lineContact}
-                onClick={() => handleChange("lineContact", !lineContact)}
+            {facebookContact ? (
+              <TextField
+                label={language.fbContact}
+                value={facebookId}
+                onChange={(e) => handleChange("facebookId", e.target.value)}
               />
-            }
-            label="Line"
-          />
-          {lineContact ? (
-            <TextField
-              label={language.lineID}
-              value={lineId}
-              onChange={e => handleChange("lineId", e.target.value)}
+            ) : null}
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={lineContact}
+                  onClick={() => handleChange("lineContact", !lineContact)}
+                />
+              }
+              label="Line"
             />
-          ) : null}
-        </FormGroup>
-      </FormControl>
-      <ButtonNavigation isComplete={isComplete} />
-    </>
+            {lineContact ? (
+              <TextField
+                label={language.lineID}
+                value={lineId}
+                onChange={(e) => handleChange("lineId", e.target.value)}
+              />
+            ) : null}
+          </FormGroup>
+        </FormControl>
+      </div>
+    </FormStep>
   );
 }

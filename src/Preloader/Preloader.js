@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../Assets/KUL_final.svg";
+import logo from "../Assets/taiwanalogo_white.svg";
 import "./Preloader.css";
 
 function Preloader() {

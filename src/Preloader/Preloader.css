@@ -12,10 +12,10 @@
   left: 50%;
   transform: translate(-50%);
   width: 15vw;
-  max-width: 100px;
+  max-width: 200px;
 }
 .Container-Text {
-  color: rgb(229, 5, 3);
+  color: #19171bff;
   font-size: 18pt;
   font-weight: bold;
   margin: 55vh auto;

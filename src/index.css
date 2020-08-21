@@ -1,6 +1,19 @@
 body {
-  background-color: rgba(12, 97, 225, 0.2);
+  background: linear-gradient(
+    0,
+    #19171bff 15%,
+    #453f3fff 30%,
+    #e6825aff 60%,
+    #fde187ff 70%,
+    #f5c594ff 90%
+  );
+  height: 100%;
   margin: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  overflow-x: hidden;
+
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -11,4 +24,19 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+@font-face {
+  font-family: "VarelaRound";
+  font-style: normal;
+  font-weight: normal;
+  src: local("VarelaRound"),
+    url("./fonts/VarelaRound-Regular.ttf") format("tff");
+}
+
+@font-face {
+  font-family: "KeepCalm";
+  font-style: normal;
+  font-weight: normal;
+  src: local("KeepCalm"), url("./fonts/KeepCalm-Medium.ttf") format("tff");
 }

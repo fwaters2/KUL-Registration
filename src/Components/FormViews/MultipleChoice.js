@@ -13,21 +13,21 @@ export default function MultipleChoice({ category }) {
       options: [
         {
           display: language.skillOptions[0],
-          value: "New"
+          value: "New",
         },
         {
           display: language.skillOptions[1],
-          value: "Cutter"
+          value: "Cutter",
         },
         {
           display: language.skillOptions[2],
-          value: "2nd Handler"
+          value: "2nd Handler",
         },
         {
           display: language.skillOptions[3],
-          value: "Handler"
-        }
-      ]
+          value: "Handler",
+        },
+      ],
     },
     exp: {
       options: [
@@ -36,32 +36,32 @@ export default function MultipleChoice({ category }) {
         { display: language.expOptions[2], value: "Intermediate" },
         { display: language.expOptions[3], value: "Experienced" },
 
-        { display: language.expOptions[4], value: "Expert" }
-      ]
+        { display: language.expOptions[4], value: "Expert" },
+      ],
     },
     athl: {
       options: [
         {
           display: language.athlOptions[0],
-          value: "Slowest"
+          value: "Slowest",
         },
         {
           display: language.athlOptions[1],
-          value: "Slow"
+          value: "Slow",
         },
         {
           display: language.athlOptions[2],
-          value: "Average"
+          value: "Average",
         },
         {
           display: language.athlOptions[3],
-          value: "Fast"
+          value: "Fast",
         },
         {
           display: language.athlOptions[4],
-          value: "Fastest"
-        }
-      ]
+          value: "Fastest",
+        },
+      ],
     },
 
     english: {
@@ -70,8 +70,8 @@ export default function MultipleChoice({ category }) {
         { display: language.fluent, value: "Fluent" },
         { display: language.intermediate, value: "Intermediate" },
         { display: language.learning, value: "Learning!" },
-        { display: language.nonExistent, value: "Non-existent" }
-      ]
+        { display: language.nonExistent, value: "Non-existent" },
+      ],
     },
     chinese: {
       options: [
@@ -79,43 +79,47 @@ export default function MultipleChoice({ category }) {
         { display: language.fluent, value: "Fluent" },
         { display: language.intermediate, value: "Intermediate" },
         { display: language.learning, value: "Learning!" },
-        { display: language.nonExistent, value: "Non-existent" }
-      ]
+        { display: language.nonExistent, value: "Non-existent" },
+      ],
     },
 
     party: {
       options: [
         { display: language.intOption1, value: "High" },
         { display: language.intOption2, value: "Middle" },
-        { display: language.intOption3, value: "Low" }
-      ]
+        { display: language.intOption3, value: "Low" },
+      ],
     },
     improve: {
       options: [
         { display: language.intOption1, value: "High" },
         { display: language.intOption2, value: "Middle" },
-        { display: language.intOption3, value: "Low" }
-      ]
-    }
+        { display: language.intOption3, value: "Low" },
+      ],
+    },
   };
   return (
     <React.Fragment>
       <StepTitle>{language[category]}</StepTitle>
-      <Grid container spacing={1}>
-        {choices[category].options.map(option => (
+      <Grid container spacing={1} style={{ flex: 1, marginTop: "2em" }}>
+        {choices[category].options.map((option) => (
           <Grid item xs={12} key={option.value}>
             <Button
               id={option.value}
-              color={"primary"}
-              onClick={e =>
+              color={
+                option.value !== values[category].value
+                  ? "primary"
+                  : "secondary"
+              }
+              onClick={(e) =>
                 setValues({
                   ...values,
-                  [category]: { value: e.currentTarget.id }
+                  [category]: { value: e.currentTarget.id },
                 })
               }
               fullWidth
               variant={
-                option.value === values[category].value
+                option.value !== values[category].value
                   ? "outlined"
                   : "contained"
               }

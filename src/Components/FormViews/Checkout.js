@@ -9,13 +9,13 @@ import firebase from "../../Firebase";
 import FormContext from "../FormContext";
 import AuthContext from "../AuthContext";
 import StepTitle from "../StepTitle";
-const logo = require("../../Assets/KUL.svg");
+const logo = require("../../Assets/taiwanalogo_white.svg");
 
 export default function Checkout(props) {
   const formData = React.useContext(FormContext);
   const {
     names: { firstName, lastName, chName, nickname },
-    selfie: { photoUrl }
+    selfie: { photoUrl },
   } = formData.values;
   const nationality = formData.values.nationality.value;
   const gender = formData.values.gender.value;
@@ -27,19 +27,19 @@ export default function Checkout(props) {
     { item: "hatBlack", itemName: language.blackHat, cost: 200 },
     { item: "hatWhite", itemName: language.whiteHat, cost: 200 },
     { item: "discBlack", itemName: language.blackDisc, cost: 400 },
-    { item: "discWhite", itemName: language.whiteDisc, cost: 400 }
+    { item: "discWhite", itemName: language.whiteDisc, cost: 400 },
   ];
   const swagOrders = () => {
     //Goal: An array of orders
     const regOrder = {
       userId: values.userId,
       item: "Early Bird Registration",
-      cost: 1200,
-      dateOrdered: firebase.firestore.FieldValue.serverTimestamp()
+      cost: 1000,
+      dateOrdered: firebase.firestore.FieldValue.serverTimestamp(),
     };
 
     let completeArray = [];
-    items.forEach(x => {
+    items.forEach((x) => {
       if (values.swag.items[x.item] !== 0) {
         let itemNum = values.swag.items[x.item];
         let itemArray = [];
@@ -52,8 +52,8 @@ export default function Checkout(props) {
               userId: values.userId,
               item: x.item,
               cost: x.cost,
-              dateOrdered: firebase.firestore.FieldValue.serverTimestamp()
-            }
+              dateOrdered: firebase.firestore.FieldValue.serverTimestamp(),
+            },
           ];
         }
         completeArray = [...completeArray, ...itemArray];
@@ -69,7 +69,7 @@ export default function Checkout(props) {
     isPaid: false,
     datePaid: null,
     paidTo: null,
-    bankNumbers: null
+    bankNumbers: null,
   };
   const usersAttributes = {
     firstName,
@@ -81,7 +81,7 @@ export default function Checkout(props) {
     birthday,
     photoUrl,
     status: "Unpaid",
-    isRegistered: true
+    isRegistered: true,
   };
 
   const handleSubmission = () => {
@@ -90,28 +90,26 @@ export default function Checkout(props) {
     console.log("userId", userId);
     console.log("reDocId", regDocId);
     Promise.all([
-      db
-        .collection("Users")
-        .doc(userId)
-        .update(usersAttributes),
+      db.collection("Users").doc(userId).update(usersAttributes),
       db
         .collection("Registration")
         .doc(regDocId)
         .set({
           ...values,
           completed: true,
-          completedRegistration: firebase.firestore.FieldValue.serverTimestamp()
+          completedRegistration: firebase.firestore.FieldValue.serverTimestamp(),
         }),
-      ...swagOrders().map(order => db.collection("Orders").add(order)),
-      ...swagOrders().map(order =>
+      ...swagOrders().map((order) => db.collection("Orders").add(order)),
+      ...swagOrders().map((order) =>
         db.collection("Collections").add({ ...order, ...collectionsAttributes })
-      )
+      ),
     ])
-      .then(result => {
+      .then((result) => {
         console.log("completed a bunch of promises:", result.length);
-        window.location.reload();
+        alert("Registration Successful! Taking you to our page");
+        window.location = "https://www.taiwana.org";
       })
-      .catch(error =>
+      .catch((error) =>
         console.log("Error adding documents to collections/orders", error)
       );
   };
@@ -119,18 +117,20 @@ export default function Checkout(props) {
   return (
     <>
       {console.log("regData", formData)}
-      <StepTitle>{language.checkout}</StepTitle>
+      <div style={{ textAlign: "center" }}>
+        <StepTitle>{language.checkout}</StepTitle>
+      </div>
       <List disablePadding style={{ flex: 1, width: "100%" }}>
         <ListItem
         //className={classes.listItem}
         >
           <ListItemText
-            primary={<img src={logo} alt="logo" height="20px" />}
+            primary={<img src={logo} alt="logo" height="80px" />}
             secondary={language.earlyBird}
           />
-          <Typography variant="body2">1200nt</Typography>
+          <Typography variant="body2">1000nt</Typography>
         </ListItem>
-        {items.map(product =>
+        {items.map((product) =>
           values.swag.items[product.item] !== 0 ? (
             <ListItem
               //className={classes.listItem}
@@ -165,13 +165,13 @@ export default function Checkout(props) {
       <Button
         onClick={handleSubmission}
         variant="contained"
-        color="primary"
+        color="secondary"
         fullWidth
       >
         {language.submitFinish}
       </Button>
       <br />
-      <Button color="primary" fullWidth onClick={() => stepChange(step - 1)}>
+      <Button color="secondary" fullWidth onClick={() => stepChange(step - 1)}>
         {language.back}
       </Button>
     </>

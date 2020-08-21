@@ -1,6 +1,6 @@
 import React from "react";
 import Preloader from "./Preloader/Preloader.js";
-import FormContainer from "./Components/FormContainer.js";
+import FormContainer from "./Components/FormContainer";
 import StepView from "./Components/StepView.js";
 import LoginContainer from "./Components/Login/LoginContainer.js";
 import handleLang from "./Assets/Lang/handleLang.js";
@@ -24,7 +24,7 @@ export default function StateStore(props) {
     greetingOpen,
     toggleGreeting,
     lang,
-    toggleLang
+    toggleLang,
   } = props.authState;
 
   const [values, setValues] = React.useState(initialRegData);
@@ -52,7 +52,7 @@ export default function StateStore(props) {
     isSignedIn,
     setValues,
     language,
-    regDocId
+    regDocId,
   };
   const currentView = () => {
     if (isLoading) {
@@ -72,20 +72,12 @@ export default function StateStore(props) {
     if (!isRegistered) {
       return (
         <FormContainer state={otherState}>
-          <MainStepper
-            activeStep={mainStepperActiveStep(step)}
-            lastCompletedStep={values.lastCompletedStep}
-            setActiveStep={stepChange}
-          />
-          {step < 3 ? null : step > 14 ? null : (
-            <SecondaryStepper step={step} />
-          )}
           <div
             style={{
               flex: 1,
               width: "100%",
               display: "flex",
-              flexDirection: "column"
+              flexDirection: "column",
             }}
           >
             <div
@@ -94,8 +86,7 @@ export default function StateStore(props) {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "center",
-                alignItems: "center",
-                minHeight: "300px"
+                minHeight: "300px",
               }}
             >
               <StepView step={step} />
@@ -114,8 +105,6 @@ export default function StateStore(props) {
   };
   return (
     <FormContext.Provider value={otherState}>
-      {console.log("regdata in state store", regData)}
-      {console.log("lang", lang)}
       <CoverDialog open={greetingOpen} onClose={() => toggleGreeting(false)} />
       {currentView()}
     </FormContext.Provider>

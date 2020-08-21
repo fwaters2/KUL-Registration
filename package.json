@@ -4,14 +4,17 @@
   "private": true,
   "homepage": "https://registration.taiwana.org",
   "dependencies": {
+    "@google-cloud/storage": "^5.2.0",
     "@material-ui/core": "^4.9.1",
     "@material-ui/icons": "^4.9.1",
     "@material-ui/styles": "^4.9.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
+    "child-process-promise": "^2.2.1",
     "clsx": "^1.1.0",
     "firebase": "^7.18.0",
+    "firebase-admin": "^9.1.1",
     "firebase-functions": "^3.9.1",
     "material-ui-dropzone": "^2.4.7",
     "qrcode.react": "^1.0.0",
@@ -43,5 +46,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint-plugin-promise": "^4.2.1"
   }
 }

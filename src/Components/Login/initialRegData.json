@@ -7,11 +7,6 @@
   },
   "birthday": { "value": "1990-01-01" },
   "nationality": { "value": "" },
-  "returning": {
-    "seasons": "unknown",
-    "source": "",
-    "referredBy": ""
-  },
   "gender": { "value": "" },
   "height": { "value": null },
   "skills": { "value": "" },
@@ -23,46 +18,12 @@
     "lineContact": false,
     "lineId": ""
   },
-  "english": { "value": "" },
-  "chinese": { "value": "" },
-  "party": { "value": "" },
-  "improve": { "value": "" },
   "selfie": { "abstain": false, "photoUrl": null },
-  "commitments": {
-    "dates": {
-      "day1": {
-        "date": "3/28",
-        "response": ""
-      },
-      "day2": {
-        "date": "4/11",
-        "response": ""
-      },
-      "day3": {
-        "date": "4/18",
-        "response": ""
-      },
-      "day4": {
-        "date": "5/2",
-        "response": ""
-      },
-      "day5": {
-        "date": "5/16",
-        "response": ""
-      }
-    }
-  },
   "jersey": {
-    "jerseyBack": "",
-    "size": "",
-    "jerseyNum1": "",
-    "jerseyNum2": ""
-  },
-  "swag": {
-    "items": { "discBlack": 0, "discWhite": 0, "hatBlack": 0, "hatWhite": 0 }
+    "size": ""
   },
   "checkout": {
-    "subtotal": 1200
+    "subtotal": 1000
   },
   "lastCompletedStep": -1,
   "userId": "",

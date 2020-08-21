@@ -3,6 +3,7 @@ import { Button, Grid } from "@material-ui/core";
 import StepTitle from "../StepTitle";
 import FormContext from "../FormContext";
 import ButtonNavigation from "../ButtonNavigation";
+import FormStep from "../../Templates/FormStep";
 
 export default function Gender() {
   const formData = React.useContext(FormContext);
@@ -14,53 +15,51 @@ export default function Gender() {
     setValues({ ...values, gender: { value: newGender } });
   }
   return (
-    <React.Fragment>
-      <StepTitle>{language.gender}</StepTitle>
+    <FormStep stepTitleString={language.gender} isComplete={isComplete}>
       <Grid container spacing={1}>
         <Grid item xs={6}>
           <Button
-            variant={gender === "Female" ? "outlined" : "contained"}
+            variant={gender !== "Female" ? "outlined" : "contained"}
             style={
-              gender === "Female"
+              gender !== "Female"
                 ? {
                     height: 150,
-                    color: "deepPink"
+                    color: "#F4796B", //light pink
                   }
                 : {
                     height: 150,
                     color: "white",
-                    backgroundColor: "deepPink"
+                    backgroundColor: "#F4796B", //light pink
                   }
             }
             fullWidth
             onClick={() => updateGender("Female")}
           >
-            <i className="fas fa-venus fa-5x" />
+            {language.female}
           </Button>
         </Grid>
         <Grid item xs={6}>
           <Button
-            variant={gender === "Male" ? "outlined" : "contained"}
+            variant={gender !== "Male" ? "outlined" : "contained"}
             style={
-              gender === "Male"
+              gender !== "Male"
                 ? {
                     height: 150,
-                    color: "blue"
+                    color: "#232D65", //dark blue
                   }
                 : {
                     height: 150,
                     color: "white",
-                    backgroundColor: "blue"
+                    backgroundColor: "#232D65", //dark blue
                   }
             }
             fullWidth
             onClick={() => updateGender("Male")}
           >
-            <i className="fas fa-mars fa-5x" />
+            {language.male}
           </Button>
         </Grid>
       </Grid>
-      <ButtonNavigation isComplete={isComplete} />
-    </React.Fragment>
+    </FormStep>
   );
 }

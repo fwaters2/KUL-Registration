@@ -9,8 +9,6 @@
   "isRegistered": false,
   "isPaid": false,
   "isVerified": false,
-  "wasReferred": false,
-  "referredBy": "",
   "registrationId": null,
   "status": "Registering"
 }

@@ -46,7 +46,7 @@
   "rememberMe": "記住賬號",
   "signIn": "登入",
   "register": "報名",
-
+  "basicInfo": "基本資料",
   "names": "名稱",
   "firstName": "名字",
   "lastName": "姓",
@@ -71,6 +71,8 @@
   "seasonsPlayed": "你玩過多少個賽季？",
 
   "gender": "性別",
+  "female": "女",
+  "male": "男",
 
   "height": "身高",
   "tall": "你有多高？",

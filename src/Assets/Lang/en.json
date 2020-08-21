@@ -1,8 +1,9 @@
 {
   "greetingTitle": "Taiwana 2020 Registration",
   "greetingBody": [
-    "Welcome to the 9th Season of KUL! We should have some idea what we're doing this time around!",
-    "Fee: Early Bird $1,200 ($1,400 after 2/26)",
+    "Welcome to the Taiwana Beach Hat Registration Page!",
+    "Fee: Early Bird $800 ($1,000 after the first 50)",
+    "NEED CHINESE TRANSLATION",
     "Age Requirement: 18+"
   ],
   "whatGet": "What's included",
@@ -50,11 +51,12 @@
   "signIn": "Sign In",
   "register": "REGISTER",
 
+  "basicInfo": "Basic Info",
   "names": "Names",
   "firstName": "First Name",
   "lastName": "Last Name",
   "chName": "Chinese Name",
-  "enName": "English Nickname",
+  "enName": "Nickname? {中文 name?)",
 
   "birthday": "Birthday",
 
@@ -74,6 +76,8 @@
   "seasonsPlayed": "How many season's have you played?",
 
   "gender": "Gender",
+  "female": "Female",
+  "male": "Male",
 
   "height": "Height",
   "tall": "How tall are you?",

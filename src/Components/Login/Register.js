@@ -5,6 +5,7 @@ import initialUserData from "./initialUserData.json";
 import initialRegistrationData from "./initialRegData.json";
 import AuthContext from "../AuthContext";
 import FormContext from "../FormContext";
+import FacebookLogin from "../FacebookLogin";
 
 export default function Register() {
   const authInfo = React.useContext(AuthContext);
@@ -13,12 +14,12 @@ export default function Register() {
   const { isReferred, referralId, setIsLoading, setRegDocId } = authInfo;
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const handleRegistration = e => {
+  const handleRegistration = (e) => {
     e.preventDefault();
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(userRef => {
+      .then((userRef) => {
         setIsLoading(true);
         const userId = userRef.user.uid;
         console.log("Creating Registration doc for user: ", userId);
@@ -32,9 +33,9 @@ export default function Register() {
             email,
             contact: { ...initialRegistrationData.contact, email },
             userId: userId,
-            created: firebase.firestore.FieldValue.serverTimestamp()
+            created: firebase.firestore.FieldValue.serverTimestamp(),
           })
-          .then(regRef => {
+          .then((regRef) => {
             console.log("Creating user document and adding registration id");
             const newRegDocId = regRef.id;
             setRegDocId(newRegDocId);
@@ -46,7 +47,7 @@ export default function Register() {
               registrationId: newRegDocId,
               wasReferred: isReferred,
               referredBy: isReferred ? referralId : null,
-              created: firebase.firestore.FieldValue.serverTimestamp()
+              created: firebase.firestore.FieldValue.serverTimestamp(),
             });
             // formValues.setValues({
             //   {
@@ -59,19 +60,19 @@ export default function Register() {
             //   }
             // })
           })
-          .then(data => {
+          .then((data) => {
             console.log("final step of registering completed, data:", data);
             setIsLoading(false);
           })
 
-          .catch(error =>
+          .catch((error) =>
             console.log(
               "There was an error creating documents after creating new user",
               error
             )
           );
       })
-      .catch(error => {
+      .catch((error) => {
         let errorMessage = error.message;
         alert(errorMessage);
       });
@@ -79,6 +80,7 @@ export default function Register() {
 
   return (
     <React.Fragment>
+      {/* <FacebookLogin /> */}
       <TextField
         variant="outlined"
         margin="normal"
@@ -90,7 +92,7 @@ export default function Register() {
         name="email"
         autoComplete="email"
         value={email}
-        onChange={e => setEmail(e.target.value)}
+        onChange={(e) => setEmail(e.target.value)}
         autoFocus
       />
       <TextField
@@ -103,7 +105,7 @@ export default function Register() {
         type="password"
         id="registerPassword"
         value={password}
-        onChange={e => setPassword(e.target.value)}
+        onChange={(e) => setPassword(e.target.value)}
         autoComplete="current-password"
       />
       <Button

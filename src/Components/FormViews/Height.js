@@ -3,12 +3,13 @@ import { Slider, Grid, Typography, makeStyles } from "@material-ui/core";
 import FormContext from "../FormContext";
 import ButtonNavigation from "../ButtonNavigation";
 import StepTitle from "../StepTitle";
+import FormStep from "../../Templates/FormStep";
 
 const useStyles = makeStyles({
   vertSlider: {
     textAlign: "center",
-    height: 300
-  }
+    height: 300,
+  },
 });
 
 export default function Height() {
@@ -24,9 +25,8 @@ export default function Height() {
   }
   const isComplete = height !== null;
   return (
-    <>
-      <StepTitle>{language.height}</StepTitle>
-      <Grid container alignItems="center">
+    <FormStep stepTitleString={language.height} isComplete={isComplete}>
+      <Grid container alignItems="center" style={{ marginTop: "2em" }}>
         <Grid item xs={8} container justify="center">
           {height === null ? (
             <Typography variant="h6">{language.tall}</Typography>
@@ -39,6 +39,7 @@ export default function Height() {
         </Grid>
         <Grid item xs={4} className={classes.vertSlider}>
           <Slider
+            color="secondary"
             defaultValue={170}
             value={height}
             onChange={(e, value) =>
@@ -53,7 +54,6 @@ export default function Height() {
           />
         </Grid>
       </Grid>
-      <ButtonNavigation isComplete={isComplete} />
-    </>
+    </FormStep>
   );
 }
