@@ -1,0 +1,17 @@
+.fbbutton {
+  position: relative;
+  display: inline-block;
+  padding: 0.8em;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  background-color: transparent;
+  outline: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 1.15384615;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  color: var(--blue-600);
+}

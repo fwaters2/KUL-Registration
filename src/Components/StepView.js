@@ -11,8 +11,12 @@ import Skills from "./FormViews/Skills.js";
 import Experience from "./FormViews/Experience.js";
 import Athletecism from "./FormViews/Athletecism.js";
 import Hotel from "./FormViews/Hotel";
+import FavoriteSong from "./FormViews/FavoriteSong";
+import Birthday from "./FormViews/Birthday";
 export const steps = [
   <Name />,
+  <Birthday />,
+  <FavoriteSong />,
   <Gender />,
   <Height />,
   <Skills />,

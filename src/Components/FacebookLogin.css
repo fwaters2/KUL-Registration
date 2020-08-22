@@ -1,0 +1,16 @@
+.facebook-login {
+  border-radius: 5px;
+  padding: 1em;
+  height: 50px;
+  width: 100%;
+  color: white;
+  text-transform: uppercase;
+  font-weight: bolder;
+  background-color: #3b5998;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: none;
+  border: none;
+}

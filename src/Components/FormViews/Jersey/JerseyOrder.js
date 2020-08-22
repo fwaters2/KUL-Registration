@@ -2,17 +2,13 @@ import React from "react";
 import { Grid, TextField, MenuItem, FormLabel } from "@material-ui/core";
 import "./Sizes only.PNG";
 import "./Jersey only.PNG";
-import ButtonNavigation from "../../ButtonNavigation";
 import FormContext from "../../FormContext";
-import StepTitle from "../../StepTitle";
 import FormStep from "../../../Templates/FormStep";
-const JerseyShirt = require("./Jersey only.PNG");
-const JerseySizes = require("./Sizes only.PNG");
 
 export default function JerseyOrder() {
   const formData = React.useContext(FormContext);
   const { language, values, setValues } = formData;
-  const { jerseyBack, size, jerseyNum1, jerseyNum2 } = values.jersey;
+  const { size } = values.jersey;
   const handleChange = (field, value) => {
     setValues({ ...values, jersey: { ...values.jersey, [field]: value } });
   };

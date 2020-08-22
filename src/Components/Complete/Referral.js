@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Typography,
-  Grid,
   ExpansionPanelSummary,
   ExpansionPanelDetails,
   ExpansionPanel,
@@ -10,7 +9,6 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  Button
 } from "@material-ui/core";
 import QrCode from "./QrCode";
 import firebase from "../../Firebase";
@@ -32,11 +30,11 @@ export default function Referral(props) {
       .collection("Users")
       .where("referredBy", "==", values.userId);
 
-    myRef.onSnapshot(snapshot => {
+    myRef.onSnapshot((snapshot) => {
       let fbData = [];
 
       console.log("snapshot", snapshot);
-      snapshot.docs.forEach(doc => {
+      snapshot.docs.forEach((doc) => {
         fbData = [...fbData, doc.data()];
         console.log("referral data", doc.data());
       });
@@ -51,11 +49,11 @@ export default function Referral(props) {
       .where("status", "==", "Unpaid")
       .orderBy("created");
 
-    myRef.onSnapshot(snapshot => {
+    myRef.onSnapshot((snapshot) => {
       let allPlayers = [];
 
       console.log("playersSnapshot", snapshot);
-      snapshot.docs.forEach(doc => {
+      snapshot.docs.forEach((doc) => {
         allPlayers = [...allPlayers, doc.data()];
         console.log("allplayer data", doc.data());
       });
@@ -111,7 +109,7 @@ export default function Referral(props) {
                           style={{
                             height: "35px",
                             width: "35px",
-                            objectFit: "cover"
+                            objectFit: "cover",
                           }}
                           src={referral.photoUrl}
                           alt={referral.firstName}
@@ -156,7 +154,7 @@ export default function Referral(props) {
                           style={{
                             height: "35px",
                             width: "35px",
-                            objectFit: "cover"
+                            objectFit: "cover",
                           }}
                           src={player.photoUrl}
                           alt={player.firstName}

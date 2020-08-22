@@ -4,22 +4,27 @@ import {
   Button,
   Typography,
   Box,
-  ListItem,
-  ListItemText,
-  ExpansionPanel,
-  ExpansionPanelSummary,
-  ExpansionPanelDetails,
-  List,
+  DialogActions,
 } from "@material-ui/core";
 import FormContext from "./FormContext";
-import FormContainer from "./FormContainer";
-import { ExpandMore } from "@material-ui/icons";
+import Firebase from "../Firebase";
 const LeaguePhoto = require("../Assets/LeaguePhoto.jpg");
 
 export default function CoverDialog({ open, onClose }) {
   const formData = React.useContext(FormContext);
+  const [currentlyRegistered, setCurrentlyRegistered] = React.useState(0);
 
   const { language } = formData;
+
+  React.useEffect(() => {
+    const unsubscribe = Firebase.firestore()
+      .collection("Registration")
+      .get()
+      .then((snap) => {
+        setCurrentlyRegistered(snap.size); // will return the collection size
+      });
+    return unsubscribe;
+  }, []);
 
   function BodyText(props) {
     return (
@@ -34,33 +39,33 @@ export default function CoverDialog({ open, onClose }) {
   }
 
   return (
-    <Dialog open={open} onClose={onClose} fullScreen>
-      <FormContainer>
-        <Box marginY="1em" width="100%">
-          <Typography variant="h5" align="center">
-            {language.greetingTitle}
-          </Typography>
-        </Box>
-        <Box
+    <Dialog open={open} onClose={onClose} style={{ padding: "0 1em" }}>
+      <Box marginY="1em" width="100%">
+        <Typography variant="h5" align="center">
+          {currentlyRegistered < 50
+            ? `${50 - currentlyRegistered} early bird spots left!`
+            : language.greetingTitle}
+        </Typography>
+      </Box>
+      <Box
+        style={{
+          backgroundImage: `url(${LeaguePhoto})`,
+          backgroundSize: "cover",
+        }}
+      >
+        <div
           style={{
-            margin: "0 -2em 1em",
-
-            backgroundImage: `url(${LeaguePhoto})`,
-            backgroundSize: "cover",
+            padding: "2em 1em",
+            backgroundColor: `rgba(80,20,20,.6)`,
           }}
         >
-          <div
-            style={{
-              padding: "2em 1em",
-              backgroundColor: `rgba(80,20,20,.6)`,
-            }}
-          >
-            {language.greetingBody.map((x) => (
-              <BodyText key={x}>{x}</BodyText>
-            ))}
-          </div>
-        </Box>
-        {/* <ExpansionPanel>
+          <BodyText></BodyText>
+          {language.greetingBody.map((x) => (
+            <BodyText key={x}>{x}</BodyText>
+          ))}
+        </div>
+      </Box>
+      {/* <ExpansionPanel>
           <ExpansionPanelSummary expandIcon={<ExpandMore />}>
             {language.whatGet}
           </ExpansionPanelSummary>
@@ -75,7 +80,7 @@ export default function CoverDialog({ open, onClose }) {
           </ExpansionPanelDetails>
         </ExpansionPanel> */}
 
-        {/* <ExpansionPanel>
+      {/* <ExpansionPanel>
           <ExpansionPanelSummary expandIcon={<ExpandMore />}>
             {language.schedule}
           </ExpansionPanelSummary>
@@ -92,6 +97,7 @@ export default function CoverDialog({ open, onClose }) {
             </List>
           </ExpansionPanelDetails>
         </ExpansionPanel> */}
+      <DialogActions>
         <Button
           style={{ margin: "1em 0" }}
           fullWidth
@@ -101,7 +107,7 @@ export default function CoverDialog({ open, onClose }) {
         >
           {language.ready}
         </Button>
-      </FormContainer>
+      </DialogActions>
     </Dialog>
   );
 }

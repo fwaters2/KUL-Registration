@@ -9,7 +9,7 @@ export default function Name() {
   const contextData = React.useContext(FormContext);
 
   const { language, values, setValues } = contextData;
-  const { firstName, lastName, chName, nickname } = values.names;
+  const { firstName, lastName, nickname } = values.names;
 
   const isComplete = firstName !== "" && lastName !== "";
   const handleChange = (fieldName) => (e) => {

@@ -1,27 +1,20 @@
 import React from "react";
-import { FacebookProvider, LoginButton } from "react-facebook";
-import Page from "react-facebook/dist/Page";
+import "./FacebookLogin.css";
+import firebase from "../Firebase";
+import { ReactComponent as FbLogo } from "../Assets/FbLogoWhite.svg";
 
-const FacebookLogin = () => {
-  const [error, setError] = React.useState();
-  const handleResponse = (data) => {
-    console.log(data);
+const provider = new firebase.auth.FacebookAuthProvider();
+const RegisterFacebook = ({ text }) => {
+  const componentClicked = (clickedData) => {
+    firebase.auth().signInWithRedirect(provider);
+    console.log("clickedData", clickedData);
   };
-
-  const handleError = (error) => {
-    setError(error);
-    console.log("error", error);
-  };
-
   return (
-    <LoginButton
-      scope="email"
-      onCompleted={handleResponse}
-      onError={handleError}
-    >
-      <span>Login via Facebook</span>
-    </LoginButton>
+    <button onClick={componentClicked} className="facebook-login">
+      <FbLogo style={{ height: "100%", marginRight: "5px" }} />
+      {text}
+    </button>
   );
 };
 
-export default FacebookLogin;
+export default RegisterFacebook;

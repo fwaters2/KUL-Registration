@@ -1,8 +1,6 @@
 import React from "react";
 import { Slider, Grid, Typography, makeStyles } from "@material-ui/core";
 import FormContext from "../FormContext";
-import ButtonNavigation from "../ButtonNavigation";
-import StepTitle from "../StepTitle";
 import FormStep from "../../Templates/FormStep";
 
 const useStyles = makeStyles({

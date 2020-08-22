@@ -2,7 +2,6 @@ import React from "react";
 import { DropzoneArea } from "material-ui-dropzone";
 import Firebase from "../../../Firebase";
 import FormContext from "../../FormContext";
-import ButtonNavigation from "../../ButtonNavigation";
 import { FormControlLabel, Checkbox } from "@material-ui/core";
 import FormStep from "../../../Templates/FormStep";
 import StepTitle from "../../StepTitle";

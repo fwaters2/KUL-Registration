@@ -107,6 +107,7 @@ export default function Checkout(props) {
       .then((result) => {
         console.log("completed a bunch of promises:", result.length);
         alert("Registration Successful! Taking you to our page");
+        firebase.auth().signOut();
         window.location = "https://www.taiwana.org";
       })
       .catch((error) =>

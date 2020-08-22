@@ -1,8 +1,6 @@
 import React from "react";
 import { Button, Grid } from "@material-ui/core";
-import StepTitle from "../StepTitle";
 import FormContext from "../FormContext";
-import ButtonNavigation from "../ButtonNavigation";
 import FormStep from "../../Templates/FormStep";
 
 export default function Gender() {

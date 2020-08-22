@@ -2,7 +2,6 @@
   "names": {
     "firstName": "",
     "lastName": "",
-    "chName": "",
     "nickname": ""
   },
   "birthday": { "value": "1990-01-01" },
@@ -18,6 +17,7 @@
     "lineContact": false,
     "lineId": ""
   },
+  "song": { "isBlank": false, "favoriteSong": "" },
   "selfie": { "abstain": false, "photoUrl": null },
   "jersey": {
     "size": ""

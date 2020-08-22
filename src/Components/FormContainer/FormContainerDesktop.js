@@ -6,7 +6,7 @@ import Header from "../Header/Header";
 export default function FormContainerDesktop(props) {
   const { children } = props;
 
-  const [open, setOpen] = React.useState(false);
+  const open = false;
   const anchorRef = React.useRef(null);
   // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);
@@ -31,12 +31,11 @@ export default function FormContainerDesktop(props) {
           item
           md={6}
           sm={4}
-          xs={0}
           style={{
             fontSize: "10pt",
             color: "#e6825a",
             padding: "2em",
-            backgroundColor: "#19171b",
+            backgroundColor: "#19171bbb",
             borderRadius: "2em 0 0 2em",
           }}
         >

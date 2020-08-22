@@ -1,13 +1,13 @@
 import React from "react";
-import { Button, Grid, FormLabel } from "@material-ui/core";
-import StepTitle from "../StepTitle";
-import FormContext from "../FormContext";
-import ButtonNavigation from "../ButtonNavigation";
+import { Grid, FormLabel } from "@material-ui/core";
+
+//import FormContext from "../FormContext";
+
 import FormStep from "../../Templates/FormStep";
 
 export default function Hotel() {
-  const formData = React.useContext(FormContext);
-  const { language, values, setValues } = formData;
+  // const formData = React.useContext(FormContext);
+  // const { language, values, setValues } = formData;
   //const gender = values.gender.value;
   const isComplete = true; // gender !== "";
 

@@ -7,7 +7,6 @@ import {
   FormGroup,
   FormLabel,
 } from "@material-ui/core";
-import ButtonNavigation from "../ButtonNavigation";
 import FormContext from "../FormContext";
 import FormStep from "../../Templates/FormStep";
 

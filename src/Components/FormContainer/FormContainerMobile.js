@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 
 export default function FormContainerMobile(props) {
   const { children } = props;
-  const [open, setOpen] = React.useState(false);
+  const open = false;
   const anchorRef = React.useRef(null);
 
   // return focus to the button when we transitioned from !open -> open
