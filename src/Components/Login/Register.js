@@ -7,8 +7,7 @@ import {
   Grid,
 } from "@material-ui/core";
 import firebase from "../../Firebase";
-import initialUserData from "./initialUserData.json";
-import initialRegistrationData from "./initialRegData.json";
+
 import AuthContext from "../AuthContext";
 import FormContext from "../FormContext";
 import FacebookLogin from "../FacebookLogin";
@@ -35,38 +34,10 @@ export default function Register() {
     setOpen(false);
   };
 
-  React.useEffect(() => {
-    firebase
-      .auth()
-      .getRedirectResult()
-      .then(function (result) {
-        if (result.credential) {
-          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-          var token = result.credential.accessToken;
-          console.log("result", result);
-          console.log("redirct successful, token:", token);
-          // ...
-        }
-        // The signed-in user info.
-        // var user = result.user;
-      })
-      .catch(function (error) {
-        console.log("returning redirect error", error);
-        // // Handle Errors here.
-        // var errorCode = error.code;
-        // var errorMessage = error.message;
-        // // The email of the user's account used.
-        // var email = error.email;
-        // // The firebase.auth.AuthCredential type that was used.
-        // var credential = error.credential;
-        // // ...
-      });
-  }, []);
-
   const handleRegistration = (e) => {
     if (isLoggingIn) {
       e.preventDefault();
-      firebase
+      return firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
         .catch(function (error) {
@@ -75,53 +46,11 @@ export default function Register() {
         });
     } else {
       e.preventDefault();
-      firebase
+      return firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
         .then((userRef) => {
-          setIsLoading(true);
-          const userId = userRef.user.uid;
-          console.log("Creating Registration doc for user: ", userId);
-          const db = firebase.firestore();
-
-          const registrationColRef = db.collection("Registration");
-
-          registrationColRef
-            .add({
-              ...initialRegistrationData,
-              email,
-              contact: { ...initialRegistrationData.contact, email },
-              userId: userId,
-              created: firebase.firestore.FieldValue.serverTimestamp(),
-            })
-            .then((regRef) => {
-              console.log("Creating user document and adding registration id");
-              const newRegDocId = regRef.id;
-              setRegDocId(newRegDocId);
-              setValues({ ...values, userId });
-              const userDocRef = db.collection("Users").doc(userId);
-              userDocRef.set({
-                ...initialUserData,
-                email: email,
-                registrationId: newRegDocId,
-                created: firebase.firestore.FieldValue.serverTimestamp(),
-              });
-            })
-            .then((data) => {
-              console.log("final step of registering completed, data:", data);
-              setIsLoading(false);
-            })
-
-            .catch((error) =>
-              console.log(
-                "There was an error creating documents after creating new user",
-                error
-              )
-            );
-        })
-        .catch((error) => {
-          let errorMessage = error.message;
-          alert(errorMessage);
+          console.log("user successfully created with email and password");
         });
     }
   };

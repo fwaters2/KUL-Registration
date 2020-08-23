@@ -22,6 +22,9 @@
   "jersey": {
     "size": ""
   },
+  "hotel": {
+    "value": ""
+  },
   "checkout": {
     "subtotal": 1000
   },

@@ -13,21 +13,81 @@ import Athletecism from "./FormViews/Athletecism.js";
 import Hotel from "./FormViews/Hotel";
 import FavoriteSong from "./FormViews/FavoriteSong";
 import Birthday from "./FormViews/Birthday";
-export const steps = [
-  <Name />,
-  <Birthday />,
-  <FavoriteSong />,
-  <Gender />,
-  <Height />,
-  <Skills />,
-  <Experience />,
-  <Athletecism />,
-  <Contact />,
-  <UploadImage />,
-  <JerseyOrder />,
-  <Hotel />,
-  <Checkout />,
+
+// "birthday",
+// "nationality",
+// "returning",
+// "gender",
+// "height",
+// "skills",
+// "exp",
+// "athl",
+// "contact",
+// "english",
+// "chinese",
+// "party",
+// "improve",
+// "selfie",
+// "commitments",
+// "jersey",
+// "swag",
+// "checkout"
+const stepManipulation = [
+  {
+    name: "names",
+    component: <Name />,
+  },
+  {
+    name: "birthday",
+    component: <Birthday />,
+  },
+  {
+    name: "song",
+    component: <FavoriteSong />,
+  },
+  {
+    name: "gender",
+    component: <Gender />,
+  },
+  {
+    name: "height",
+    component: <Height />,
+  },
+  {
+    name: "skills",
+    component: <Skills />,
+  },
+  {
+    name: "exp",
+    component: <Experience />,
+  },
+  {
+    name: "athl",
+    component: <Athletecism />,
+  },
+  {
+    name: "contact",
+    component: <Contact />,
+  },
+  {
+    name: "selfie",
+    component: <UploadImage />,
+  },
+  {
+    name: "jersey",
+    component: <JerseyOrder />,
+  },
+  {
+    name: "hotel",
+    component: <Hotel />,
+  },
+  {
+    name: "checkout",
+    component: <Checkout />,
+  },
 ];
+export const stepNames = stepManipulation.map((step) => step.name);
+export const steps = stepManipulation.map((step) => step.component);
 
 export default function StepView({ step }) {
   return steps[step] || <div>Step Not found</div>;

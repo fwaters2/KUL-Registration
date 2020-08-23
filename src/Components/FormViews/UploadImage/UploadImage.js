@@ -105,9 +105,7 @@ export default function UploadImage() {
             label={language.preferNotTo}
           />
           {console.log("photo url", photoUrl)}
-          {photoUrl ? (
-            <img height="200px" src={urlPrefix + fileName} alt="Me" />
-          ) : null}
+          {photoUrl ? <img height="200px" src={photoUrl} alt="Me" /> : null}
         </div>
       </div>
     </FormStep>

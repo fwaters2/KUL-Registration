@@ -1,20 +1,24 @@
 import React from "react";
 import { ButtonGroup, Button } from "@material-ui/core";
-import steps from "./steps.json";
 import firebase from "../Firebase";
 import AuthContext from "./AuthContext";
 import FormContext from "./FormContext";
 import { ArrowForward, ArrowBack } from "@material-ui/icons";
+import { stepNames } from "./StepView";
 
 export default function ButtonNavigation({ isComplete }) {
   const AuthState = React.useContext(AuthContext);
   const FormData = React.useContext(FormContext);
   const { step, stepChange, values } = FormData;
   const regDocId = AuthState.regDocId;
-  const totalSteps = steps.length;
+  const totalSteps = stepNames.length;
   const firstStep = 0;
 
-  const currentValues = FormData.values[steps[step]];
+  const currentValues = FormData.values[stepNames[step]];
+  console.log("stepNames", stepNames);
+  console.log("FormData.values", FormData.values);
+  console.log("steps[step]", stepNames[step]);
+  console.log("currentValues", currentValues);
   const handleDbUpdate = () => {
     const newLastCompletedStep =
       values.lastCompletedStep > step ? values.lastCompletedStep : step;
@@ -24,8 +28,8 @@ export default function ButtonNavigation({ isComplete }) {
       .doc(regDocId);
     docRef.update({
       langPreference: FormData.lang,
-      [steps[step]]: currentValues,
-      lastCompletedStep: newLastCompletedStep
+      [stepNames[step]]: currentValues,
+      lastCompletedStep: newLastCompletedStep,
     });
   };
   const handleBack = () => {

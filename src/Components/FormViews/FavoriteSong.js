@@ -5,7 +5,8 @@ import FormStep from "../../Templates/FormStep";
 
 export default function FavoriteSong() {
   const formData = React.useContext(FormContext);
-  const { song, values, setValues } = formData;
+  const { values, setValues } = formData;
+  const { song } = values;
   const { favoriteSong, isBlank } = song;
   const isComplete = isBlank || favoriteSong !== "";
   function handleChange(field, value) {
@@ -32,7 +33,7 @@ export default function FavoriteSong() {
           margin="normal"
           helperText={"Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
           variant="outlined"
-          value={song}
+          value={favoriteSong}
           autoFocus
           fullWidth
           //onChange={handleChange("firstName")}

@@ -12,6 +12,7 @@ export default function Gender() {
   function updateGender(newGender) {
     setValues({ ...values, gender: { value: newGender } });
   }
+  console.log("values", values);
   return (
     <FormStep stepTitleString={language.gender} isComplete={isComplete}>
       <Grid container spacing={1}>

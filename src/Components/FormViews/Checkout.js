@@ -14,21 +14,17 @@ const logo = require("../../Assets/taiwanalogo_white.svg");
 export default function Checkout(props) {
   const formData = React.useContext(FormContext);
   const {
-    names: { firstName, lastName, chName, nickname },
+    names: { firstName, lastName, nickname },
     selfie: { photoUrl },
   } = formData.values;
+
   const nationality = formData.values.nationality.value;
   const gender = formData.values.gender.value;
   const birthday = formData.values.birthday.value;
   const authData = React.useContext(AuthContext);
   const { language, values, step, stepChange } = formData;
   const { regDocId } = authData;
-  const items = [
-    { item: "hatBlack", itemName: language.blackHat, cost: 200 },
-    { item: "hatWhite", itemName: language.whiteHat, cost: 200 },
-    { item: "discBlack", itemName: language.blackDisc, cost: 400 },
-    { item: "discWhite", itemName: language.whiteDisc, cost: 400 },
-  ];
+
   const swagOrders = () => {
     //Goal: An array of orders
     const regOrder = {
@@ -39,26 +35,6 @@ export default function Checkout(props) {
     };
 
     let completeArray = [];
-    items.forEach((x) => {
-      if (values.swag.items[x.item] !== 0) {
-        let itemNum = values.swag.items[x.item];
-        let itemArray = [];
-        while (itemNum > 0) {
-          console.log(itemNum);
-          itemNum--;
-          itemArray = [
-            ...itemArray,
-            {
-              userId: values.userId,
-              item: x.item,
-              cost: x.cost,
-              dateOrdered: firebase.firestore.FieldValue.serverTimestamp(),
-            },
-          ];
-        }
-        completeArray = [...completeArray, ...itemArray];
-      } else return completeArray;
-    });
 
     return [...completeArray, regOrder];
   };
@@ -74,12 +50,12 @@ export default function Checkout(props) {
   const usersAttributes = {
     firstName,
     lastName,
-    chName,
-    nickname,
+
+    nickname: nickname || "",
     gender,
     nationality,
     birthday,
-    photoUrl,
+    photoUrl: photoUrl || null,
     status: "Unpaid",
     isRegistered: true,
   };
@@ -131,24 +107,6 @@ export default function Checkout(props) {
           />
           <Typography variant="body2">1000nt</Typography>
         </ListItem>
-        {items.map((product) =>
-          values.swag.items[product.item] !== 0 ? (
-            <ListItem
-              //className={classes.listItem}
-              key={product.item}
-            >
-              <ListItemText
-                primary={
-                  product.itemName + "(" + values.swag.items[product.item] + ")"
-                }
-                secondary={product.cost}
-              />
-              <Typography variant="body2">
-                {values.swag.items[product.item] * product.cost + language.nt}
-              </Typography>
-            </ListItem>
-          ) : null
-        )}
         <Divider variant="middle" />
         <ListItem
         //style={{ borderTop: "1px solid black" }}
