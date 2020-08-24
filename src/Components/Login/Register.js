@@ -5,6 +5,7 @@ import {
   Divider,
   Typography,
   Grid,
+  Link,
 } from "@material-ui/core";
 import firebase from "../../Firebase";
 
@@ -65,14 +66,12 @@ export default function Register() {
     >
       <div style={{ textAlign: "center", marginBottom: "2em" }}>
         <StepTitle>
-          {isLoggingIn ? "Welcome Back!" : "Register Account"}
+          {isLoggingIn ? language.welcomeBack : language.registerAccount}
         </StepTitle>
       </div>
       <div style={{ flex: 1 }}>
         {/* <FBButton /> */}
-        <FacebookLogin
-          text={isLoggingIn ? "Login with Facebook!" : "Register with Facebook"}
-        />
+        <FacebookLogin text={language.loginWithFacebook} />
         <div
           style={{
             display: "flex",
@@ -83,7 +82,7 @@ export default function Register() {
         >
           <Divider style={{ flex: 1 }} />
           <div style={{ margin: "0 2em" }}>
-            <Typography>OR</Typography>
+            <Typography>{language.or}</Typography>
           </div>
           <Divider style={{ flex: 1 }} />
         </div>
@@ -107,7 +106,7 @@ export default function Register() {
           required
           fullWidth
           name="password"
-          label={isLoggingIn ? "Password" : language.choosePassword}
+          label={isLoggingIn ? language.password : language.choosePassword}
           type="password"
           id="registerPassword"
           value={password}
@@ -121,7 +120,7 @@ export default function Register() {
             required
             fullWidth
             name="password2"
-            label={"Retype Password"}
+            label={language.retypePassword}
             type="password"
             id="registerPassword2"
             value={password2}
@@ -132,16 +131,18 @@ export default function Register() {
         <Grid container justify="flex-end">
           {isLoggingIn ? (
             <Grid item xs onClick={() => setOpen(true)}>
-              <Typography variant="body2" style={{ color: "#0645AD" }}>
-                Forgot password?
+              <Typography
+                component={Link}
+                variant="body2"
+                style={{ color: "#0645AD" }}
+              >
+                {language.forgotPassword}
               </Typography>
             </Grid>
           ) : null}
           <Grid item onClick={() => toggleIsLoggingIn(!isLoggingIn)}>
             <Typography variant="body2" style={{ color: "#0645AD" }}>
-              {isLoggingIn
-                ? "Don't have an account? Sign Up"
-                : "Already have an account? Sign in"}
+              {isLoggingIn ? language.noAccount : language.alreadyStarted}
             </Typography>
           </Grid>
         </Grid>
@@ -165,7 +166,7 @@ export default function Register() {
         color="secondary"
         onClick={handleRegistration}
       >
-        {isLoggingIn ? "Sign In" : language.register}
+        {isLoggingIn ? language.signIn : language.register}
       </Button>
       <ForgotPasswordDialog open={open} handleClose={handleClose} />
     </div>

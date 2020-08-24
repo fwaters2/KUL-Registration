@@ -18,11 +18,7 @@ export default function JerseyOrder() {
       <div style={{ flex: 1, marginTop: "2em" }}>
         <Grid container spacing={1} alignItems="center">
           <Grid item xs={12}>
-            <FormLabel>
-              Unfortunately we can't guarantee the sizes as teams aren't
-              determined until the day before the tournament, but we'll have all
-              sizes available for each team (need chinese)
-            </FormLabel>
+            <FormLabel>{language.jerseyExplanation}</FormLabel>
             <TextField
               select
               id="standard-required"
@@ -47,12 +43,11 @@ export default function JerseyOrder() {
                 />
               }
             > */}
-              <MenuItem value={"XS"}>XS</MenuItem>
+
               <MenuItem value={"S"}>S</MenuItem>
               <MenuItem value={"M"}>M</MenuItem>
               <MenuItem value={"L"}>L</MenuItem>
               <MenuItem value={"XL"}>XL</MenuItem>
-              <MenuItem value={"2XL"}>2XL</MenuItem>
             </TextField>
             {/* </Select>
           </FormControl> */}

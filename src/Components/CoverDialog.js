@@ -5,6 +5,7 @@ import {
   Typography,
   Box,
   DialogActions,
+  DialogTitle,
 } from "@material-ui/core";
 import FormContext from "./FormContext";
 import Firebase from "../Firebase";
@@ -39,14 +40,14 @@ export default function CoverDialog({ open, onClose }) {
   }
 
   return (
-    <Dialog open={open} onClose={onClose} style={{ padding: "0 1em" }}>
-      <Box marginY="1em" width="100%">
+    <Dialog open={open} onClose={onClose} style={{ padding: "1em 2em" }}>
+      <DialogTitle>
         <Typography variant="h5" align="center">
           {currentlyRegistered < 50
             ? `${50 - currentlyRegistered} early bird spots left!`
             : language.greetingTitle}
         </Typography>
-      </Box>
+      </DialogTitle>
       <Box
         style={{
           backgroundImage: `url(${LeaguePhoto})`,

@@ -2,16 +2,14 @@ import React from "react";
 import { DropzoneArea } from "material-ui-dropzone";
 import Firebase from "../../../Firebase";
 import FormContext from "../../FormContext";
+import ButtonNavigation from "../../ButtonNavigation";
 import { FormControlLabel, Checkbox } from "@material-ui/core";
-import FormStep from "../../../Templates/FormStep";
-import StepTitle from "../../StepTitle";
 
 export default function UploadImage() {
   const formData = React.useContext(FormContext);
-  const [fileName, setFileName] = React.useState("");
   const { language, values, setValues } = formData;
   const { abstain, photoUrl } = values.selfie;
-  const urlPrefix = "gs://taiwana-beach-hat.appspot.com/draftPhoto/thumb_";
+
   function handleChange(field, value) {
     setValues({ ...values, selfie: { ...values.selfie, [field]: value } });
   }
@@ -74,40 +72,31 @@ export default function UploadImage() {
     );
   }
   const handleFileChange = (newFile) => {
-    let mostRecentPhoto = newFile[newFile.length - 1];
-
-    setFileName(mostRecentPhoto.name);
-    uploadToStorage(mostRecentPhoto);
+    uploadToStorage(newFile[newFile.length - 1]);
   };
 
   return (
-    <FormStep isComplete={isComplete}>
-      <div style={{ display: "flex", flexDirection: "column", flex: 1 }}>
-        <StepTitle>{"Selfie Time!"}</StepTitle>
-        <div style={{ flex: 1, marginTop: "2em" }}>
-          <DropzoneArea
-            dropzoneText={language.uploadSelfie}
-            onChange={handleFileChange}
-            filesLimit={1}
-            acceptedFiles={["image/*", "application/*"]}
-            showPreviewsInDropzone={false}
+    <div>
+      <DropzoneArea
+        dropzoneText={language.uploadSelfie}
+        onChange={handleFileChange}
+        filesLimit={1}
+        acceptedFiles={["image/*", "application/*"]}
+        showPreviewsInDropzone={false}
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={abstain}
+            onChange={() => handleChange("abstain", !abstain)}
+            value="abstain"
+            color="primary"
           />
-          <FormControlLabel
-            style={{ margin: 0 }}
-            control={
-              <Checkbox
-                checked={abstain}
-                onChange={() => handleChange("abstain", !abstain)}
-                value="abstain"
-                color="primary"
-              />
-            }
-            label={language.preferNotTo}
-          />
-          {console.log("photo url", photoUrl)}
-          {photoUrl ? <img height="200px" src={photoUrl} alt="Me" /> : null}
-        </div>
-      </div>
-    </FormStep>
+        }
+        label={language.preferNotTo}
+      />
+      {photoUrl ? <img height="200px" src={photoUrl} alt="Me" /> : null}
+      <ButtonNavigation isComplete={isComplete} />
+    </div>
   );
 }

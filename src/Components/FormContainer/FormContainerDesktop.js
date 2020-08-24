@@ -2,8 +2,11 @@ import React from "react";
 import { Container, Grid } from "@material-ui/core";
 import { ReactComponent as BlackLogo } from "../../Assets/taiwanalogo_black.svg";
 import Header from "../Header/Header";
+import FormContext from "../FormContext";
 
 export default function FormContainerDesktop(props) {
+  const formData = React.useContext(FormContext);
+  const { language } = formData;
   const { children } = props;
 
   const open = false;
@@ -52,7 +55,7 @@ export default function FormContainerDesktop(props) {
             }}
           >
             <BlackLogo />
-            <div>{"October 2-3, Kaohsiung, TW"}</div>
+            <div>{language.coverDate}</div>
           </div>
         </Grid>
 

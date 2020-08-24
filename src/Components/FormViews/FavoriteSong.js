@@ -5,7 +5,7 @@ import FormStep from "../../Templates/FormStep";
 
 export default function FavoriteSong() {
   const formData = React.useContext(FormContext);
-  const { values, setValues } = formData;
+  const { values, setValues, language } = formData;
   const { song } = values;
   const { favoriteSong, isBlank } = song;
   const isComplete = isBlank || favoriteSong !== "";
@@ -16,10 +16,7 @@ export default function FavoriteSong() {
   //     setValues({ ...values, gender: { value: newGender } });
   //   }
   return (
-    <FormStep
-      stepTitleString={"Got a song for our tournament playlist?"}
-      isComplete={isComplete}
-    >
+    <FormStep stepTitleString={language.songTitle} isComplete={isComplete}>
       <div
         style={{
           flex: 1,
@@ -29,7 +26,7 @@ export default function FavoriteSong() {
         }}
       >
         <TextField
-          label={"Song Title / Youtube Link"}
+          label={language.songHelperText}
           margin="normal"
           helperText={"Example: https://www.youtube.com/watch?v=dQw4w9WgXcQ"}
           variant="outlined"
@@ -51,7 +48,7 @@ export default function FavoriteSong() {
               color="primary"
             />
           }
-          label={"I'm coming up blank"}
+          label={language.noSong}
         />
       </div>
     </FormStep>

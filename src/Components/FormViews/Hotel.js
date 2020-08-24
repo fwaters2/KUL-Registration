@@ -15,7 +15,10 @@ export default function Hotel() {
     setValues({ ...values, hotel: { value: newChoice } });
   }
   return (
-    <FormStep stepTitleString={"Hotel Assistance"} isComplete={isComplete}>
+    <FormStep
+      stepTitleString={language.hotelAssistance}
+      isComplete={isComplete}
+    >
       <div
         style={{
           display: "flex",
@@ -24,9 +27,7 @@ export default function Hotel() {
           marginTop: "2em",
         }}
       >
-        <FormLabel>
-          Would you be interesting in receiving accomodation information?
-        </FormLabel>
+        <FormLabel>{language.hotelQuestion}</FormLabel>
         <Grid container spacing={1} style={{ marginTop: "2em" }}>
           <Grid item xs={6}>
             <Button
@@ -46,7 +47,7 @@ export default function Hotel() {
               fullWidth
               onClick={() => updateChoice("Yes")}
             >
-              {"Yes Please!"}
+              {language.yes}
             </Button>
           </Grid>
           <Grid item xs={6}>
@@ -67,7 +68,7 @@ export default function Hotel() {
               fullWidth
               onClick={() => updateChoice("No")}
             >
-              {"No Thanks!"}
+              {language.no}
             </Button>
           </Grid>
         </Grid>

@@ -19,7 +19,7 @@ export default function Contact() {
     setValues({ ...values, contact: { ...values.contact, [field]: value } });
   };
   return (
-    <FormStep stepTitleString={"Contact Info"} isComplete={isComplete}>
+    <FormStep stepTitleString={language.contactInfo} isComplete={isComplete}>
       <div style={{ flex: 1, marginTop: "2em" }}>
         <FormControl component="fieldset">
           <FormLabel component="legend">{language.bestWay}</FormLabel>

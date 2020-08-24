@@ -14,7 +14,7 @@ export default function Birthday() {
   };
 
   return (
-    <FormStep stepTitleString="Birthday" isComplete={isComplete}>
+    <FormStep stepTitleString={language.birthday} isComplete={isComplete}>
       <div
         style={{
           display: "flex",
@@ -37,7 +37,7 @@ export default function Birthday() {
           }}
           fullWidth
         />
-        <FormLabel>Must be 18+</FormLabel>
+        <FormLabel>{language.over18}</FormLabel>
       </div>
     </FormStep>
   );

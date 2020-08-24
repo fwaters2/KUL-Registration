@@ -5,7 +5,7 @@ import {
   ExpansionPanelSummary,
   Typography,
   ExpansionPanelDetails,
-  Box
+  Box,
 } from "@material-ui/core";
 import FormContext from "../FormContext";
 import { ExpandMore } from "@material-ui/icons";
@@ -24,41 +24,52 @@ export default function PaymentDetails(props) {
     const docRef = Firebase.firestore()
       .collection("Users")
       .doc(formData.values.userId);
-    docRef.get().then(doc => setDigits(doc.data().fourDigits));
+    docRef.get().then((doc) => setDigits(doc.data().fourDigits));
   }, [formData.values.userId]);
 
   const subtotal = values.checkout.subtotal;
+  const handleSubmit = () => {
+    Firebase.firestore().collection("Users").doc(formData.userId).update({
+      status: "Transfer Pending",
+      fourDigits: digits,
+      digitsSubmitted: Firebase.firestore.FieldValue.serverTimestamp(),
+    });
+  };
   return (
     <div>
+      <Box marginY="2em" alignItems="center">
+        <Typography variant="body2" align="center">
+          Owed:{" "}
+          <strong style={{ color: "red" }}>{subtotal + language.nt}</strong>
+        </Typography>
+
+        <Typography variant="body2" align="center">
+          {language.transferInfo}
+        </Typography>
+      </Box>
+      <Box>
+        <Typography>{language.bankCode}: 005</Typography>
+        <Typography>{language.acctNum}: 048005408850</Typography> <br />
+      </Box>
       <ExpansionPanel
         expanded={expanded === "payment"}
         onChange={handleChange("payment")}
       >
         <ExpansionPanelSummary expandIcon={<ExpandMore />}>
-          <Box>
-            <Typography variant="body2">
-              Owed:{" "}
-              <strong style={{ color: "red" }}>{subtotal + language.nt}</strong>
-            </Typography>
-
-            <Typography variant="body2">{language.transferInfo}</Typography>
-          </Box>
+          Instructions
         </ExpansionPanelSummary>
-
         <ExpansionPanelDetails>
-          <Box>
-            <Typography>{language.bankCode}: 005</Typography>
-            <Typography>{language.acctNum}: 094005419233</Typography> <br />
+          <div>
             <HowToTransfer />
             <Button
               fullWidth
               color={digits === "" ? "primary" : "secondary"}
               variant="contained"
-              onClick={() => toggleDialog(true)}
+              onClick={handleSubmit}
             >
               {digits === "" ? language.submitLastFour : "Change Digits"}
             </Button>
-          </Box>
+          </div>
         </ExpansionPanelDetails>
         <FourDigits
           toggleDialog={toggleDialog}

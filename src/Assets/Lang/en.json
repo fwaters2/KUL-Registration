@@ -3,9 +3,9 @@
   "greetingBody": [
     "Welcome to the Taiwana Beach Hat Registration Page!",
     "Fee: Early Bird $800 ($1,000 after the first 50)",
-    "NEED CHINESE TRANSLATION",
     "Age Requirement: 18+"
   ],
+  "coverDate": "October 2-3, Kaohsiung, TW",
   "whatGet": "What's included",
   "getList": [
     "Your own customized fully sublimated jersey from UltiRotate (sublimated means awesome)",
@@ -43,6 +43,16 @@
   "next": "NEXT",
   "logout": "Logout",
 
+  "registerAccount": "Register Account",
+  "welcomeBack": "Welcome Back!",
+  "loginWithFacebook": "Login with Facebook",
+  "alreadyStarted": "Already started registration? Sign In",
+  "noAccount": "Dont have an account? Sign Up",
+  "or": "OR",
+  "retypePassword": "Retype Password",
+  "submitPasswordReset": "Submit your email address and we'll send you an email to reset your password.",
+  "forgotPassword": "Forgot Password?",
+
   "signUp": "Sign Up",
   "email": "Email Address",
   "choosePassword": "Create Password",
@@ -59,6 +69,7 @@
   "enName": "Nickname? {中文 name?)",
 
   "birthday": "Birthday",
+  "over18": "Must be 18+",
 
   "nationality": "Nationality",
   "otherCountry": "Country",
@@ -132,6 +143,7 @@
   "intOption2": "Mediocre",
   "intOption3": "Not Interested",
 
+  "selfieTime": "Selfie Time!",
   "uploadSelfie": "Upload a selfie to help the captains with the draft! #duckface",
   "preferNotTo": "I would prefer not to",
 
@@ -144,6 +156,7 @@
   "out": "Out",
   "banquet": "All-you-can-eat/drink banquet after finals (5/16)!",
 
+  "jerseyExplanation": "Unfortunately we can't guarantee the sizes as teams aren't determined until the day before the tournament, but we'll use this information when we make the order.",
   "teamJersey": "Team Jersey",
   "nameBack": "Name on back of Jersey",
   "required": "Required*",
@@ -151,13 +164,17 @@
   "backup": "Backup #",
   "size": "Size",
 
-  "extraSwag": "Extra Swag",
-  "blackDisc": "Black Disc",
-  "whiteDisc": "White Disc",
-  "blackHat": "Black Hat",
-  "whiteHat": "White Hat",
+  "songTitle": "Got a song for our tournament playlist?",
+  "songHelperText": "Song Title / Youtube Link",
+  "noSong": "I'm coming up blank",
+
+  "hotelAssistance": "Hotel Assistance",
+  "hotelQuestion": "Would you be interesting in receiving accomodation information?",
+  "yes": "Yes please!",
+  "no": "No thanks! I'm good!",
 
   "earlyBird": "Early Bird Sign Up",
+  "registration": "Registration",
   "checkout": "Checkout",
   "nt": "nt",
   "subtotal": "Subtotal",
@@ -167,5 +184,7 @@
   "bankCode": "Bank Code",
   "acctNum": "Account Number",
   "submitLastFour": "Submit Last 4 Digits",
-  "submitFinish": "Submit and Finish!"
+  "submitFinish": "Submit and Finish!",
+
+  "registerAgain": "Register Someone Else!"
 }

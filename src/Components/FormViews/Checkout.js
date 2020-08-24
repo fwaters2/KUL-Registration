@@ -13,40 +13,38 @@ const logo = require("../../Assets/taiwanalogo_white.svg");
 
 export default function Checkout(props) {
   const formData = React.useContext(FormContext);
+  const [currentlyRegistered, setCurrentlyRegistered] = React.useState(0);
   const {
     names: { firstName, lastName, nickname },
     selfie: { photoUrl },
   } = formData.values;
+  const subtotal = formData.values.checkout.subtotal;
+  const { setValues } = formData;
 
   const nationality = formData.values.nationality.value;
   const gender = formData.values.gender.value;
   const birthday = formData.values.birthday.value;
   const authData = React.useContext(AuthContext);
+
   const { language, values, step, stepChange } = formData;
   const { regDocId } = authData;
+  React.useEffect(() => {
+    function updatePrice(newPrice) {
+      setValues({ ...values, checkout: { subtotal: newPrice } });
+    }
+    firebase
+      .firestore()
+      .collection("Registration")
+      .where("completed", "==", true)
+      .get()
+      .then((snap) => {
+        snap.size < 50 ? updatePrice(800) : updatePrice(1000);
 
-  const swagOrders = () => {
-    //Goal: An array of orders
-    const regOrder = {
-      userId: values.userId,
-      item: "Early Bird Registration",
-      cost: 1000,
-      dateOrdered: firebase.firestore.FieldValue.serverTimestamp(),
-    };
+        setCurrentlyRegistered(snap.size); // will return the collection size
+        return null;
+      });
+  }, []);
 
-    let completeArray = [];
-
-    return [...completeArray, regOrder];
-  };
-
-  const collectionsAttributes = {
-    isDelivered: false,
-    dateDelivered: null,
-    isPaid: false,
-    datePaid: null,
-    paidTo: null,
-    bankNumbers: null,
-  };
   const usersAttributes = {
     firstName,
     lastName,
@@ -75,16 +73,11 @@ export default function Checkout(props) {
           completed: true,
           completedRegistration: firebase.firestore.FieldValue.serverTimestamp(),
         }),
-      ...swagOrders().map((order) => db.collection("Orders").add(order)),
-      ...swagOrders().map((order) =>
-        db.collection("Collections").add({ ...order, ...collectionsAttributes })
-      ),
     ])
       .then((result) => {
         console.log("completed a bunch of promises:", result.length);
-        alert("Registration Successful! Taking you to our page");
-        firebase.auth().signOut();
-        window.location = "https://www.taiwana.org";
+        alert("Registration Successful!");
+        window.location.reload();
       })
       .catch((error) =>
         console.log("Error adding documents to collections/orders", error)
@@ -95,7 +88,9 @@ export default function Checkout(props) {
     <>
       {console.log("regData", formData)}
       <div style={{ textAlign: "center" }}>
-        <StepTitle>{language.checkout}</StepTitle>
+        <StepTitle>
+          {language.checkout + " (#" + (currentlyRegistered + 1) + ")"}
+        </StepTitle>
       </div>
       <List disablePadding style={{ flex: 1, width: "100%" }}>
         <ListItem
@@ -103,9 +98,13 @@ export default function Checkout(props) {
         >
           <ListItemText
             primary={<img src={logo} alt="logo" height="80px" />}
-            secondary={language.earlyBird}
+            secondary={
+              currentlyRegistered <= 50
+                ? language.earlyBird
+                : language.registration
+            }
           />
-          <Typography variant="body2">1000nt</Typography>
+          <Typography variant="body2">{subtotal + "nt"}</Typography>
         </ListItem>
         <Divider variant="middle" />
         <ListItem

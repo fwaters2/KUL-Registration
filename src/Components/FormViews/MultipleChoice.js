@@ -105,6 +105,7 @@ export default function MultipleChoice({ category }) {
         {choices[category].options.map((option) => (
           <Grid item xs={12} key={option.value}>
             <Button
+              style={{ height: "100%" }}
               id={option.value}
               color={
                 option.value !== values[category].value
