@@ -32,17 +32,19 @@ export default function Checkout(props) {
     function updatePrice(newPrice) {
       setValues({ ...values, checkout: { subtotal: newPrice } });
     }
-    firebase
-      .firestore()
-      .collection("Registration")
-      .where("completed", "==", true)
-      .get()
-      .then((snap) => {
-        snap.size < 50 ? updatePrice(800) : updatePrice(1000);
+    const unsubscribe = () =>
+      firebase
+        .firestore()
+        .collection("Users")
+        .where("isRegistered", "==", true)
+        .get()
+        .then((snap) => {
+          snap.size < 50 ? updatePrice(800) : updatePrice(1000);
 
-        setCurrentlyRegistered(snap.size); // will return the collection size
-        return null;
-      });
+          setCurrentlyRegistered(snap.size); // will return the collection size
+          return null;
+        });
+    return unsubscribe();
   }, []);
 
   const usersAttributes = {
@@ -56,6 +58,7 @@ export default function Checkout(props) {
     photoUrl: photoUrl || null,
     status: "Unpaid",
     isRegistered: true,
+    regNumber: currentlyRegistered + 1,
   };
 
   const handleSubmission = () => {

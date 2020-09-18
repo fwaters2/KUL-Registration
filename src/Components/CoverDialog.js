@@ -18,13 +18,20 @@ export default function CoverDialog({ open, onClose }) {
   const { language } = formData;
 
   React.useEffect(() => {
-    const unsubscribe = Firebase.firestore()
-      .collection("Registration")
-      .get()
-      .then((snap) => {
-        setCurrentlyRegistered(snap.size); // will return the collection size
-      });
-    return unsubscribe;
+    async function fetchData() {
+      let playerCount = await Firebase.firestore()
+        .collection("Users")
+        .where("isRegistered", "==", true)
+        .get()
+        .then((snap) => snap.size);
+      console.log("playerCount", playerCount);
+      setCurrentlyRegistered(playerCount);
+      return playerCount;
+    }
+
+    fetchData();
+    return null;
+    // will return the collection siz
   }, []);
 
   function BodyText(props) {
