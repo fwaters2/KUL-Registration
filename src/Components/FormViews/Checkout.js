@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import Typography from "@material-ui/core/Typography";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -9,7 +10,8 @@ import firebase from "../../Firebase";
 import FormContext from "../FormContext";
 import AuthContext from "../AuthContext";
 import StepTitle from "../StepTitle";
-const logo = require("../../Assets/taiwanalogo_white.svg");
+
+const logo = require("../../Assets/KUL_final.svg");
 
 export default function Checkout(props) {
   const formData = React.useContext(FormContext);
@@ -32,20 +34,31 @@ export default function Checkout(props) {
     function updatePrice(newPrice) {
       setValues({ ...values, checkout: { subtotal: newPrice } });
     }
-    const unsubscribe = () =>
-      firebase
-        .firestore()
-        .collection("Users")
-        .where("isRegistered", "==", true)
-        .get()
-        .then((snap) => {
-          snap.size < 50 ? updatePrice(800) : updatePrice(1000);
-
-          setCurrentlyRegistered(snap.size); // will return the collection size
-          return null;
-        });
-    return unsubscribe();
+    firebase
+      .firestore()
+      .collection("Users")
+      .where("isRegistered", "==", true)
+      .get()
+      .then((snap) => {
+        setCurrentlyRegistered(snap.size); // will return the collection size
+        return snap.size;
+      });
+    const currentPrice = moment().isBefore("2020-09-21T23:59:59+08:00")
+      ? 1200
+      : 1400;
+    return updatePrice(currentPrice);
   }, []);
+
+  const getCurrentlyRegistered = async () =>
+    await firebase
+      .firestore()
+      .collection("Users")
+      .where("isRegistered", "==", true)
+      .get()
+      .then((snap) => {
+        setCurrentlyRegistered(snap.size); // will return the collection size
+        return snap.size;
+      });
 
   const usersAttributes = {
     firstName,
@@ -91,9 +104,7 @@ export default function Checkout(props) {
     <>
       {console.log("regData", formData)}
       <div style={{ textAlign: "center" }}>
-        <StepTitle>
-          {language.checkout + " (#" + (currentlyRegistered + 1) + ")"}
-        </StepTitle>
+        <StepTitle>{language.checkout}</StepTitle>
       </div>
       <List disablePadding style={{ flex: 1, width: "100%" }}>
         <ListItem
@@ -119,7 +130,7 @@ export default function Checkout(props) {
             variant="subtitle1"
             //className={classes.total}
           >
-            {values.checkout.subtotal + language.nt}
+            {subtotal + language.nt}
           </Typography>
         </ListItem>
       </List>

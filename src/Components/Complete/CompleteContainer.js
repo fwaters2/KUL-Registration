@@ -78,6 +78,10 @@ export default function RegistrationComplete(props) {
             {!haveDigits ? regInfo.language.submitLastFour : "Change Digits"}
           </Button>
         </Box>
+        <Box marginY="2em" style={{ textAlign: "center" }}>
+          More info and player discussions over on{" "}
+          <a href="https://discord.gg/r723EGk">Discord</a>!
+        </Box>
       </div>
       <Button
         fullWidth

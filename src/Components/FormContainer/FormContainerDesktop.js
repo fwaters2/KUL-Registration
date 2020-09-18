@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Grid } from "@material-ui/core";
-import { ReactComponent as BlackLogo } from "../../Assets/taiwanalogo_black.svg";
+import { ReactComponent as BlackLogo } from "../../Assets/KUL_final_white.svg";
 import Header from "../Header/Header";
 import FormContext from "../FormContext";
 
@@ -36,7 +36,7 @@ export default function FormContainerDesktop(props) {
           sm={4}
           style={{
             fontSize: "10pt",
-            color: "#e6825a",
+            color: "rgb(220, 62, 67)",
             padding: "2em",
             backgroundColor: "#19171bbb",
             borderRadius: "2em 0 0 2em",

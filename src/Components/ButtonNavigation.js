@@ -15,10 +15,7 @@ export default function ButtonNavigation({ isComplete }) {
   const firstStep = 0;
 
   const currentValues = FormData.values[stepNames[step]];
-  console.log("stepNames", stepNames);
-  console.log("FormData.values", FormData.values);
-  console.log("steps[step]", stepNames[step]);
-  console.log("currentValues", currentValues);
+
   const handleDbUpdate = () => {
     const newLastCompletedStep =
       values.lastCompletedStep > step ? values.lastCompletedStep : step;

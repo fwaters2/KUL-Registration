@@ -17,41 +17,41 @@ export default function Auth() {
   const [importedStep, setCurrentStep] = React.useState(0);
   const [greetingOpen, toggleGreeting] = React.useState(false);
   const [lang, toggleLang] = React.useState("en");
-  console.log("outside of useEffect");
+  // console.log("outside of useEffect");
 
   firebase
     .auth()
     .getRedirectResult()
     .then(function (result) {
-      let userData = {
-        uid: "",
-        email: "",
-        firstName: "",
-        lastName: "",
-        photoURL: "",
-      };
-      console.log("redirect results outside useeffect", result);
+      // let userData = {
+      //   uid: "",
+      //   email: "",
+      //   firstName: "",
+      //   lastName: "",
+      //   photoURL: "",
+      // };
+      // console.log("redirect results outside useeffect", result);
     })
     .catch((err) => console.log(err));
   React.useEffect(() => {
-    console.log("RUNNING");
+    // console.log("RUNNING");
     const db = firebase.firestore();
     const usersColRef = db.collection("Users");
 
     const setUpUserCollections = (userData) => {
       setIsLoading(true);
-      console.log(userData);
-      console.log("type", typeof userData);
-      console.log("setting up initial firebase data. userData: ", userData);
+      // console.log(userData);
+      // console.log("type", typeof userData);
+      // console.log("setting up initial firebase data. userData: ", userData);
 
       const email = userData.email;
       const userId = userData.uid;
       const firstName = userData.firstName;
       const lastName = userData.lastName;
       const photoURL = userData.photoURL;
-      console.log("Creating Registration doc for user: ", userId);
-      console.log("Firstname", firstName);
-      console.log("pohoto Url", photoURL);
+      // console.log("Creating Registration doc for user: ", userId);
+      // console.log("Firstname", firstName);
+      // console.log("pohoto Url", photoURL);
       const db = firebase.firestore();
 
       const registrationColRef = db.collection("Registration");
@@ -73,7 +73,7 @@ export default function Auth() {
           created: firebase.firestore.FieldValue.serverTimestamp(),
         })
         .then((regRef) => {
-          console.log("Creating user document and adding registration id");
+          // console.log("Creating user document and adding registration id");
           const newRegDocId = regRef.id;
           setRegDocId(newRegDocId);
 
@@ -89,7 +89,7 @@ export default function Auth() {
           });
         })
         .then((data) => {
-          console.log("final step of registering completed, data:", data);
+          // console.log("final step of registering completed, data:", data);
           setIsLoading(false);
         });
     };
@@ -104,18 +104,18 @@ export default function Auth() {
           lastName: "",
           photoURL: "",
         };
-        console.log("after getredirect results", result);
+        // console.log("after getredirect results", result);
         if (result.credential) {
           // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-          var token = result.credential.accessToken;
-          console.log("result", result);
-          console.log("redirct successful, token:", token);
+          // LAST TO BE COMMENTED OUT var token = result.credential.accessToken;
+          // console.log("result", result);
+          // console.log("redirct successful, token:", token);
           const { displayName, photoURL } = result.user;
           const names = displayName.split(" ");
           const firstName = names[0];
           const lastName = names[names.length - 1];
           //userData = { ...userData, firstName, lastName, photoURL };
-          console.log("firstname", firstName);
+          // console.log("firstname", firstName);
           userData.firstName = firstName;
           userData.lastName = lastName;
           userData.photoURL = photoURL;
@@ -126,11 +126,11 @@ export default function Auth() {
 
         firebase.auth().onAuthStateChanged(async (user) => {
           if (user) {
-            console.log("Firing inside of if statement (user signed in?)");
+            // console.log("Firing inside of if statement (user signed in?)");
             updateUser(true);
             setuserEmail(user.email);
             const authId = user.uid;
-            console.log("user detected with id: ", authId);
+            // console.log("user detected with id: ", authId);
 
             //First Get the User document for the signed in user
             const userDocRef = usersColRef.doc(authId);
@@ -140,16 +140,16 @@ export default function Auth() {
                 userData.uid = authId;
                 userData.email = user.email;
                 if (!doc.data()) {
-                  console.log("directly before get redirectresults");
+                  // console.log("directly before get redirectresults");
 
-                  console.log("no user data found so initializing db");
+                  // console.log("no user data found so initializing db");
                   await setUpUserCollections(userData);
                 } else {
-                  console.log("User doc retrieved", doc.data());
+                  // console.log("User doc retrieved", doc.data());
                   //then check if they've completed registration
 
                   const registrationId = doc.data().registrationId;
-                  console.log("setting regData with this Id: ", registrationId);
+                  // console.log("setting regData with this Id: ", registrationId);
                   const regDocRef = db
                     .collection("Registration")
                     .doc(registrationId);
@@ -157,7 +157,7 @@ export default function Auth() {
                   regDocRef
                     .get()
                     .then((doc) => {
-                      console.log("Retrieved fbData: ", doc.data());
+                      // console.log("Retrieved fbData: ", doc.data());
                       setRegDocId(doc.id);
                       toggleLang(doc.data().langPreference);
                       setRegData(doc.data());
@@ -165,9 +165,9 @@ export default function Auth() {
                       setCurrentStep(doc.data().lastCompletedStep + 1);
                     })
                     .then(() => {
-                      console.log(
-                        "Retrieved the data and turning off the loading screen"
-                      );
+                      // console.log(
+                      //   "Retrieved the data and turning off the loading screen"
+                      // );
                       doc.data().isRegistered && updateRegistration(true);
 
                       setIsLoading(false);
@@ -243,14 +243,14 @@ export default function Auth() {
           <div
             style={{
               margin: "2em",
-              color: "#fde187",
+              color: "white",
               alignText: "center",
               alignSelf: "center",
             }}
           >
             Made with coffee and Electro Swing by{" "}
             <a
-              style={{ color: "#e6825a", textDecoration: "none" }}
+              style={{ color: "rgb(220, 62, 67)", textDecoration: "none" }}
               href="https://twitter.com/Ultideveloper"
             >
               @Ultideveloper

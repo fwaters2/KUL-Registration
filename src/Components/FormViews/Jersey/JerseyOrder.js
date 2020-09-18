@@ -1,24 +1,65 @@
 import React from "react";
-import { Grid, TextField, MenuItem, FormLabel } from "@material-ui/core";
+import { Grid, TextField, MenuItem } from "@material-ui/core";
 import "./Sizes only.PNG";
 import "./Jersey only.PNG";
 import FormContext from "../../FormContext";
 import FormStep from "../../../Templates/FormStep";
+const JerseyShirt = require("./Jersey only.PNG");
+const JerseySizes = require("./Sizes only.PNG");
 
 export default function JerseyOrder() {
   const formData = React.useContext(FormContext);
   const { language, values, setValues } = formData;
-  const { size } = values.jersey;
+  const { jerseyBack, size, jerseyNum1, jerseyNum2 } = values.jersey;
   const handleChange = (field, value) => {
     setValues({ ...values, jersey: { ...values.jersey, [field]: value } });
   };
-  const isComplete = size !== "";
+  const isComplete =
+    jerseyBack !== "" && size !== "" && jerseyNum1 !== "" && jerseyNum2 !== "";
   return (
     <FormStep stepTitleString={language.teamJersey} isComplete={isComplete}>
       <div style={{ flex: 1, marginTop: "2em" }}>
         <Grid container spacing={1} alignItems="center">
           <Grid item xs={12}>
-            <FormLabel>{language.jerseyExplanation}</FormLabel>
+            <TextField
+              id="standard-required"
+              label={language.nameBack}
+              margin="normal"
+              helperText={language.required}
+              variant="outlined"
+              autoFocus
+              fullWidth
+              value={jerseyBack}
+              onChange={(e) => handleChange("jerseyBack", e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextField
+              id="standard-required"
+              label={language.jerseyNum}
+              margin="normal"
+              helperText={language.required}
+              variant="outlined"
+              fullWidth
+              type="number"
+              value={jerseyNum1}
+              onChange={(e) => handleChange("jerseyNum1", e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={4}>
+            <TextField
+              id="standard-required"
+              label={language.backup}
+              margin="normal"
+              variant="outlined"
+              helperText={language.required}
+              fullWidth
+              type="number"
+              value={jerseyNum2}
+              onChange={(e) => handleChange("jerseyNum2", e.target.value)}
+            />
+          </Grid>
+          <Grid item xs={4}>
             <TextField
               select
               id="standard-required"
@@ -51,6 +92,14 @@ export default function JerseyOrder() {
             </TextField>
             {/* </Select>
           </FormControl> */}
+          </Grid>
+        </Grid>
+        <Grid container>
+          <Grid container justify="center" item sm={6} xs={12}>
+            <img width="150em" src={JerseyShirt} alt="Jersey" />
+          </Grid>
+          <Grid container justify="center" item sm={6} xs={12}>
+            <img src={JerseySizes} alt="Jersey Sizing" />
           </Grid>
         </Grid>
       </div>

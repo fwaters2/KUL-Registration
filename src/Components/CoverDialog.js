@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import {
   Dialog,
   Button,
@@ -6,33 +7,21 @@ import {
   Box,
   DialogActions,
   DialogTitle,
+  ExpansionPanel,
+  ExpansionPanelSummary,
+  ExpansionPanelDetails,
+  List,
+  ListItem,
+  ListItemText,
 } from "@material-ui/core";
 import FormContext from "./FormContext";
-import Firebase from "../Firebase";
+import { ExpandMore } from "@material-ui/icons";
 const LeaguePhoto = require("../Assets/LeaguePhoto.jpg");
 
 export default function CoverDialog({ open, onClose }) {
   const formData = React.useContext(FormContext);
-  const [currentlyRegistered, setCurrentlyRegistered] = React.useState(0);
 
   const { language } = formData;
-
-  React.useEffect(() => {
-    async function fetchData() {
-      let playerCount = await Firebase.firestore()
-        .collection("Users")
-        .where("isRegistered", "==", true)
-        .get()
-        .then((snap) => snap.size);
-      console.log("playerCount", playerCount);
-      setCurrentlyRegistered(playerCount);
-      return playerCount;
-    }
-
-    fetchData();
-    return null;
-    // will return the collection siz
-  }, []);
 
   function BodyText(props) {
     return (
@@ -48,10 +37,12 @@ export default function CoverDialog({ open, onClose }) {
 
   return (
     <Dialog open={open} onClose={onClose} style={{ padding: "1em 2em" }}>
-      <DialogTitle>
+      <DialogTitle disableTypography={true}>
         <Typography variant="h5" align="center">
-          {currentlyRegistered < 50
-            ? `${50 - currentlyRegistered} early bird spots left!`
+          {moment().isBefore("2020-09-21T23:59:59+08:00")
+            ? `Early bird ends ${moment(
+                "2020-09-21T23:59:59+08:00"
+              ).fromNow()}!`
             : language.greetingTitle}
         </Typography>
       </DialogTitle>
@@ -73,38 +64,38 @@ export default function CoverDialog({ open, onClose }) {
           ))}
         </div>
       </Box>
-      {/* <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<ExpandMore />}>
-            {language.whatGet}
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <List>
-              {language.getList.map((y) => (
-                <ListItem key={y}>
-                  <ListItemText primary={y} />
-                </ListItem>
-              ))}
-            </List>
-          </ExpansionPanelDetails>
-        </ExpansionPanel> */}
-
-      {/* <ExpansionPanel>
-          <ExpansionPanelSummary expandIcon={<ExpandMore />}>
-            {language.schedule}
-          </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
-            <List>
-              <ListItem>
-                <ListItemText primary={language.schedBasics} />
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMore />}>
+          {language.whatGet}
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <List>
+            {language.getList.map((y) => (
+              <ListItem key={y}>
+                <ListItemText primary={y} />
               </ListItem>
-              {language.schedDates.map(x => (
-                <ListItem key={x}>
-                  <ListItemText primary={x} />
-                </ListItem>
-              ))}
-            </List>
-          </ExpansionPanelDetails>
-        </ExpansionPanel> */}
+            ))}
+          </List>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
+
+      <ExpansionPanel>
+        <ExpansionPanelSummary expandIcon={<ExpandMore />}>
+          {language.schedule}
+        </ExpansionPanelSummary>
+        <ExpansionPanelDetails>
+          <List>
+            <ListItem>
+              <ListItemText primary={language.schedBasics} />
+            </ListItem>
+            {language.schedDates.map((x) => (
+              <ListItem key={x}>
+                <ListItemText primary={x} />
+              </ListItem>
+            ))}
+          </List>
+        </ExpansionPanelDetails>
+      </ExpansionPanel>
       <DialogActions>
         <Button
           style={{ margin: "1em 0" }}

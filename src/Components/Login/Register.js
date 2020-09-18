@@ -9,17 +9,20 @@ import {
 } from "@material-ui/core";
 import firebase from "../../Firebase";
 
-import AuthContext from "../AuthContext";
+//import AuthContext from "../AuthContext";
 import FormContext from "../FormContext";
 import FacebookLogin from "../FacebookLogin";
 import StepTitle from "../StepTitle.js";
 import ForgotPasswordDialog from "./ForgotPasswordDialog";
 
 export default function Register() {
-  const authInfo = React.useContext(AuthContext);
+  // const authInfo = React.useContext(AuthContext);
   const formData = React.useContext(FormContext);
-  const { language, setValues, values } = formData;
-  const { setIsLoading, setRegDocId } = authInfo;
+  const {
+    language,
+    // setValues, values
+  } = formData;
+  // const { setIsLoading, setRegDocId } = authInfo;
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [password2, setPassword2] = React.useState("");

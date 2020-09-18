@@ -6,8 +6,8 @@
   "nationality": "",
   "gender": "",
   "isRegistered": false,
-  "isPaid": false,
   "isVerified": false,
   "registrationId": null,
+  "photoUrl": null,
   "status": "Registering"
 }

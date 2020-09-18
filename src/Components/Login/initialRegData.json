@@ -19,14 +19,38 @@
   },
   "song": { "isBlank": false, "favoriteSong": "" },
   "selfie": { "abstain": false, "photoUrl": null },
-  "jersey": {
-    "size": ""
+  "commitments": {
+    "dates": {
+      "day1": {
+        "date": "10/31",
+        "response": ""
+      },
+      "day2": {
+        "date": "11/14",
+        "response": ""
+      },
+      "day3": {
+        "date": "11/21",
+        "response": ""
+      },
+      "day4": {
+        "date": "11/22",
+        "response": ""
+      },
+      "day5": {
+        "date": "11/28",
+        "response": ""
+      }
+    }
   },
-  "hotel": {
-    "value": ""
+  "jersey": {
+    "jerseyBack": "",
+    "size": "",
+    "jerseyNum1": "",
+    "jerseyNum2": ""
   },
   "checkout": {
-    "subtotal": 1000
+    "subtotal": 1400
   },
   "lastCompletedStep": -1,
   "userId": "",

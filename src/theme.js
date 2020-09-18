@@ -2,8 +2,8 @@ import { createMuiTheme } from "@material-ui/core";
 
 const theme = createMuiTheme({
   palette: {
-    primary: { main: "#453f3f" },
-    secondary: { main: "#e6825a" },
+    primary: { main: "rgb(40, 56, 149)" },
+    secondary: { main: "rgb(220, 62, 67)" },
   },
   //for our form container
   title: {

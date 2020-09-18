@@ -1,11 +1,8 @@
 .background {
   background: linear-gradient(
-    0,
-    #19171bff 15%,
-    #453f3fff 30%,
-    #e6825aff 60%,
-    #fde187ff 70%,
-    #f5c594ff 90%
+    to bottom right,
+    rgb(220, 62, 67) -20%,
+    rgb(40, 56, 149) 90%
   );
   height: 100vh;
   width: 100%;

@@ -1,7 +1,7 @@
 import React from "react";
 import { Grid, Typography, Switch } from "@material-ui/core";
 import FormContext from "../FormContext";
-import { ReactComponent as Logo } from "../../Assets/taiwanalogo_white.svg";
+import { ReactComponent as Logo } from "../../Assets/KUL_final_top.svg";
 import SecondaryStepper from "../Steppers/SecondaryStepper";
 
 const Header = () => {

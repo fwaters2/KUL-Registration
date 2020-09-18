@@ -21,7 +21,7 @@ export default function FormContainerMobile(props) {
       style={{
         padding: "2em",
         minHeight: "calc(100vh - 4em)",
-        backgroundColor: "rgba(255,255,255,.75)",
+        backgroundColor: "rgba(255,255,255,.9)",
         display: "flex",
         flexDirection: "column",
       }}

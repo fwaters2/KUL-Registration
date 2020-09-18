@@ -1,11 +1,11 @@
 {
-  "greetingTitle": "Taiwana 2020 Registration",
+  "greetingTitle": "KUL Fall 2020 Registration",
   "greetingBody": [
-    "Welcome to the Taiwana Beach Hat Registration Page!",
-    "Fee: Early Bird $800 ($1,000 after the first 50)",
+    "Welcome to the KUL Fall Registration Page!",
+    "Fee: Early Bird $1200 ($1,400 after Sunday)",
     "Age Requirement: 18+"
   ],
-  "coverDate": "October 2-3, Kaohsiung, TW",
+  "coverDate": "Kaohsiung Ultimate League",
   "whatGet": "What's included",
   "getList": [
     "Your own customized fully sublimated jersey from UltiRotate (sublimated means awesome)",
@@ -29,13 +29,13 @@
     "Season ending tournament where each team will be playing for the chance to hoist Mama Piggy (Currently held by the Spirit Animals)"
   ],
   "schedule": "Schedule",
-  "schedBasics": "The league runs a total of 5 Saturdays over approximately 2 months from 12-6:00pm. 2 or 3 ~forty minute games a day",
+  "schedBasics": "The league runs a total of 5 Days over approximately 1 month from 12-6:00pm. 2 or 3 ~forty minute games a day",
   "schedDates": [
-    "Saturday March 28th: Round 1 (Color day!)",
-    "Saturday April 11th: Round 2",
-    "Saturday April 18th: Round 3",
-    "Saturday May 2nd: Round 4",
-    "Saturday May 16th: Championship"
+    "Saturday October 31st: Round 1 (Color day!)",
+    "Saturday November 14th: Round 2",
+    "Saturday November 21st: Round 3",
+    "SUNDAY November 22nd: Round 4",
+    "Saturday November 28th: Championship"
   ],
   "ready": "Ready",
 
@@ -154,7 +154,7 @@
   "likely": "Likely",
   "unlikely": "Unlikely",
   "out": "Out",
-  "banquet": "All-you-can-eat/drink banquet after finals (5/16)!",
+  "banquet": "All-you-can-eat/drink banquet after finals (11/22)!",
 
   "jerseyExplanation": "Unfortunately we can't guarantee the sizes as teams aren't determined until the day before the tournament, but we'll use this information when we make the order.",
   "teamJersey": "Team Jersey",

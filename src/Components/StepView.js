@@ -10,9 +10,8 @@ import UploadImage from "./FormViews/UploadImage/UploadImage.js";
 import Skills from "./FormViews/Skills.js";
 import Experience from "./FormViews/Experience.js";
 import Athletecism from "./FormViews/Athletecism.js";
-import Hotel from "./FormViews/Hotel";
-import FavoriteSong from "./FormViews/FavoriteSong";
 import Birthday from "./FormViews/Birthday";
+import Commitments from "./FormViews/Commitments";
 
 // "birthday",
 // "nationality",
@@ -40,10 +39,6 @@ const stepManipulation = [
   {
     name: "birthday",
     component: <Birthday />,
-  },
-  {
-    name: "song",
-    component: <FavoriteSong />,
   },
   {
     name: "gender",
@@ -74,12 +69,12 @@ const stepManipulation = [
     component: <UploadImage />,
   },
   {
-    name: "jersey",
-    component: <JerseyOrder />,
+    name: "commitments",
+    component: <Commitments />,
   },
   {
-    name: "hotel",
-    component: <Hotel />,
+    name: "jersey",
+    component: <JerseyOrder />,
   },
   {
     name: "checkout",

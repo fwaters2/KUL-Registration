@@ -49,7 +49,7 @@ export default function PaymentDetails(props) {
       </Box>
       <Box>
         <Typography>{language.bankCode}: 005</Typography>
-        <Typography>{language.acctNum}: 048005408850</Typography> <br />
+        <Typography>{language.acctNum}: 094005419233</Typography> <br />
       </Box>
       <ExpansionPanel
         expanded={expanded === "payment"}
